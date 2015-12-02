@@ -13,6 +13,18 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 @XmlRootElement(name="Users")
 public class UserWrapper {
 	
+	private List<User> users;
 	
+	@XmlElement(name="user")
+	public List<User> getUsers()
+	{
+		return users;
+	}
+	
+	public void setUsers(List<User> users)
+	{
+		this.users = users;
+	}
+
 	
 }
