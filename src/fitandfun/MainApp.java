@@ -4,8 +4,10 @@ package fitandfun;
 import java.io.File;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
 import fitandfun.model.*;
 import fitandfun.view.*;
 import javafx.application.Application;
@@ -13,9 +15,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -24,8 +26,10 @@ import javafx.scene.layout.BorderPane;
 
 public class MainApp extends Application {
 
-	 private Stage primaryStage;
-	 private BorderPane rootLayout;
+	private final String FILE_USERS = "XML\\Users.xml";
+	
+	private Stage primaryStage;
+	private BorderPane rootLayout;
 	/**
      * The data as an observable list of Users.
      */
@@ -34,10 +38,7 @@ public class MainApp extends Application {
 
     public MainApp()
     {
-    	/*userData.add(new User("Viki", "w"));
-    	userData.add(new User("Stefan", "m"));
-    	userData.add(new User("Simone", "w"));
-    	*/
+    	
     }
     
     @Override
@@ -236,12 +237,18 @@ public class MainApp extends Application {
     
     private void loadUserXML()
     {
-    	userData.add(new User("Viki", "w"));
-    	userData.add(new User("Stefan", "m"));
-    	userData.add(new User("Simone", "w"));
-    	
-    	
-    	
+    	try {
+			UserWrapper wrapper = XMLHelper.load(UserWrapper.class, FILE_USERS);
+			userData.clear();
+			userData.addAll(wrapper.getUsers());
+		} catch (Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Laden der Benutzer ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
 	}
     
     /**
@@ -251,72 +258,22 @@ public class MainApp extends Application {
     public ObservableList<User> getUserData() {
         return userData;
     }
-    
-	/**
-	 * Load user data from XML file.
-	 * The current user data will be replaced
-	 */
-	public void loadUserData(File file)
-	{
-		try 
-		{
-			JAXBContext context = JAXBContext.newInstance(UserWrapper.class);
-			Unmarshaller um = context.createUnmarshaller();
-			
-			UserWrapper wrapper = (UserWrapper) um.unmarshal(file);
-			
-			userData.clear();
-			userData.addAll(wrapper.getUsers());
-			
-			//Save the file path to the registery
-			setUserFilePath(file);
-		}catch(Exception e)
-		{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Could not load data");
-			alert.setContentText("Could not load data from file:\n" + file.getPath());
-		
-			alert.showAndWait();
-		}
-		
-	}
 	
-	/**
-	 * Saves the current user data to the XML File
-	 */
-	public void saveUserData(File file)
+	public void saveUserXml()
 	{
-		try
-		{
-			JAXBContext context = JAXBContext.newInstance(UserWrapper.class);
-			Marshaller m = context.createMarshaller();
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			//Wrapping our user data
-			UserWrapper wrapper = new UserWrapper();
-			wrapper.setUsers(userData);
-			
-			//Marshalling and saving XML to the file
-			m.marshal(wrapper, file);
-			
-			//Save the file path to the registery
-			setUserFilePath(file);
-		}catch(Exception e)
-		{
+		UserWrapper wrapper = new UserWrapper();
+		wrapper.setUsers(userData);
+		try {
+			XMLHelper.save(wrapper, FILE_USERS);
+		} catch (JAXBException e) {
+			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Could not save data");
-			alert.setContentText("Could not save data to file:\n" + file.getPath());
-			
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der Benutzer ist ein Fehler aufgetreten!");
 			alert.showAndWait();
 		}
 	}
-	
-	private void setUserFilePath(File file) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	 /**
      * Returns the main stage.
@@ -324,6 +281,11 @@ public class MainApp extends Application {
      */
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    
+    public ObservableList<User> getUsers()
+    {
+    	return userData;
     }
 
 	public static void main(String[] args) {

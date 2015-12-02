@@ -4,6 +4,14 @@
 package fitandfun.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import fitandfun.Sex;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -25,11 +33,11 @@ public class User {
      */
     private final StringProperty username;
     private final ObjectProperty<LocalDate> birthday;
-    // WEIGHT in kg 
+    // WEIGHT in kg
     private final FloatProperty weight;
     // HEIGHT in cm
     private final IntegerProperty height;
-    private final StringProperty sex;
+    private final ObjectProperty<Sex> sex;
     private final FloatProperty BMI;
     
     /**
@@ -38,37 +46,36 @@ public class User {
     
     public User()
     {
-        this(null, null);
+        this(null);
     }
     
-    public User(String username, String sex)
+    public User(String username)
     {
-        this.username = new SimpleStringProperty(username);
-        this.sex = new SimpleStringProperty(sex);
-        this.birthday = null;
-        this.weight = new SimpleFloatProperty(0);
-        this.height = new SimpleIntegerProperty(0);
-        this.BMI = new SimpleFloatProperty(0);
+    	this(username, Sex.None);
     }
     
-    public User(String username, String sex, LocalDate birthday)
+    public User(String username, Sex sex)
     {
-        this.username = new SimpleStringProperty(username);
-        this.sex = new SimpleStringProperty(sex);
-        this.birthday = new SimpleObjectProperty<>(birthday);
-        this.weight = new SimpleFloatProperty(0);
-        this.height = new SimpleIntegerProperty(0);
-        this.BMI = new SimpleFloatProperty(0);
+    	this(username, sex, null);
     }
     
-    public User(String username, String sex, LocalDate birthday, float w, int h)
+    public User(String username, Sex sex, LocalDate birthday)
+    {
+    	this(username, sex, birthday, 0, 0);
+    }
+    
+    public User(String username, Sex sex, LocalDate birthday, float w, int h)
     {
         this.username = new SimpleStringProperty(username);
-        this.sex = new SimpleStringProperty(sex);
+        this.sex = new SimpleObjectProperty<>(sex);
         this.birthday = new SimpleObjectProperty<>(birthday);
         this.weight = new SimpleFloatProperty(w);
         this.height = new SimpleIntegerProperty(h);
         this.BMI = new SimpleFloatProperty(0);
+        
+        this.weight.addListener((value) -> updateBMI());
+        this.height.addListener((value) -> updateBMI());
+
         updateBMI();
     }
     
@@ -77,6 +84,12 @@ public class User {
      * Get- and Set-Methods
      */
     
+    public StringProperty usernameProperty()
+    {
+    	return this.username;
+    }
+    
+    @XmlElement(name = "Username")
     public String getUsername()
     {
         return username.get();
@@ -87,6 +100,27 @@ public class User {
         this.username.set(username);
     }
     
+    public ObjectProperty<Sex> sexProperty()
+    {
+    	return this.sex;
+    }
+
+    @XmlElement(name = "Sex")
+    public Sex getSex()
+    {
+    	return sex.get();
+    }
+    
+    public void setSex(Sex sex)
+    {
+    	this.sex.set(sex);
+    }
+    
+    public ObjectProperty<LocalDate> birthdayProperty()
+    {
+    	return this.birthday;
+    }
+
     public LocalDate getBirthday()
     {
         return birthday.get();
@@ -96,7 +130,35 @@ public class User {
     {
         this.birthday.set(birthday);
     }
+
+    @XmlElement(name = "Birthday")
+    public String getBirthdayString()
+    {
+    	if (birthday.get() == null)
+    	{
+    		return "";
+    	}
+    	return birthday.get().format(DateTimeFormatter.ISO_DATE);
+    }
     
+    public void setBirthdayString(String birthdayString)
+    {
+    	if (birthdayString != null)
+    	{
+    		this.birthday.set(LocalDate.parse(birthdayString));
+    	}
+    	else
+    	{
+    		this.birthday.set(null);
+    	}
+    }
+    
+    public FloatProperty weightProperty()
+    {
+    	return this.weight;
+    }
+
+    @XmlElement(name = "Weight")
     public float getWeight()
     {
         return weight.get();
@@ -107,6 +169,12 @@ public class User {
         this.weight.set(weight);
     }
     
+    public IntegerProperty heightProperty()
+    {
+    	return this.height;
+    }
+
+    @XmlElement(name = "Height")
     public int getHeight()
     {
         return height.get();
@@ -117,11 +185,29 @@ public class User {
         this.height.set(height);
     }
     
+    public FloatProperty bmiProperty()
+    {
+    	return this.BMI;
+    }
+    
+    public float getBMI()
+    {
+    	return BMI.get();
+    }
+    
     /**
      * Update BMI when values are available
      */
-    private void updateBMI()
+    public void updateBMI()
     {
-    	this.BMI.set(weight.get() / (height.get() * height.get()));
+    	if(height.get() > 0 && weight.get() > 0)
+    	{
+    		float meterHeight = (float) (height.get() / 100.0);
+    		this.BMI.set((float) (weight.get() / (meterHeight * meterHeight)));
+    	}
+    	else
+    	{
+    		this.BMI.set(0);
+    	}
     }
 }

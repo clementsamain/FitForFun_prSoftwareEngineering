@@ -1,6 +1,8 @@
 package fitandfun.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import fitandfun.MainApp;
 
 public class OverviewActivityController {
@@ -23,6 +25,14 @@ public class OverviewActivityController {
     private void initialize() {
 
     }
+    
+    @FXML
+    private void activityClicked()
+    {
+    	
+    }
+    
+    
 
     /**
      * Is called by the main application to give a reference back to itself.
