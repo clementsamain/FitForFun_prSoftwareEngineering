@@ -1,7 +1,9 @@
 package fitandfun.model;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.BooleanPropertyBase;
 import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 
 /**
@@ -14,7 +16,7 @@ public class TrainingGoals {
 	private final GoalType type;
 	private final FloatProperty goal;
 	private final FloatProperty current;
-	private final BooleanProperty completed;
+	private final SimpleBooleanProperty completed;
 	
 	/**
 	 * Constructor
@@ -26,7 +28,7 @@ public class TrainingGoals {
 		this.type = type;
 		this.goal = new SimpleFloatProperty(goal);
 		this.current = new SimpleFloatProperty(0);
-		this.completed = new BooleanProperty();
+		this.completed = new SimpleBooleanProperty();
 	}
 	
 	/**

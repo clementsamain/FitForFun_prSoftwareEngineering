@@ -3,7 +3,7 @@ package fitandfun.model;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  * Helper class to wrap a list of users. This is used for saving the
@@ -12,8 +12,8 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @XmlRootElement(name="Users")
 public class UserWrapper {
-	
-	private List<User> users;
+
+	public List<User> users;
 	
 	@XmlElement(name="user")
 	public List<User> getUsers()
