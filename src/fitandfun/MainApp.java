@@ -34,10 +34,10 @@ public class MainApp extends Application {
 
     public MainApp()
     {
-    	userData.add(new User("Viki", "w"));
+    	/*userData.add(new User("Viki", "w"));
     	userData.add(new User("Stefan", "m"));
     	userData.add(new User("Simone", "w"));
-    	
+    	*/
     }
     
     @Override
@@ -84,6 +84,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        loadUserXML();
     }
     
     /**
@@ -233,6 +234,15 @@ public class MainApp extends Application {
         }
     }
     
+    private void loadUserXML()
+    {
+    	userData.add(new User("Viki", "w"));
+    	userData.add(new User("Stefan", "m"));
+    	userData.add(new User("Simone", "w"));
+    	
+    	
+    	
+	}
     
     /**
      * Returns the data as an observable list of Users. 

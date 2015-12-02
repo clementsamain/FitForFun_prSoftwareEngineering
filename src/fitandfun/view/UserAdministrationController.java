@@ -1,6 +1,7 @@
 package fitandfun.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import fitandfun.MainApp;
 
 public class UserAdministrationController {
@@ -21,7 +22,7 @@ public class UserAdministrationController {
      */
     @FXML
     private void initialize() {
-
+    	loadUserXML();
     }
 
     /**
@@ -41,5 +42,11 @@ public class UserAdministrationController {
     @FXML
     private void showCreateNewUser() {
     	mainApp.showCreateNewUser();
+    }
+    
+    private void loadUserXML()
+    {
+    	Alert a = new Alert(null);
+    	a.show();
     }
 }
