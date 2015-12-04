@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ActivityWrapper>
+    <Activities>
+        <Activity>
+            <Date>true</Date>
+            <Distance>false</Distance>
+            <End>true</End>
+            <HMeter>false</HMeter>
+            <Type>Gehen</Type>
+            <Start>true</Start>
+        </Activity>
+    </Activities>
+</ActivityWrapper>

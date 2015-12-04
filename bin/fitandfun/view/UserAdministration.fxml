@@ -86,7 +86,7 @@
                   </Label>
                   <Button layoutX="76.0" layoutY="416.0" mnemonicParsing="false" onAction="#SaveUsers" prefHeight="25.0" prefWidth="136.0" text="Änderungen speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
                   <Button layoutX="203.0" layoutY="413.0" mnemonicParsing="false" text="Abbrechen" visible="false" AnchorPane.bottomAnchor="20.0" />
-                  <Button layoutX="278.0" layoutY="35.0" mnemonicParsing="false" onAction="#showCreateNewUser" prefHeight="25.0" prefWidth="25.0" text="+" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                  <Button layoutX="278.0" layoutY="35.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="25.0" prefWidth="25.0" text="+" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
                   <Button layoutX="487.0" layoutY="20.0" mnemonicParsing="false" onAction="#deleteSelectedUser" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
                   <SplitPane dividerPositions="0.3801801801801802" layoutY="69.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
                     <items>

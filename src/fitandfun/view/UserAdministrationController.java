@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
 
+import java.io.File;
 import java.util.Optional;
 
 import com.sun.javafx.css.converters.StringConverter;
@@ -90,12 +91,29 @@ public class UserAdministrationController {
     }
     
     @FXML
-    private void showCreateNewUser() {
-    	//mainApp.showCreateNewUser();
+    private void createNewUser() {
     	User u = new User("Neuer Benutzer");
     	mainApp.getUserData().add(u);
     	userList.getSelectionModel().select(u);
     	SaveUsers();
+    	File newDir = new File("XML\\"+u.getUsername());
+    	
+    	// if the directory does not exist, create it
+    	if (!newDir.exists()) {
+    	    System.out.println("creating directory: " + u.getUsername());
+    	    boolean result = false;
+
+    	    try{
+    	    	newDir.mkdir();
+    	        result = true;
+    	    } 
+    	    catch(SecurityException se){
+    	        //handle it
+    	    }        
+    	    if(result) {    
+    	        System.out.println("DIR created");  
+    	    }
+    	}	
     }
     
     @FXML
@@ -157,5 +175,6 @@ public class UserAdministrationController {
     private void SaveUsers()
     {
     	mainApp.saveUserXml();
+    	//checkFolderName();
     }
 }

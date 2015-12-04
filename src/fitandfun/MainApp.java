@@ -27,6 +27,7 @@ import javafx.scene.layout.BorderPane;
 public class MainApp extends Application {
 
 	private final String FILE_USERS = "XML\\Users.xml";
+	private final String FILE_ACTIVITY = "XML\\Activities.xml";
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -34,6 +35,11 @@ public class MainApp extends Application {
      * The data as an observable list of Users.
      */
     private ObservableList<User> userData = FXCollections.observableArrayList();
+
+    /**
+     * The data as an observable list of ActivityTypes.
+     */
+    private ObservableList<ActivityType> activityData = FXCollections.observableArrayList();
 
 
     public MainApp()
@@ -85,7 +91,8 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        loadUserXML();
+        loadUserXML(); 
+        loadActivityXML();
     }
     
     /**
@@ -237,18 +244,30 @@ public class MainApp extends Application {
     
     private void loadUserXML()
     {
-    	try {
-			UserWrapper wrapper = XMLHelper.load(UserWrapper.class, FILE_USERS);
-			userData.clear();
-			userData.addAll(wrapper.getUsers());
-		} catch (Exception e) {
-			e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR);
+    	File temp = new File(FILE_USERS);
+    	if(temp.exists())
+    	{
+	    	try {
+				UserWrapper wrapper = XMLHelper.load(UserWrapper.class, FILE_USERS);
+				userData.clear();
+				userData.addAll(wrapper.getUsers());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der Benutzer ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+    	}else
+    	{
+    		Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Fehler");
 			alert.setHeaderText(null);
-			alert.setContentText("Beim Laden der Benutzer ist ein Fehler aufgetreten!");
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
 			alert.showAndWait();
-		}
+    	}
+    	
 	}
     
     /**
@@ -275,6 +294,52 @@ public class MainApp extends Application {
 		}
 	}
 	
+	//CHANGE!!
+	public void saveActivityXml()
+	{
+		ActivityWrapper wrapper = new ActivityWrapper();
+		wrapper.setActivities(activityData);
+		try {
+			XMLHelper.save(wrapper, FILE_ACTIVITY);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der Aktivität ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
+	
+	private void loadActivityXML()
+	 {
+		
+		File temp = new File(FILE_ACTIVITY);
+    	if(temp.exists())
+    	{
+			 try {
+					ActivityWrapper wrapper = XMLHelper.load(ActivityWrapper.class, FILE_ACTIVITY);
+					activityData.clear();
+					activityData.addAll(wrapper.getActivities());
+				} catch (Exception e) {
+					e.printStackTrace();
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Fehler");
+					alert.setHeaderText(null);
+					alert.setContentText("Beim Laden der Aktivität ist ein Fehler aufgetreten!");
+					alert.showAndWait();
+				}
+	    }else
+    	{
+    		Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+    	}
+		}
+	
+	
 	 /**
      * Returns the main stage.
      * @return
@@ -290,6 +355,10 @@ public class MainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public ObservableList<ActivityType> getActivityData() {
+		return activityData;
 	}
 
 	
