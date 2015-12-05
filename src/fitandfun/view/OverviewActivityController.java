@@ -5,6 +5,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
@@ -12,6 +14,7 @@ import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
 
 import java.io.File;
+import java.util.Optional;
 
 import fitandfun.MainApp;
 import fitandfun.Sex;
@@ -41,6 +44,8 @@ public class OverviewActivityController {
     private CheckBox distance;
     @FXML
     private CheckBox hmeter;
+    @FXML
+    private Button saveAct;
 
     /**
      * The constructor.
@@ -74,22 +79,32 @@ public class OverviewActivityController {
     		}
     	});
     	activityList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showActivity(oldValue, newValue));
+    	saveAct.setVisible(false);
     }
 
     @FXML
     private void createNewActivity() {
-    	User u = new User("Neuer Benutzer");
     	ActivityType a = new ActivityType("Neue Aktivität");
-    	mainApp.getUserData().add(u);
+    	mainApp.getActivityData().add(a);
     	activityList.getSelectionModel().select(a);
-    	
-    	SaveActivity();
+    	saveAct.setVisible(true);
+    	date.setDisable(false);
+		startTime.setDisable(false);
+		endTime.setDisable(false);
+		distance.setDisable(false);
+		hmeter.setDisable(false);
     }
     
     @FXML
     private void SaveActivity()
     {
     	mainApp.saveActivityXml();
+    	saveAct.setVisible(false);
+    	date.setDisable(true);
+		startTime.setDisable(true);
+		endTime.setDisable(true);
+		distance.setDisable(true);
+		hmeter.setDisable(true);
     }
     
     private void showActivity(ActivityType oldAT, ActivityType newAT)
@@ -125,8 +140,14 @@ public class OverviewActivityController {
     	{
     		gridPaneEdit.setDisable(true);
     	}
+		//actName.setDisable(true);
+		date.setDisable(true);
+		startTime.setDisable(true);
+		endTime.setDisable(true);
+		distance.setDisable(true);
+		hmeter.setDisable(true);
     }
-
+    
     /**
      * Is called by the main application to give a reference back to itself.
      * 

@@ -119,7 +119,7 @@
                               <Image url="@../../../Images/workout.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <ImageView fitHeight="80.0" fitWidth="120.0" onMouseClicked="#showInputActivityController" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <image>
                               <Image url="@../../../Images/newentry.png" />
                            </image>

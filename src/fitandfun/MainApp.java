@@ -146,6 +146,23 @@ public class MainApp extends Application {
         }
     }
     
+    public void showInputActivityController()
+    {
+    	try {
+            // Load
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/InputActivity.fxml"));
+            AnchorPane inputActivity = (AnchorPane) loader.load();
+            // Set into the center of root layout
+            rootLayout.setCenter(inputActivity);            
+            // Give the controller access to the main app
+            TrainingGoalsController controller = loader.getController();
+            //controller.setMainApp(this);  //PROBLEM!                      
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void showWorkouts() {
         try {
             // Load

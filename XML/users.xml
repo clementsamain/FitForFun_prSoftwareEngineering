@@ -15,31 +15,5 @@
             <Username>Viki</Username>
             <Weight>70.0</Weight>
         </User>
-        <User>
-            <Birthday></Birthday>
-            <Height>0</Height>
-            <Sex>None</Sex>
-            <Username>Neuer Benutzer</Username>
-            <Weight>0.0</Weight>
-        </User>
-    </Users>
-</UserWrapper>
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<UserWrapper>
-    <Users>
-        <User>
-            <Birthday>1992-02-26</Birthday>
-            <Height>183</Height>
-            <Sex>Male</Sex>
-            <Username>Patrick</Username>
-            <Weight>80.0</Weight>
-        </User>
-        <User>
-            <Birthday>1990-09-30</Birthday>
-            <Height>173</Height>
-            <Sex>Female</Sex>
-            <Username>Viki</Username>
-            <Weight>65.0</Weight>
-        </User>
     </Users>
 </UserWrapper>

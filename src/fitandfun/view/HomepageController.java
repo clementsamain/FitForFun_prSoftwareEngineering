@@ -58,4 +58,9 @@ public class HomepageController {
     private void showUserAdministration() {
     	mainApp.showUserAdministration();
     }
+    
+    @FXML
+    private void showInputActivityController() {
+    	mainApp.showInputActivityController();
+    }
 }

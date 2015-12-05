@@ -104,20 +104,20 @@
                         <Label text="Datum:" GridPane.rowIndex="1" />
                         <Label text="Startzeit:" GridPane.rowIndex="2" />
                         <Label text="Endzeit:" GridPane.rowIndex="3" />
-                        <Label text="Dauer:" GridPane.rowIndex="4" />
-                        <Label text="Distanz:" GridPane.rowIndex="5" />
-                        <Label text="Höhenmeter:" GridPane.rowIndex="6" />
+                        <Label text="Dauer:" GridPane.rowIndex="6" />
+                        <Label text="Distanz:" GridPane.rowIndex="4" />
+                        <Label text="Höhenmeter:" GridPane.rowIndex="5" />
                         <Label text="Kalorienverbrauch:" GridPane.rowIndex="8" />
                         <Label text="durchschn. Geschwindigkeit:" GridPane.rowIndex="7" />
-                        <TextField promptText="Gehen, Laufen, ..." GridPane.columnIndex="1" />
-                        <TextField promptText="TT.MM.JJJJ" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextField promptText="in km/h" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextField promptText="in kcal" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
+                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <Button layoutX="85.0" layoutY="433.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
