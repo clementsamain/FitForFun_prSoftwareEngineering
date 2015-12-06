@@ -156,8 +156,8 @@ public class MainApp extends Application {
             // Set into the center of root layout
             rootLayout.setCenter(inputActivity);            
             // Give the controller access to the main app
-            TrainingGoalsController controller = loader.getController();
-            //controller.setMainApp(this);  //PROBLEM!                      
+            InputActivityController controller = loader.getController();
+            controller.setMainApp(this);                      
         } catch (IOException e) {
             e.printStackTrace();
         }
