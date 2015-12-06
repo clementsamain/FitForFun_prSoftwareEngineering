@@ -8,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import fitandfun.MainApp;
 import fitandfun.model.ActivityType;
-import fitandfun.model.User;
 
 public class InputActivityController {
 
@@ -110,4 +109,3 @@ public class InputActivityController {
     	mainApp.showInputActivityController();
     }
 }
-
