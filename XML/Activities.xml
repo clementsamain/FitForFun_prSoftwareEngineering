@@ -33,5 +33,13 @@
             <Type>Radfahren</Type>
             <Start>true</Start>
         </Activity>
+        <Activity>
+            <Date>true</Date>
+            <Distance>true</Distance>
+            <End>true</End>
+            <HMeter>true</HMeter>
+            <Type>Bergwandern</Type>
+            <Start>true</Start>
+        </Activity>
     </Activities>
 </ActivityWrapper>
