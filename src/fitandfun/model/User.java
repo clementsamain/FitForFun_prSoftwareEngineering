@@ -12,9 +12,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import fitandfun.Sex;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -39,6 +41,7 @@ public class User {
     private final IntegerProperty height;
     private final ObjectProperty<Sex> sex;
     private final FloatProperty BMI;
+    private final BooleanProperty isNew;
     
     /**
      * Constructor
@@ -72,7 +75,7 @@ public class User {
         this.weight = new SimpleFloatProperty(w);
         this.height = new SimpleIntegerProperty(h);
         this.BMI = new SimpleFloatProperty(0);
-        
+        this.isNew = new SimpleBooleanProperty(true);
         this.weight.addListener((value) -> updateBMI());
         this.height.addListener((value) -> updateBMI());
 
@@ -195,6 +198,23 @@ public class User {
     	return BMI.get();
     }
     
+    public BooleanProperty newProperty()
+    {
+    	return this.isNew;
+    }
+
+    @XmlElement(name = "IsNew")
+    public boolean getIsNew()
+    {
+        return isNew.get();
+    }
+    
+    public void setIsNew(boolean val)
+    {
+        this.isNew.set(val);
+    }
+    
+    
     /**
      * Update BMI when values are available
      */
@@ -210,4 +230,6 @@ public class User {
     		this.BMI.set(0);
     	}
     }
+    
+    
 }

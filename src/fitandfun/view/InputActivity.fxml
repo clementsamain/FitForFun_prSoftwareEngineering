@@ -7,6 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import fitandfun.TimeSpinner?>
 
 <AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.InputActivityController">
    <children>
@@ -109,20 +110,20 @@
                         <Label text="Höhenmeter:" GridPane.rowIndex="5" />
                         <Label text="Kalorienverbrauch:" GridPane.rowIndex="8" />
                         <Label text="durchschn. Geschwindigkeit:" GridPane.rowIndex="7" />
-                        <TextField promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField promptText="hh:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <ComboBox prefWidth="150.0" GridPane.columnIndex="1" />
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="distance" promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="hmeter" promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <ComboBox fx:id="actName" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="duration" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="avgspeed" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="calories" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TimeSpinner fx:id="start" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TimeSpinner fx:id="end" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Button layoutX="85.0" layoutY="433.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
-                  <Button layoutX="286.0" layoutY="413.0" mnemonicParsing="false" text="Abbrechen" />
-                  <Button layoutX="471.0" layoutY="23.0" mnemonicParsing="false" text="Import" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                  <Button layoutX="85.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#saveActivity" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
+                  <Button layoutX="141.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#reset" text="Abbrechen" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" />
+                  <Button layoutX="471.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#importActivity" text="Import" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

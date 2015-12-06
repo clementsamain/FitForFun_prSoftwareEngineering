@@ -28,6 +28,10 @@ public class MainApp extends Application {
 
 	private final String FILE_USERS = "XML\\Users.xml";
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
+
+	private User activeUser;
+	private String FILE_USERACTIVITY;
+	
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -40,6 +44,11 @@ public class MainApp extends Application {
      * The data as an observable list of ActivityTypes.
      */
     private ObservableList<ActivityType> activityData = FXCollections.observableArrayList();
+
+    /**
+     * The data as an observable list of User-Activities.
+     */
+    private ObservableList<Activity> userActivityData = FXCollections.observableArrayList();
 
 
     public MainApp()
@@ -54,7 +63,8 @@ public class MainApp extends Application {
 
         initRootLayout();
 
-        showHomepage();
+        //showHomepage();
+        showLogin();
     }
     /**
      * Initializes the root layout.
@@ -73,6 +83,25 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+    
+    public void showLogin() {
+        try {
+        	loadUserXML(); 
+            loadActivityXML();
+            // Load
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Login.fxml"));
+            AnchorPane userOverview = (AnchorPane) loader.load();
+            // Set into the center of root layout
+            rootLayout.setCenter(userOverview);            
+            // Give the controller access to the main app
+            LoginController controller = loader.getController();
+            controller.setMainApp(this);                        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     /**
      * Shows the person overview inside the root layout.
@@ -311,13 +340,28 @@ public class MainApp extends Application {
 		}
 	}
 	
-	//CHANGE!!
 	public void saveActivityXml()
 	{
 		ActivityWrapper wrapper = new ActivityWrapper();
 		wrapper.setActivities(activityData);
 		try {
 			XMLHelper.save(wrapper, FILE_ACTIVITY);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der Aktivität ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
+	
+	public void saveUserActivityXml()
+	{
+		UserActivityWrapper wrapper = new UserActivityWrapper();
+		wrapper.setUserActivities(userActivityData);
+		try {
+			XMLHelper.save(wrapper, FILE_USERACTIVITY);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
@@ -356,6 +400,18 @@ public class MainApp extends Application {
     	}
 		}
 	
+	public void setActiveUser(User user)
+	{
+		this.activeUser = user;	
+		FILE_USERACTIVITY = "XML\\" + activeUser.getUsername() + "\\UserActivities.xml";
+		
+	}
+	
+	public User getActiveUser()
+	{
+		return activeUser;
+	}
+	
 	
 	 /**
      * Returns the main stage.
@@ -377,6 +433,10 @@ public class MainApp extends Application {
 	public ObservableList<ActivityType> getActivityData() {
 		return activityData;
 	}
-
+	
+	public ObservableList<Activity> getUserActivity()
+	{
+		return userActivityData;
+	}
 	
 }

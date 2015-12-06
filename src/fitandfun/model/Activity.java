@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.xml.bind.annotation.XmlElement;
 
+import fitandfun.Sex;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -27,7 +28,7 @@ public class Activity {
     /**
      * Activity Variables to fill data
      */
-	private final ActivityType type;
+	private final ObjectProperty<ActivityType> type;
     private final ObjectProperty<LocalDate> date;
     private final ObjectProperty<LocalTime> start;
     private final ObjectProperty<LocalTime> end;
@@ -37,6 +38,11 @@ public class Activity {
     private final IntegerProperty height;
     private final FloatProperty avgspeed;
     
+    
+    public Activity()
+    {
+    	this(null);
+    }
     
     public Activity(ActivityType type)
     {
@@ -62,7 +68,7 @@ public class Activity {
      */
     public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end)
     {
-        this(type, date, start, end, null);
+        this(type, date, start, end, 0);
     }
     
     /**
@@ -73,7 +79,7 @@ public class Activity {
      * @param end Time the Actitity was finished
      * @param distance The Distance in km (can have up to 3 decimals) e.g 10.731
      */
-    public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, Float distance)
+    public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance)
     {
     	this(type, date, start, end, distance, 0);
     }
@@ -87,13 +93,13 @@ public class Activity {
      * @param distance The Distance in km (can have up to 3 decimals) for example 10.731
      * @param height Höhenmeter in meter for example 64
      */
-    public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, Float distance, int height)
+    public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance, int height)
     {
-        this.type = type;
+        this.type = new SimpleObjectProperty<>(type);
         this.date = new SimpleObjectProperty<>(date);
         this.start = new SimpleObjectProperty<>(start);
         this.end = new SimpleObjectProperty<>(end);
-        this.duration = new SimpleObjectProperty<>(LocalTime.of(this.end.get().getHour() - this.start.get().getHour(), this.end.get().getMinute() - this.start.get().getMinute()));
+        this.duration = new SimpleObjectProperty<>();
         this.distance = new SimpleFloatProperty(distance);
         this.calories = new SimpleIntegerProperty(0);
         this.height = new SimpleIntegerProperty(height);
@@ -111,27 +117,40 @@ public class Activity {
     }
     
     private void updateCalories() {
-		// TODO Auto-generated method stub
-		
-	}
+    	//TODO
+    }
     
     /**
      * Property-getter, Getter- and Setter Methods for activityName
      */
-    public StringProperty activityNameProperty()
+    public ObjectProperty<ActivityType> activityTypeProperty()
     {
-    	return this.type.nameProperty();
+    	return this.type;
+    }
+    
+    
+    public String getTypeString()
+    {
+    	if(type.get() != null){
+    		return type.get().getName();
+    	}
+    	return "";
+    }
+    
+    public void setTypeString(String nType)
+    {
+    	
     }
     
     @XmlElement(name="Type")
-    public String getType()
+    public ActivityType getType()
     {
-    	return type.getName();
+    	return type.get();
     }
     
-    public void setType(String type)
+    public void setType(ActivityType type)
     {
-    	this.type.setName(type);
+    	this.type.set(type);
     }
     
     /**
@@ -192,6 +211,16 @@ public class Activity {
     	}
     }
     
+    public void setStart(LocalTime start)
+    {
+    	this.start.set(start);
+    }
+    
+    public LocalTime getStart()
+    {
+    	return this.start.get();
+    }
+    
     /**
      * Property-getter, Getter- and Setter Methods for endTime
      */
@@ -221,6 +250,16 @@ public class Activity {
     	}
     }
     
+    public void setEnd(LocalTime end)
+    {
+    	this.end.set(end);
+    }
+    
+    public LocalTime getEnd()
+    {
+    	return this.end.get();
+    }
+    
     /**
      * Property-getter, Getter- and Setter Methods for duration
      */
@@ -248,6 +287,16 @@ public class Activity {
     	{
     		this.duration.set(null);
     	}
+    }
+    
+    public void setDuration(LocalTime duration)
+    {
+    	this.duration.set(duration);
+    }
+    
+    public LocalTime getDuration()
+    {
+    	return this.duration.get();
     }
     
     /**
@@ -332,9 +381,15 @@ public class Activity {
      */
     private void updateDuration()
     {
-        if((start.get().isAfter(LocalTime.MIN))&& (end.get().isAfter(LocalTime.MIN)))
-        {
-            this.duration.set(LocalTime.of(this.end.get().getHour() - this.start.get().getHour(), this.end.get().getMinute() - this.start.get().getMinute()));
+    	if(start.get() != null && end.get() != null)
+    	{
+	        if((end.get().isAfter(start.get())))
+	        {
+	            this.duration.set(LocalTime.of(this.end.get().getHour() - this.start.get().getHour(), this.end.get().getMinute() - this.start.get().getMinute()));
+	        }else
+	        {
+	        	this.duration.set(LocalTime.MIN);
+	        }
         }
     }
     
@@ -343,13 +398,16 @@ public class Activity {
      */
     private void updateAVGSpeed()
     {
-        if(duration.get().isAfter(LocalTime.MIN) && distance.get() > 0)
-        {
-            float time = duration.get().getHour() + duration.get().getMinute()/60;
-            float speed = distance.get()/time;
-
-            this.avgspeed.set(speed);
-        }
+    	if(duration.get() != null)
+    	{
+	        if(duration.get().isAfter(LocalTime.MIN) && distance.get() > 0)
+	        {
+	            float time = duration.get().getHour() + duration.get().getMinute()/60;
+	            float speed = distance.get()/time;
+	
+	            this.avgspeed.set(speed);
+	        }
+    	}
     }
     
     /**

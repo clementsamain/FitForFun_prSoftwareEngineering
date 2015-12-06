@@ -4,6 +4,7 @@
         <User>
             <Birthday>1992-02-26</Birthday>
             <Height>183</Height>
+            <IsNew>false</IsNew>
             <Sex>Male</Sex>
             <Username>Patrick</Username>
             <Weight>80.0</Weight>
@@ -11,6 +12,7 @@
         <User>
             <Birthday>1990-09-30</Birthday>
             <Height>173</Height>
+            <IsNew>false</IsNew>
             <Sex>Female</Sex>
             <Username>Viki</Username>
             <Weight>70.0</Weight>

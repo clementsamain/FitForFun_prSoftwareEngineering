@@ -1,13 +1,18 @@
 package fitandfun.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import fitandfun.MainApp;
+import fitandfun.model.User;
 
 public class HomepageController {
 
     // Reference to the main application.
     private MainApp mainApp;
 
+    @FXML
+    public Label activeUser;
+    
     /**
      * The constructor.
      * The constructor is called before the initialize() method.
@@ -21,7 +26,7 @@ public class HomepageController {
      */
     @FXML
     private void initialize() {
-
+    	
     }
 
     /**
@@ -31,7 +36,7 @@ public class HomepageController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-
+        activeUser.setText(mainApp.getActiveUser().getUsername());
     }
     
     @FXML

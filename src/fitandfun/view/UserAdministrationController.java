@@ -95,25 +95,7 @@ public class UserAdministrationController {
     	User u = new User("Neuer Benutzer");
     	mainApp.getUserData().add(u);
     	userList.getSelectionModel().select(u);
-    	SaveUsers();
-    	File newDir = new File("XML\\"+u.getUsername());
     	
-    	// if the directory does not exist, create it
-    	if (!newDir.exists()) {
-    	    System.out.println("creating directory: " + u.getUsername());
-    	    boolean result = false;
-
-    	    try{
-    	    	newDir.mkdir();
-    	        result = true;
-    	    } 
-    	    catch(SecurityException se){
-    	        //handle it
-    	    }        
-    	    if(result) {    
-    	        System.out.println("DIR created");  
-    	    }
-    	}	
     }
     
     @FXML
@@ -131,8 +113,31 @@ public class UserAdministrationController {
         	if (result.get() == ButtonType.OK){
         		mainApp.getUserData().remove(u);
         		SaveUsers();
+        	
+        		if(!u.getIsNew())
+        		{
+        			File f = new File("XML\\" + u.getUsername());
+        			deleteDir(f);
+        		}
         	}
     	}
+    }
+    
+    private boolean deleteDir(File dir) 
+    { 
+	    if (dir.isDirectory()) 
+	    { 
+		    // get the names of the child files and directories into an array of String 
+		    String[] children = dir.list(); 
+		
+		    // for each child file or directory 
+		    for (int i = 0; i < children.length; i++) 
+			    { 
+			    // recursively delete 
+			    deleteDir(new File(dir, children[i])); 
+			    } 
+	    } 
+	    return dir.delete(); 
     }
     
     private void showUser(User oldUser, User newUser)
@@ -148,6 +153,7 @@ public class UserAdministrationController {
     	}
     	
 		txtUserName.setText("");
+		txtUserName.setDisable(true);
 		cboSex.getSelectionModel().select(Sex.None);
 		txtBirthday.setValue(null);
 		txtWeight.setText("");
@@ -164,6 +170,10 @@ public class UserAdministrationController {
     		txtWeight.textProperty().bindBidirectional(newUser.weightProperty(), new NumberStringConverter());
     		txtHeight.textProperty().bindBidirectional(newUser.heightProperty(), new NumberStringConverter());
     		lblBMI.textProperty().bind(newUser.bmiProperty().asString("%.1f"));
+    		if(newUser.getIsNew())
+    		{
+    			txtUserName.setDisable(false);
+    		}
     	}
     	else
     	{
@@ -174,6 +184,43 @@ public class UserAdministrationController {
     @FXML
     private void SaveUsers()
     {
+    	boolean err = false;
+    	for(User u: mainApp.getUserData())
+    	{
+    		if(u.getIsNew()){
+		    	File newDir = new File("XML\\"+u.getUsername());
+		    	
+		    	// if the directory does not exist, create it
+		    	if (!newDir.exists()) {
+		    	    System.out.println("creating directory: " + u.getUsername());
+		    	    boolean result = false;
+		
+		    	    try{
+		    	    	newDir.mkdir();
+		    	        result = true;
+		    	    } 
+		    	    catch(SecurityException se){
+		    	        //handle it
+		    	    }        
+		    	    if(result) {    
+		    	        System.out.println("DIR created"); 
+		    	        u.setIsNew(false);
+		    	    }
+		    	}else
+		    	{
+		    		err = true;
+		    		Alert alert = new Alert(AlertType.ERROR);
+		        	alert.setTitle("Fehler!");
+		        	alert.setHeaderText("Der angegebene Benutzername " + u.getUsername() + " existiert bereits! Bitte wähle einen anderen!");
+		        	alert.showAndWait();
+		    	}
+	    	}
+    	}
+    	if(!err)
+    	{
+    		txtUserName.setDisable(true);
+    	}
+    	
     	mainApp.saveUserXml();
     	//checkFolderName();
     }
