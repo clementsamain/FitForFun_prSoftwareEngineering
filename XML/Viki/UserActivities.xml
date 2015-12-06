@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ActivityWrapper>
+    <Activities>
+        <Activity>
+            <AVGSpeed>0.0</AVGSpeed>
+            <Calories>0</Calories>
+            <Date></Date>
+            <Distance>0.0</Distance>
+            <duration/>
+            <Duration>00:00:00</Duration>
+            <end/>
+            <End>22:16:47.953</End>
+            <HMeter>0</HMeter>
+            <start/>
+            <Start>22:16:47.937</Start>
+            <typeString></typeString>
+        </Activity>
+    </Activities>
+</ActivityWrapper>
