@@ -1,3 +1,7 @@
+/**
+ * LÖSCHEN WIRD NICHT MEHR BENÖTIGT!!
+ */
+
 package fitandfun.view;
 
 import javafx.fxml.FXML;

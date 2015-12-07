@@ -1,23 +1,26 @@
 package fitandfun;
 
 /**
-*
-* @author Viki
-* @version 0.1 
-*/
+ * Enum for Sex used by User and UserAdministration
+ * @author Viki
+ * @version 0.1
+ * @see User.java
+ * @see UserAdministrationController.java
+ */
 public enum Sex {
-	None,
-	Male,
-	Female;
-	
+	None, Male, Female;
+
 	@Override
 	public String toString() {
-		switch(this)
-		{
-			case None: return "";
-			case Male: return "Männlich";
-			case Female: return "Weiblich";
-			default: return this.name();
+		switch (this) {
+		case None:
+			return "";
+		case Male:
+			return "Männlich";
+		case Female:
+			return "Weiblich";
+		default:
+			return this.name();
 		}
 	};
 }

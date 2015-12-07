@@ -91,6 +91,10 @@ public class UserAdministrationController {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Creates a new Default User and add it to the userData in MainApp and show
+	 * it in userList (ListView)
+	 */
 	@FXML
 	private void createNewUser() {
 		User u = new User("Neuer Benutzer");
@@ -99,6 +103,10 @@ public class UserAdministrationController {
 
 	}
 
+	/**
+	 * Delete the Selected User from the ListView and delete it from XML, also
+	 * deletes the DIR and all Files
+	 */
 	@FXML
 	private void deleteSelectedUser() {
 		User u = userList.getSelectionModel().getSelectedItem();
@@ -121,6 +129,13 @@ public class UserAdministrationController {
 		}
 	}
 
+	/**
+	 * Recursive delete DIR and all Files below
+	 * 
+	 * @param dir
+	 *            - to delete
+	 * @return boolean
+	 */
 	private boolean deleteDir(File dir) {
 		if (dir.isDirectory()) {
 			// get the names of the child files and directories into an array of
@@ -136,6 +151,11 @@ public class UserAdministrationController {
 		return dir.delete();
 	}
 
+	/**
+	 * Shows User in ListView loaded from the XML and new User added
+	 * @param oldUser
+	 * @param newUser
+	 */
 	private void showUser(User oldUser, User newUser) {
 		if (oldUser != null) {
 			txtUserName.textProperty().unbindBidirectional(oldUser.usernameProperty());
@@ -171,6 +191,10 @@ public class UserAdministrationController {
 		}
 	}
 
+	/**
+	 * Saves the UserData (oldUsers and new added Users)
+	 * Create a DIR for new User is the Directory didn't exists and when the User is marked as NEW
+	 */
 	@FXML
 	private void SaveUsers() {
 		boolean err = false;
@@ -206,8 +230,6 @@ public class UserAdministrationController {
 		if (!err) {
 			txtUserName.setDisable(true);
 		}
-
 		mainApp.saveUserXml();
-		// checkFolderName();
 	}
 }

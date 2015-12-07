@@ -10,29 +10,30 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
-*
-* @author Viki
-* @version 0.1 
-*/
+ * Generig XML save and load Helper to use in every Class where it's needed
+ * @author Viki
+ * @version 0.1
+ * @see MainApp.java
+ * @see MainApp.java {@link loadUserXML()}
+ * @see MainApp.java {@link loadActivityXML()}
+ * @see MainApp.java {@link loadUserActivityXML()}
+ */
 public class XMLHelper<T> {
-	
-	private XMLHelper()
-	{
+
+	private XMLHelper() {
 	}
 
-	public static <T> void save(T instance, String filename) throws JAXBException
-	{
+	public static <T> void save(T instance, String filename) throws JAXBException {
 		JAXBContext context = JAXBContext.newInstance(instance.getClass());
-	    Marshaller m = context.createMarshaller();
-	    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-	    m.marshal(instance, new File(filename));
+		Marshaller m = context.createMarshaller();
+		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		m.marshal(instance, new File(filename));
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public static <T> T load(Class<T> typeClass, String filename) throws JAXBException, FileNotFoundException
-	{
+	public static <T> T load(Class<T> typeClass, String filename) throws JAXBException, FileNotFoundException {
 		JAXBContext context = JAXBContext.newInstance(typeClass);
 		Unmarshaller um = context.createUnmarshaller();
-		return (T)um.unmarshal(new FileReader(filename));
+		return (T) um.unmarshal(new FileReader(filename));
 	}
 }

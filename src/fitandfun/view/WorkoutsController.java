@@ -5,41 +5,41 @@ import fitandfun.MainApp;
 
 public class WorkoutsController {
 
-    // Reference to the main application.
-    private MainApp mainApp;
+	// Reference to the main application.
+	private MainApp mainApp;
 
-    /**
-     * The constructor.
-     * The constructor is called before the initialize() method.
-     */
-    public WorkoutsController() {
-    }
+	/**
+	 * The constructor. The constructor is called before the initialize()
+	 * method.
+	 */
+	public WorkoutsController() {
+	}
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() {
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
+	@FXML
+	private void initialize() {
 
-    }
+	}
 
-    /**
-     * Is called by the main application to give a reference back to itself.
-     * 
-     * @param mainApp
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-    
-    @FXML
-    private void showHomepage() {
-    	mainApp.showHomepage();
-    }
-    
-    @FXML
-    private void showCreateNewWorkout() {
-    	mainApp.showCreateNewWorkout();
-    }
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 * 
+	 * @param mainApp
+	 */
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	@FXML
+	private void showHomepage() {
+		mainApp.showHomepage();
+	}
+
+	@FXML
+	private void showCreateNewWorkout() {
+		mainApp.showCreateNewWorkout();
+	}
 }
