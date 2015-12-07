@@ -516,8 +516,8 @@ public class MainApp extends Application {
 	public void setActiveUser(User user) {
 		this.activeUser = user;
 		FILE_USERACTIVITY = "XML\\" + activeUser.getUsername() + "\\UserActivities.xml";
-		// FILE_USERGOALS = "XML\\" + activeUser.getUsername() +
-		// "\\UserGoals.xml";
+		// FILE_USERGOALS = "XML\\" + activeUser.getUsername() + "\\UserGoals.xml";
+		loadUserActivityXML();
 	}
 
 	/**

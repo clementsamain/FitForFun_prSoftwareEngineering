@@ -1,6 +1,7 @@
 package fitandfun.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
@@ -121,6 +123,15 @@ public class InputActivityController {
 	private void saveActivity() {
 		mainApp.getUserActivity().add(activity);
 		mainApp.saveUserActivityXml();
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Aktivität eingetragen");
+		alert.setHeaderText(null);
+		alert.setContentText("Die Aktivität wurde eingetragen!");
+
+		alert.showAndWait();
+		
+		showHomepage();
 	}
 
 	@FXML

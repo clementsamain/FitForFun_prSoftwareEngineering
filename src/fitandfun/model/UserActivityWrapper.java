@@ -18,18 +18,13 @@ public class UserActivityWrapper {
 
 	private List<Activity> activities;
 
-	@XmlElementWrapper(name = "userActivities")
-	@XmlElement(name = "Activity")
-	public List<Activity> getActivities() {
+	@XmlElementWrapper(name = "UserActivities")
+	@XmlElement(name = "UserActivity")
+	public List<Activity> getUserActivities() {
 		return activities;
 	}
 
 	public void setUserActivities(List<Activity> activities) {
 		this.activities = activities;
 	}
-
-	public List<Activity> getUserActivities() {
-		return activities;
-	}
-
 }

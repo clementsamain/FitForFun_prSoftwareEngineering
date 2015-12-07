@@ -3,7 +3,11 @@ package fitandfun.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -104,6 +108,7 @@ public class Activity {
 		return this.type;
 	}
 
+	@XmlTransient
 	public String getTypeString() {
 		if (type.get() != null) {
 			return type.get().getName();
@@ -174,6 +179,7 @@ public class Activity {
 		this.start.set(start);
 	}
 
+	@XmlTransient
 	public LocalTime getStart() {
 		return this.start.get();
 	}
@@ -205,6 +211,7 @@ public class Activity {
 		this.end.set(end);
 	}
 
+	@XmlTransient
 	public LocalTime getEnd() {
 		return this.end.get();
 	}
@@ -216,7 +223,7 @@ public class Activity {
 		return this.duration;
 	}
 
-	@XmlElement(name = "Duration")
+	@XmlTransient
 	public String getDurationString() {
 		if (duration.get() == null) {
 			return "";
@@ -235,7 +242,8 @@ public class Activity {
 	public void setDuration(LocalTime duration) {
 		this.duration.set(duration);
 	}
-
+	
+	@XmlTransient
 	public LocalTime getDuration() {
 		return this.duration.get();
 	}
@@ -263,7 +271,7 @@ public class Activity {
 		return this.avgspeed;
 	}
 
-	@XmlElement(name = "AVGSpeed")
+	@XmlTransient
 	public float getAVGSpeed() {
 		return avgspeed.get();
 	}
