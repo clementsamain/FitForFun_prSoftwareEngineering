@@ -9,6 +9,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+/**
+*
+* @author Viki
+* @version 0.1 
+*/
 public class XMLHelper<T> {
 	
 	private XMLHelper()

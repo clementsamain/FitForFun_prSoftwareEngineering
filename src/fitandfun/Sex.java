@@ -1,5 +1,10 @@
 package fitandfun;
 
+/**
+*
+* @author Viki
+* @version 0.1 
+*/
 public enum Sex {
 	None,
 	Male,

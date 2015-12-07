@@ -1,19 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ActivityWrapper>
-    <Activities>
+    <userActivities>
         <Activity>
-            <AVGSpeed>0.0</AVGSpeed>
+            <AVGSpeed>5.0</AVGSpeed>
             <Calories>0</Calories>
-            <Date></Date>
-            <Distance>0.0</Distance>
+            <Date>2015-12-08</Date>
+            <Distance>10.0</Distance>
             <duration/>
-            <Duration>00:00:00</Duration>
+            <Duration>02:00:00</Duration>
             <end/>
-            <End>22:16:47.953</End>
-            <HMeter>0</HMeter>
+            <End>17:27:22</End>
+            <HMeter>12</HMeter>
             <start/>
-            <Start>22:16:47.937</Start>
-            <typeString></typeString>
+            <Start>15:27:22.539</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>false</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Gehen</Type>
+                <Start>true</Start>
+            </Type>
+            <typeString>Gehen</typeString>
         </Activity>
-    </Activities>
+    </userActivities>
+    <userActivities>
+        <AVGSpeed>5.0</AVGSpeed>
+        <Calories>0</Calories>
+        <Date>2015-12-08</Date>
+        <Distance>10.0</Distance>
+        <duration/>
+        <Duration>02:00:00</Duration>
+        <end/>
+        <End>17:27:22</End>
+        <HMeter>12</HMeter>
+        <start/>
+        <Start>15:27:22.539</Start>
+        <Type>
+            <Date>true</Date>
+            <Distance>false</Distance>
+            <End>true</End>
+            <HMeter>false</HMeter>
+            <Type>Gehen</Type>
+            <Start>true</Start>
+        </Type>
+        <typeString>Gehen</typeString>
+    </userActivities>
 </ActivityWrapper>

@@ -6,17 +6,13 @@ package fitandfun.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 import javax.xml.bind.annotation.XmlElement;
-
-import fitandfun.Sex;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -139,7 +135,7 @@ public class Activity {
     
     public void setTypeString(String nType)
     {
-    	
+    	//TODO nice to have --> sehr komplex!
     }
     
     @XmlElement(name="Type")
@@ -408,14 +404,5 @@ public class Activity {
 	            this.avgspeed.set(speed);
 	        }
     	}
-    }
-    
-    /**
-     * Get the AVGSpeed in m/s
-     * @return returns the AVGSpeed in m/s 
-     */
-    private float getAVGSpeedmps()
-    {
-           return avgspeed.get()/(float)3.6;
     }
 }

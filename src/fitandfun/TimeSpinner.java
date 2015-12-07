@@ -11,6 +11,11 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.InputEvent;
 import javafx.util.StringConverter;
 
+/**
+*
+* @author Viki
+* @version 0.1 
+*/
 public class TimeSpinner extends Spinner<LocalTime> {
 
     // Mode represents the unit that is currently being edited.

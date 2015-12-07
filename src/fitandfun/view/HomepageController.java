@@ -3,7 +3,6 @@ package fitandfun.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import fitandfun.MainApp;
-import fitandfun.model.User;
 
 public class HomepageController {
 

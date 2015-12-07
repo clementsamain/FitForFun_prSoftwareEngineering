@@ -5,12 +5,7 @@ package fitandfun.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import fitandfun.Sex;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.FloatProperty;
@@ -230,6 +225,4 @@ public class User {
     		this.BMI.set(0);
     	}
     }
-    
-    
 }
