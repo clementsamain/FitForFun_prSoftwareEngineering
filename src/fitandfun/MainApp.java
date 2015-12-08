@@ -1,7 +1,12 @@
 package fitandfun;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+
 import fitandfun.model.*;
 import fitandfun.view.*;
 import javafx.application.Application;
@@ -62,7 +67,7 @@ public class MainApp extends Application {
 
 	/**
 	 * The main entry point for all JavaFX applications.
-	 * 
+	 *
 	 * @params primaryStage - the primary stage for this application, onto which
 	 *         the application scene can be set.
 	 */
@@ -95,7 +100,7 @@ public class MainApp extends Application {
 
 	/**
 	 * Loading the LoginController and give the Controller access to the MainApp
-	 * 
+	 *
 	 * @see LoginController.java
 	 */
 	public void showLogin() {
@@ -119,7 +124,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the HomepageController and give the Controller access to the
 	 * MainApp Shows the selected User from the LoginController
-	 * 
+	 *
 	 * @see HomepageController.java
 	 */
 	public void showHomepage() {
@@ -144,7 +149,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the OverviewActivityController and give the Controller access to
 	 * the MainApp
-	 * 
+	 *
 	 * @see OverviewActivityController.java
 	 */
 	public void showOverviewActivity() {
@@ -166,7 +171,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the StatisticsController and give the Controller access to the
 	 * MainApp
-	 * 
+	 *
 	 * @see StatisticsController.java
 	 */
 	public void showStatistics() {
@@ -188,7 +193,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the TrainingGoalsController and give the Controller access to the
 	 * MainApp
-	 * 
+	 *
 	 * @see TrainingGoalsController.java
 	 */
 	public void showTrainingGoals() {
@@ -210,7 +215,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the InputActivityController and give the Controller access to the
 	 * MainApp
-	 * 
+	 *
 	 * @see InputActivityController.java
 	 */
 	public void showInputActivityController() {
@@ -232,7 +237,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the WorkoutsController and give the Controller access to the
 	 * MainApp
-	 * 
+	 *
 	 * @see WorkoutsController.java
 	 */
 	public void showWorkouts() {
@@ -254,7 +259,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the UserAdministrationController and give the Controller access
 	 * to the MainApp
-	 * 
+	 *
 	 * @see UserAdministrationController.java
 	 */
 	public void showUserAdministration() {
@@ -295,7 +300,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the CreateNewTrainingGoalController and give the Controller
 	 * access to the MainApp
-	 * 
+	 *
 	 * @see CreateNewTrainingGoalController.java
 	 */
 	public void showCreateNewTrainingGoal() {
@@ -336,7 +341,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading the CreateNewWorkoutController and give the Controller access to
 	 * the MainApp
-	 * 
+	 *
 	 * @see CreateNewWorkoutController.java
 	 */
 	public void showCreateNewWorkout() {
@@ -358,7 +363,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading all Users from the XML-File used to Login and in
 	 * UserAdministration to add, delete and edit Users.
-	 * 
+	 *
 	 * @see UserAdministrationController.java
 	 * @see LoginController.java
 	 */
@@ -408,7 +413,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading all ActivityTypes from the XML-File used to create a new
 	 * UserActivity and create TrainingGoals
-	 * 
+	 *
 	 * @see CreateNewTrainingGoalController.java
 	 * @see InputActivity.java
 	 */
@@ -458,7 +463,7 @@ public class MainApp extends Application {
 	/**
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
-	 * 
+	 *
 	 * @see InputActivity.java
 	 * @see StatisticsController.java
 	 */
@@ -508,7 +513,7 @@ public class MainApp extends Application {
 	 * Method to set the activeUser selected at LoginController This Methods
 	 * also sets the User-specific Filepath for the userActivities.xml and
 	 * userTrainingsGoals.xml
-	 * 
+	 *
 	 * @param user
 	 *            - User to set as active User
 	 * @see LoginController.java
@@ -522,7 +527,7 @@ public class MainApp extends Application {
 
 	/**
 	 * Returns the activeUser which was selected at the Login
-	 * 
+	 *
 	 * @return activeUser
 	 */
 	public User getActiveUser() {
@@ -531,7 +536,7 @@ public class MainApp extends Application {
 
 	/**
 	 * Returns the main stage
-	 * 
+	 *
 	 * @return primaryStage
 	 */
 	public Stage getPrimaryStage() {
@@ -540,39 +545,38 @@ public class MainApp extends Application {
 
 	/**
 	 * The main-App for launching the App
-	 * 
+	 *
 	 * @param args
 	 *            Consoleparameter
 	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	/**
 	 * Returns the data as an ObservableList of Users
-	 * 
+	 *
 	 * @return userData
 	 */
 	public ObservableList<User> getUserData() {
 		return userData;
 	}
-	
+
 	/**
 	 * Returns the data as an ObservableList of Activity for userActivitys
-	 * 
+	 *
 	 * @return userActivityData
 	 */
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
 	}
-	
+
 	/**
 	 * Returns the data as an ObservableList of ActivityTypes
-	 * 
+	 *
 	 * @return activityData
 	 */
 	public ObservableList<ActivityType> getActivityData() {
 		return activityData;
 	}
-
 }
