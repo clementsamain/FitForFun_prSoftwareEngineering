@@ -13,7 +13,18 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalTime;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.alternativevision.gpx.GPXParser;
+import org.alternativevision.gpx.beans.GPX;
+import org.xml.sax.SAXException;
+
 import fitandfun.MainApp;
 import fitandfun.TimeSpinner;
 import fitandfun.model.Activity;
@@ -123,14 +134,14 @@ public class InputActivityController {
 	private void saveActivity() {
 		mainApp.getUserActivity().add(activity);
 		mainApp.saveUserActivityXml();
-		
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Aktivität eingetragen");
 		alert.setHeaderText(null);
 		alert.setContentText("Die Aktivität wurde eingetragen!");
 
 		alert.showAndWait();
-		
+
 		showHomepage();
 	}
 
@@ -139,16 +150,40 @@ public class InputActivityController {
 		// TODO
 	}
 
+	/**
+	 * GPX-Import (work in progress...)
+	 */
 	@FXML
 	private void importActivity() {
-		// TODO
+		GPXParser p = new GPXParser();
+		FileInputStream in = null;
+
+		try {
+			in = new FileInputStream("Heidschnuckenweg.gpx");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			GPX gpx = p.parseGPX(in);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
-	 * 
+	 *
 	 * @param mainApp
 	 */
+
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		actName.getItems().addAll(mainApp.getActivityData());
