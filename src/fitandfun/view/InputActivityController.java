@@ -13,17 +13,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
+import net.divbyzero.gpx.GPX;
+import net.divbyzero.gpx.Track;
+import net.divbyzero.gpx.parser.JDOM;
+import net.divbyzero.gpx.parser.ParsingException;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.File;
 import java.time.LocalTime;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.alternativevision.gpx.GPXParser;
-import org.alternativevision.gpx.beans.GPX;
-import org.xml.sax.SAXException;
+import java.util.ArrayList;
 
 import fitandfun.MainApp;
 import fitandfun.TimeSpinner;
@@ -155,22 +152,23 @@ public class InputActivityController {
 	 */
 	@FXML
 	private void importActivity() {
-		GPXParser p = new GPXParser();
-		FileInputStream in = null;
+		ArrayList<Track> tracks = new ArrayList<Track>();
+		GPX gpx = new GPX();
+		JDOM p = new JDOM();
 
 		try {
-			in = new FileInputStream("Heidschnuckenweg.gpx");
-		} catch (FileNotFoundException e) {
+			//Testaufruf - filepicker noch nicht implementiert!
+			gpx = p.parse(new File("data/track.gpx"));
+		} catch (ParsingException e) {
 			e.printStackTrace();
 		}
-		try {
-			GPX gpx = p.parseGPX(in);
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		tracks = gpx.getTracks();
+
+		//Testausgabe von Länge und Höhenmetern - noch kein sichern im xml!
+		for(Track t : tracks){
+			System.out.println(Math.round(t.length()/1000) + " km");
+			System.out.println(Math.round(t.cumulativeAscent()) + " Höhenmeter");
 		}
 	}
 
