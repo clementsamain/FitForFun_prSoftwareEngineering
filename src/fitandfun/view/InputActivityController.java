@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -19,8 +20,10 @@ import net.divbyzero.gpx.parser.JDOM;
 import net.divbyzero.gpx.parser.ParsingException;
 
 import java.io.File;
+import java.text.NumberFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import fitandfun.MainApp;
 import fitandfun.TimeSpinner;
@@ -155,21 +158,37 @@ public class InputActivityController {
 		ArrayList<Track> tracks = new ArrayList<Track>();
 		GPX gpx = new GPX();
 		JDOM p = new JDOM();
+		FileChooser fc = new FileChooser();
+		File selFile = fc.showOpenDialog(null);
+		double tempDist = 0;
+		int tempAsc = 0;
+		Date tempStart = null;
+		Date tempEnd = null;
 
-		try {
-			//Testaufruf - filepicker noch nicht implementiert!
-			gpx = p.parse(new File("data/track.gpx"));
-		} catch (ParsingException e) {
-			e.printStackTrace();
+		if (selFile != null) {
+			try {
+				gpx = p.parse(selFile);
+			} catch (ParsingException e) {
+				e.printStackTrace();
+			}
+
+			tracks = gpx.getTracks();
+
+			for(Track t : tracks){
+				tempDist = tempDist + (t.length()/1000);
+				tempAsc = tempAsc + (int)t.cumulativeAscent();
+				tempStart = t.startingTime();
+				tempEnd = t.endTime();
+			}
+			NumberFormat tDR = NumberFormat.getInstance();
+			tDR.setMaximumFractionDigits(2);
+			distance.setText(tDR.format(tempDist));
+			hmeter.setText(String.valueOf(tempAsc));
+			start.setUserData(tempStart);
+			end.setUserData(tempEnd);
 		}
 
-		tracks = gpx.getTracks();
 
-		//Testausgabe von Länge und Höhenmetern - noch kein sichern im xml!
-		for(Track t : tracks){
-			System.out.println(Math.round(t.length()/1000) + " km");
-			System.out.println(Math.round(t.cumulativeAscent()) + " Höhenmeter");
-		}
 	}
 
 	/**
