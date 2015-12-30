@@ -17,5 +17,13 @@
             <Username>Viki</Username>
             <Weight>70.0</Weight>
         </User>
+        <User>
+            <Birthday></Birthday>
+            <Height>179</Height>
+            <IsNew>false</IsNew>
+            <Sex>Male</Sex>
+            <Username>Stefan</Username>
+            <Weight>78.0</Weight>
+        </User>
     </Users>
 </UserWrapper>
