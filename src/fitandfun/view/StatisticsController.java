@@ -1,11 +1,13 @@
 package fitandfun.view;
 
 import fitandfun.MainApp;
+import fitandfun.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import java.util.Arrays;
 
@@ -19,11 +21,14 @@ public class StatisticsController {
 	@FXML
 	private CategoryAxis distX;
 	@FXML
+	private CategoryAxis hmX;
+	@FXML
 	private BarChart<String, Integer> hmChart;
 	@FXML
-	private CategoryAxis hmX;
+	private PieChart activityOverviewChart;
 
 	private ObservableList<String> monthNames = FXCollections.observableArrayList();
+	private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -49,6 +54,17 @@ public class StatisticsController {
 		//Statistik zurückgelegte Distanz
 		hmX.setCategories(monthNames);
 		setHmChart();
+
+		//Statistik Aktivitätenverteilung
+		pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Gehen", 13),
+                new PieChart.Data("Laufen", 25),
+                new PieChart.Data("Schwimmen", 10),
+                new PieChart.Data("Radfahren", 22),
+                new PieChart.Data("Bergwandern", 30));
+		setActivityOverviewChart();
+
 	}
 
 	public void setDistChart() {
@@ -70,6 +86,12 @@ public class StatisticsController {
         hmChart.setLegendVisible(false);
         hmChart.getData().add(series);
     }
+
+	public void setActivityOverviewChart() {
+		activityOverviewChart.setData(pieChartData);
+		activityOverviewChart.setLegendVisible(false);
+		//activityOverviewChart.setLegendSide(Side.RIGHT);
+	}
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
