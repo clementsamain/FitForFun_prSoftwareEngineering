@@ -1,7 +1,7 @@
 package fitandfun.view;
 
 import fitandfun.MainApp;
-import fitandfun.model.User;
+import fitandfun.Period;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +9,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
+
 import java.util.Arrays;
 
 public class StatisticsController {
@@ -26,6 +28,8 @@ public class StatisticsController {
 	private BarChart<String, Integer> hmChart;
 	@FXML
 	private PieChart activityOverviewChart;
+	@FXML
+	private ComboBox<Period> cboPeriod;
 
 	private ObservableList<String> monthNames = FXCollections.observableArrayList();
 	private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -65,6 +69,7 @@ public class StatisticsController {
                 new PieChart.Data("Bergwandern", 30));
 		setActivityOverviewChart();
 
+		cboPeriod.getItems().addAll(Period.values());
 	}
 
 	public void setDistChart() {
