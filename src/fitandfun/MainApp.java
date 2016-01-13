@@ -35,6 +35,11 @@ public class MainApp extends Application {
 	 * XML File to load and save User-specific Activities in a SubDirectory
 	 * named with the Username
 	 */
+	private final String FILE_WORKOUTS = "XML\\Workouts.xml";
+	/**
+	 * XML File to load and save User-specific Workouts in a SubDirectory
+	 * named with the Username
+	 */
 	private String FILE_USERACTIVITY;
 	/**
 	 * XML File to load and save User-specific TrainingGoals in a SubDirectory
@@ -60,6 +65,10 @@ public class MainApp extends Application {
 	 * The data as an observable list of User-Activities.
 	 */
 	private ObservableList<Activity> userActivityData = FXCollections.observableArrayList();
+	/**
+	 * The data as an observable list of User-Workouts.
+	 */
+	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
 
 	public MainApp() {
 
@@ -107,6 +116,7 @@ public class MainApp extends Application {
 		try {
 			loadUserXML();
 			loadActivityXML();
+			loadWorkoutsXML();
 			// Load
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/Login.fxml"));
@@ -144,6 +154,7 @@ public class MainApp extends Application {
 		loadUserXML();
 		loadActivityXML();
 		//loadUserActivityXML();
+		loadWorkoutsXML();
 	}
 
 	/**
@@ -578,5 +589,48 @@ public class MainApp extends Application {
 	 */
 	public ObservableList<ActivityType> getActivityData() {
 		return activityData;
+	}
+
+	private void loadWorkoutsXML() {
+		File temp = new File(FILE_WORKOUTS);
+		if (temp.exists()) {
+			try {
+				WorkoutWrapper wrapper = XMLHelper.load(WorkoutWrapper.class, FILE_WORKOUTS);
+				workoutData.clear();
+				workoutData.addAll(wrapper.getWorkouts());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der Workouts ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+		}
+	}
+
+	public ObservableList<WorkoutType> getWorkoutData() {
+		return workoutData;
+	}
+
+	public void saveWorkoutXml() {
+		WorkoutWrapper wrapper = new WorkoutWrapper();
+		wrapper.setWorkouts(workoutData);
+		try {
+			XMLHelper.save(wrapper, FILE_WORKOUTS);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern des Workouts ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
 	}
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ActivityWrapper>
+    <UserActivities>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-02</Date>
+            <Distance>20.0</Distance>
+            <End>19:11:23</End>
+            <HMeter>13</HMeter>
+            <Start>18:11:23.09</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Radfahren</Type>
+                <Start>true</Start>
+            </Type>
+        </UserActivity>
+    </UserActivities>
+</ActivityWrapper>
