@@ -82,6 +82,7 @@ public class LoginController {
 			}
 		}
 		userList.setItems(oldUsers);
+		
 	}
 
 	@FXML
