@@ -69,10 +69,6 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label text="zurückgelegte KM:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="10.0" />
@@ -93,6 +89,10 @@
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                               </Label>
+                              <Label fx:id="absT" text="label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="kms" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="hms" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="cals" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <PieChart fx:id="activityOverviewChart" GridPane.rowIndex="1" />
