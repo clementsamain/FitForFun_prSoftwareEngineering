@@ -14,7 +14,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 public class RecentActivitiesController {
 
@@ -49,7 +48,7 @@ public class RecentActivitiesController {
 			vbox.setSpacing(5);
 		}
 	}
-	
+
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -58,8 +57,8 @@ public class RecentActivitiesController {
 		activityList = mainApp.getUserActivity();
 		showRecentAct();
 	}
-	
-	
+
+
 
 	@FXML
 	private void showHomepage() {
