@@ -67,4 +67,10 @@ public class HomepageController {
     private void showInputActivityController() {
     	mainApp.showInputActivityController();
     }
+    
+    @FXML
+    private void showInputWeightController()
+    {
+    	mainApp.showWeightController();
+    }
 }
