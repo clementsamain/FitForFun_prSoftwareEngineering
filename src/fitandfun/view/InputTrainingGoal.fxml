@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.CreateNewTrainingGoalController">
+<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.InputTrainingGoalController">
    <children>
       <SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -18,10 +18,11 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="60.0" layoutY="86.0" prefHeight="135.0" prefWidth="343.0" AnchorPane.leftAnchor="60.0">
+                  <GridPane layoutX="60.0" layoutY="86.0" prefHeight="135.0" prefWidth="361.0" AnchorPane.leftAnchor="60.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="102.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="241.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="121.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="174.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="82.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,15 +31,16 @@
                     </rowConstraints>
                      <children>
                         <Label text="Name des Ziels:" />
-                        <Label text="Maßeinheit:" GridPane.rowIndex="1" />
+                        <Label prefHeight="17.0" prefWidth="80.0" text="Ziel-Datum:" GridPane.rowIndex="1" />
                         <Label text="Ziel:" GridPane.rowIndex="2" />
-                        <TextField promptText="Schritte, Gewicht, Kalorienverbrauch, ..." GridPane.columnIndex="1" />
-                        <TextField promptText="km, m, kcal, ..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField promptText="1000, 1500, ..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="goalValue" prefHeight="25.0" prefWidth="151.0" promptText="1000, 1500, ..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="goalType" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="goalDate" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="goalUnit" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Button layoutX="75.0" layoutY="423.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
-                  <Button layoutX="215.0" layoutY="413.0" mnemonicParsing="false" text="Abbrechen" AnchorPane.bottomAnchor="20.0" />
+                  <Button layoutX="75.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#saveTrainingGoal" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
+                  <Button layoutX="215.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#reset" text="Abbrechen" AnchorPane.bottomAnchor="20.0" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Images/Logo_klein.png" />

@@ -31,23 +31,11 @@ public class MainApp extends Application {
 	 * XML File to load and save Activities (Types)
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
-	/**
-	 * XML File to load and save User-specific Activities in a SubDirectory
-	 * named with the Username
-	 */
-	private final String FILE_WORKOUTS = "XML\\Workouts.xml";
-	/**
-	 * XML File to load and save User-specific Workouts in a SubDirectory
-	 * named with the Username
-	 */
-	private String FILE_USERACTIVITY;
 	
+	private String FILE_WORKOUTS;
+	private String FILE_USERACTIVITY;
 	private String FILE_WEIGHT;
-	/**
-	 * XML File to load and save User-specific TrainingGoals in a SubDirectory
-	 * named with the Username
-	 */
-	// private String FILE_USERGOALS;
+	private String FILE_USERGOALS;
 
 	private User activeUser;
 	private Stage primaryStage;
@@ -73,6 +61,9 @@ public class MainApp extends Application {
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
 	
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
+	
+	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
+	
 
 	public MainApp() {
 
@@ -120,7 +111,6 @@ public class MainApp extends Application {
 		try {
 			loadUserXML();
 			loadActivityXML();
-			loadWorkoutsXML();
 			// Load
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/Login.fxml"));
@@ -158,7 +148,7 @@ public class MainApp extends Application {
 		loadUserXML();
 		loadActivityXML();
 		//loadUserActivityXML();
-		loadWorkoutsXML();
+		//loadWorkoutsXML();
 	}
 
 	/**
@@ -225,6 +215,10 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void returnToTrainingGoals() {
+		showTrainingGoals();
 	}
 
 	/**
@@ -294,66 +288,6 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * LÖSCHEN WIRD NICHT MEHR BENÖTIGT (bei Projektende)
-	 */
-	public void showCreateNewActivity() {
-		try {
-			// Load
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/CreateNewActivity.fxml"));
-			AnchorPane createNewActivity = (AnchorPane) loader.load();
-			// Set into the center of root layout
-			rootLayout.setCenter(createNewActivity);
-			// Give the controller access to the main app
-			CreateNewActivityController controller = loader.getController();
-			controller.setMainApp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Loading the CreateNewTrainingGoalController and give the Controller
-	 * access to the MainApp
-	 *
-	 * @see CreateNewTrainingGoalController.java
-	 */
-	public void showCreateNewTrainingGoal() {
-		try {
-			// Load
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/CreateNewTrainingGoal.fxml"));
-			AnchorPane createNewTrainingGoal = (AnchorPane) loader.load();
-			// Set into the center of root layout
-			rootLayout.setCenter(createNewTrainingGoal);
-			// Give the controller access to the main app
-			CreateNewTrainingGoalController controller = loader.getController();
-			controller.setMainApp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * LÖSCHEN WIRD NICHT MEHR BENÖTIGT (bei Projektende)
-	 */
-	public void showCreateNewUser() {
-		try {
-			// Load
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/CreateNewUser.fxml"));
-			AnchorPane createNewUser = (AnchorPane) loader.load();
-			// Set into the center of root layout
-			rootLayout.setCenter(createNewUser);
-			// Give the controller access to the main app
-			CreateNewUserController controller = loader.getController();
-			controller.setMainApp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Loading the CreateNewWorkoutController and give the Controller access to
 	 * the MainApp
 	 *
@@ -391,6 +325,28 @@ public class MainApp extends Application {
 			rootLayout.setCenter(inputWeight);
 			// Give the controller access to the main app
 			InputWeightController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Loading the showInputTrainingGoalController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see showInputTrainingGoalController.java
+	 */
+	public void showInputTrainingGoalController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/InputTrainingGoal.fxml"));
+			AnchorPane inputTrainingGoal = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(inputTrainingGoal);
+			// Give the controller access to the main app
+			InputTrainingGoalController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -595,6 +551,94 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+	 * Loading all UserActivities from the XML-File used to save a new
+	 * UserActivity.
+	 *
+	 * @see InputActivity.java
+	 * @see StatisticsController.java
+	 */
+	private void loadTrainingGoalsXML() {
+		File temp = new File(FILE_USERGOALS);
+		if (temp.exists()) {
+			try {
+				TrainingGoalsWrapper wrapper = XMLHelper.load(TrainingGoalsWrapper.class, FILE_USERGOALS);
+				userGoalData.clear();
+				userGoalData.addAll(wrapper.getGoals());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der Trainingsziele-XML ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+		}
+	}
+
+	/**
+	 * Method to save the UserActivities in the XML-File
+	 */
+	public void saveTrainingGoalsXML() {
+		TrainingGoalsWrapper wrapper = new TrainingGoalsWrapper();
+		wrapper.setGoals(userGoalData);
+		try {
+			XMLHelper.save(wrapper, FILE_USERGOALS);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der Aktivität ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
+	
+	private void loadWorkoutsXML() {
+		File temp = new File(FILE_WORKOUTS);
+		if (temp.exists()) {
+			try {
+				WorkoutWrapper wrapper = XMLHelper.load(WorkoutWrapper.class, FILE_WORKOUTS);
+				workoutData.clear();
+				workoutData.addAll(wrapper.getWorkouts());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der Workouts ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+		}
+	}
+
+	public void saveWorkoutXml() {
+		WorkoutWrapper wrapper = new WorkoutWrapper();
+		wrapper.setWorkouts(workoutData);
+		try {
+			XMLHelper.save(wrapper, FILE_WORKOUTS);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern des Workouts ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
 
 	/**
 	 * Method to set the activeUser selected at LoginController This Methods
@@ -608,10 +652,13 @@ public class MainApp extends Application {
 	public void setActiveUser(User user) {
 		this.activeUser = user;
 		FILE_USERACTIVITY = "XML\\" + activeUser.getUsername() + "\\UserActivities.xml";
-		// FILE_USERGOALS = "XML\\" + activeUser.getUsername() + "\\UserGoals.xml";
-		FILE_WEIGHT = "XML\\" + activeUser.getUsername() + "\\weight.xml";
+		FILE_USERGOALS = "XML\\" + activeUser.getUsername() + "\\TrainingGoals.xml";
+		FILE_WEIGHT = "XML\\" + activeUser.getUsername() + "\\UserWeight.xml";
+		FILE_WORKOUTS = "XML\\" + activeUser.getUsername() + "\\UserWorkouts.xml";
 		loadUserActivityXML();
 		loadWeightXML();
+		loadTrainingGoalsXML();
+		loadWorkoutsXML();
 	}
 
 	/**
@@ -660,13 +707,13 @@ public class MainApp extends Application {
 		return userActivityData;
 	}
 	
-	/**
-	 * Returns the data as an ObservableList of Activity for userActivitys
-	 *
-	 * @return userActivityData
-	 */
+	
 	public ObservableList<Weight> getUserWeight() {
 		return userWeightData;
+	}
+	
+	public ObservableList<TrainingGoals> getTrainingGoals() {
+		return userGoalData;
 	}
 
 	/**
@@ -678,46 +725,11 @@ public class MainApp extends Application {
 		return activityData;
 	}
 
-	private void loadWorkoutsXML() {
-		File temp = new File(FILE_WORKOUTS);
-		if (temp.exists()) {
-			try {
-				WorkoutWrapper wrapper = XMLHelper.load(WorkoutWrapper.class, FILE_WORKOUTS);
-				workoutData.clear();
-				workoutData.addAll(wrapper.getWorkouts());
-			} catch (Exception e) {
-				e.printStackTrace();
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Fehler");
-				alert.setHeaderText(null);
-				alert.setContentText("Beim Laden der Workouts ist ein Fehler aufgetreten!");
-				alert.showAndWait();
-			}
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Fehler");
-			alert.setHeaderText(null);
-			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
-			alert.showAndWait();
-		}
-	}
+	
 
 	public ObservableList<WorkoutType> getWorkoutData() {
 		return workoutData;
 	}
-
-	public void saveWorkoutXml() {
-		WorkoutWrapper wrapper = new WorkoutWrapper();
-		wrapper.setWorkouts(workoutData);
-		try {
-			XMLHelper.save(wrapper, FILE_WORKOUTS);
-		} catch (JAXBException e) {
-			e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Fehler");
-			alert.setHeaderText(null);
-			alert.setContentText("Beim Speichern des Workouts ist ein Fehler aufgetreten!");
-			alert.showAndWait();
-		}
-	}
+	
+	
 }

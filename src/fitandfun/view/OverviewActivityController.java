@@ -150,9 +150,4 @@ public class OverviewActivityController {
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
-
-	@FXML
-	private void showCreateNewActivity() {
-		mainApp.showCreateNewActivity();
-	}
 }

@@ -1,10 +1,14 @@
 package fitandfun.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+//import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -15,60 +19,90 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class TrainingGoals {
 
-	private final GoalType type;
-	private final FloatProperty goal;
-	private final FloatProperty current;
+	private final ObjectProperty<GoalType> type;
+	private final FloatProperty goalValue;
 	private final ObjectProperty<LocalDate> goalDate;
-	private final SimpleBooleanProperty completed;
+	//private final SimpleBooleanProperty completed;
+	
 
+	public TrainingGoals()
+	{
+		this(null, 0, null);
+	}
+	
 	/**
 	 * Constructor
 	 * 
-	 * @param type
-	 * @param goal
 	 */
-	public TrainingGoals(GoalType type, float goal, LocalDate goalDate) {
-		this.type = type;
-		this.goal = new SimpleFloatProperty(goal);
-		this.current = new SimpleFloatProperty(0);
-		this.completed = new SimpleBooleanProperty();
+	public TrainingGoals(GoalType type, float goalValue, LocalDate goalDate) {
+		this.type = new SimpleObjectProperty<>(type);
+		this.goalValue = new SimpleFloatProperty(goalValue);
+		//this.completed = new SimpleBooleanProperty();
 		this.goalDate = new SimpleObjectProperty<>(goalDate);
 	}
-
+	
 	/**
-	 * Get-Methods
+	 * Property-getter, Getter- and Setter Methods for activityName
 	 */
-	public GoalType getType() {
+	public ObjectProperty<GoalType> trainingGoalsProperty() {
 		return this.type;
 	}
 
-	public float getGoal() {
-		return this.goal.get();
+	@XmlTransient
+	public String getTypeString() {
+		if (type.get() != null) {
+			return type.get().toString();
+		}
+		return "";
 	}
 
-	public float getCurrent() {
-		return this.current.get();
+	@XmlElement(name = "Type")
+	public GoalType getType() {
+		return type.get();
 	}
 
-	public boolean getCompleted() {
-		return this.completed.get();
+	public void setType(GoalType type) {
+		this.type.set(type);
 	}
-
+	
 	/**
-	 * Set-Methods
+	 * Property-getter, Getter- and Setter Methods for date
 	 */
-
-	public void setCurrent(float current) {
-		this.current.set(current);
-		updateCompleted();
+	public ObjectProperty<LocalDate> dateProperty() {
+		return this.goalDate;
 	}
 
-	/**
-	 * Check if Goal is completed
-	 */
-	private void updateCompleted() {
-		if (current.get() >= goal.get()) {
-			completed.set(true);
+	@XmlElement(name = "Date")
+	public String getDateString() {
+		if (goalDate.get() == null) {
+			return "";
+		}
+		return goalDate.get().format(DateTimeFormatter.ISO_DATE);
+	}
+
+	public void setDateString(String dateString) {
+		if (dateString != null) {
+			this.goalDate.set(LocalDate.parse(dateString));
+		} else {
+			this.goalDate.set(null);
 		}
 	}
+	
+	/**
+	 * Property-getter, Getter- and Setter Methods for distance
+	 */
+	public FloatProperty goalValueProperty() {
+		return this.goalValue;
+	}
+
+	@XmlElement(name = "GoalValue")
+	public float getGoalValue() {
+		return goalValue.get();
+	}
+
+	public void setGoalValue(float goalValue) {
+		this.goalValue.set(goalValue);
+	}
+	
+
 }

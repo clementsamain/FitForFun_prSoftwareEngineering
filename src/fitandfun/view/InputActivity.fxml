@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import fitandfun.TimeSpinner?>
+<?import fitandfun.TimeSpinner?> 
 
 <AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.InputActivityController">
    <children>

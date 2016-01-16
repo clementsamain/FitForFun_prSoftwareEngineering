@@ -1,12 +1,20 @@
 package fitandfun.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import fitandfun.MainApp;
 
 public class TrainingGoalsController {
 
 	// Reference to the main application.
 	private MainApp mainApp;
+	
+	@FXML
+	private PieChart pie;
+	
+	@FXML
+	private LineChart line;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -21,7 +29,8 @@ public class TrainingGoalsController {
 	 */
 	@FXML
 	private void initialize() {
-
+		pie.setVisible(false);
+		pie.setVisible(false);
 	}
 
 	/**
@@ -39,7 +48,7 @@ public class TrainingGoalsController {
 	}
 
 	@FXML
-	private void showCreateNewTrainingGoal() {
-		mainApp.showCreateNewTrainingGoal();
+	private void showInputTrainingGoal() {
+		mainApp.showInputTrainingGoalController();
 	}
 }
