@@ -41,6 +41,8 @@ public class MainApp extends Application {
 	 * named with the Username
 	 */
 	private String FILE_USERACTIVITY;
+	
+	private String FILE_WEIGHT;
 	/**
 	 * XML File to load and save User-specific TrainingGoals in a SubDirectory
 	 * named with the Username
@@ -69,6 +71,8 @@ public class MainApp extends Application {
 	 * The data as an observable list of User-Workouts.
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
+	
+	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 
 	public MainApp() {
 
@@ -370,6 +374,29 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Loading the InputWeightController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see InputWeightController.java
+	 */
+	public void showWeightController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/InputWeight.fxml"));
+			AnchorPane inputWeight = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(inputWeight);
+			// Give the controller access to the main app
+			InputWeightController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in
@@ -519,6 +546,55 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+	 * Loading all UserActivities from the XML-File used to save a new
+	 * UserActivity.
+	 *
+	 * @see InputActivity.java
+	 * @see StatisticsController.java
+	 */
+	private void loadWeightXML() {
+		File temp = new File(FILE_WEIGHT);
+		if (temp.exists()) {
+			try {
+				WeightWrapper wrapper = XMLHelper.load(WeightWrapper.class, FILE_WEIGHT);
+				userWeightData.clear();
+				userWeightData.addAll(wrapper.getWeight());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der Gewichts-XML ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+		}
+	}
+
+	/**
+	 * Method to save the UserActivities in the XML-File
+	 */
+	public void saveWeightXML() {
+		WeightWrapper wrapper = new WeightWrapper();
+		wrapper.setWeight(userWeightData);
+		try {
+			XMLHelper.save(wrapper, FILE_WEIGHT);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der Aktivität ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
 
 	/**
 	 * Method to set the activeUser selected at LoginController This Methods
@@ -533,7 +609,9 @@ public class MainApp extends Application {
 		this.activeUser = user;
 		FILE_USERACTIVITY = "XML\\" + activeUser.getUsername() + "\\UserActivities.xml";
 		// FILE_USERGOALS = "XML\\" + activeUser.getUsername() + "\\UserGoals.xml";
+		FILE_WEIGHT = "XML\\" + activeUser.getUsername() + "\\weight.xml";
 		loadUserActivityXML();
+		loadWeightXML();
 	}
 
 	/**
@@ -580,6 +658,15 @@ public class MainApp extends Application {
 	 */
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
+	}
+	
+	/**
+	 * Returns the data as an ObservableList of Activity for userActivitys
+	 *
+	 * @return userActivityData
+	 */
+	public ObservableList<Weight> getUserWeight() {
+		return userWeightData;
 	}
 
 	/**

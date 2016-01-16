@@ -71,7 +71,7 @@
                         <Image url="@../../../Images/workoutdone.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="80.0" fitWidth="370.0" GridPane.rowIndex="2">
+                  <ImageView fitHeight="80.0" fitWidth="370.0" onMouseClicked="#showInputWeightController" GridPane.rowIndex="2">
                      <image>
                         <Image url="@../../../Images/weightentry.png" />
                      </image>
