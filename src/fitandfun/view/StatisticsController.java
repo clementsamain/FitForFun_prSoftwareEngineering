@@ -26,7 +26,6 @@ public class StatisticsController {
 
 	// Reference to the main application.
 	private MainApp mainApp;
-	private User activeUser;
 	private String username;
 	private ObservableList<ActivityType> activityTypeList;
 	private ObservableList<Activity> activityList;
@@ -74,7 +73,6 @@ public class StatisticsController {
 	 */
 	@FXML
 	private void initialize() {
-		//Allgemeine init.
 		gCals = 0;
 		gKms = 0;
 		gHms = 0;
@@ -133,16 +131,10 @@ public class StatisticsController {
 		for (ActivityType typ : activityTypeList) {
 			int anz = 0;
 			for (Activity act : activityList) {
-				if(act.getTypeString().equals(typ.getName())) {
-					anz++;
-					System.out.println(typ.getName() + "found");
-				}
-				System.out.println("act" + act.getTypeString());
+				if(act.getTypeString().equals(typ.getName())) anz++;
 			}
-            System.out.println("typ " +typ.getName());
             pieChartData.add(new PieChart.Data(typ.getName(), anz));
         }
-
 		activityOverviewChart.setData(pieChartData);
 		absT.setText(String.valueOf(activityList.size()));
 	}
@@ -154,7 +146,6 @@ public class StatisticsController {
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
-		activeUser = mainApp.getActiveUser();
 		username = mainApp.getActiveUser().getUsername();
 		actUserLabel.setText(username);
 		activityTypeList = mainApp.getActivityData();

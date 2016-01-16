@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.RecentActivitiesController">
+   <children>
+      <SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane accessibleRole="COMBO_BOX" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="440.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <Label layoutX="100.0" layoutY="22.0" text="Verlauf">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="603.0" layoutY="27.0" text="Zeitraum:" />
+                  <ComboBox fx:id="cboPeriod" layoutX="659.0" layoutY="23.0" prefHeight="25.0" prefWidth="90.0" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/Logo_klein.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="actUserLabel" layoutX="360.0" layoutY="20.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+                  <ScrollPane layoutX="50.0" layoutY="82.0" prefHeight="490.0" prefWidth="802.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="800.0">
+                           <children>
+                              <VBox fx:id="vbox" layoutX="14.0" layoutY="7.0" prefHeight="472.0" prefWidth="775.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

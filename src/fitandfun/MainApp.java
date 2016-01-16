@@ -41,7 +41,7 @@ public class MainApp extends Application {
 	 * named with the Username
 	 */
 	private String FILE_USERACTIVITY;
-	
+
 	private String FILE_WEIGHT;
 	/**
 	 * XML File to load and save User-specific TrainingGoals in a SubDirectory
@@ -71,7 +71,7 @@ public class MainApp extends Application {
 	 * The data as an observable list of User-Workouts.
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
-	
+
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 
 	public MainApp() {
@@ -374,7 +374,7 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Loading the InputWeightController and give the Controller access to
 	 * the MainApp
@@ -396,7 +396,29 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Loading the InputWeightController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see RecentActivitiesController.java
+	 */
+	public void showRecentActivitiesController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/RecentActivities.fxml"));
+			AnchorPane recentAct = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(recentAct);
+			// Give the controller access to the main app
+			RecentActivitiesController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in
@@ -546,7 +568,7 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
@@ -659,7 +681,7 @@ public class MainApp extends Application {
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
 	}
-	
+
 	/**
 	 * Returns the data as an ObservableList of Activity for userActivitys
 	 *
