@@ -105,6 +105,7 @@
                         <Image url="@../../../Images/Logo_klein.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="actUserLabel" layoutX="360.0" layoutY="20.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

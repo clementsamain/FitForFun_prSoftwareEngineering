@@ -178,6 +178,12 @@ public class Activity {
 	public void setStart(LocalTime start) {
 		this.start.set(start);
 	}
+	
+	public void setStart(int h, int m, int s)
+	{
+		LocalTime t = LocalTime.of(h, m, s);
+		this.start.set(t);
+	}
 
 	@XmlTransient
 	public LocalTime getStart() {
@@ -209,6 +215,12 @@ public class Activity {
 
 	public void setEnd(LocalTime end) {
 		this.end.set(end);
+	}
+	
+	public void setEnd(int h, int m, int s)
+	{
+		LocalTime t = LocalTime.of(h, m, s);
+		this.end.set(t);
 	}
 
 	@XmlTransient

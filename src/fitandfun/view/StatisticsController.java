@@ -2,6 +2,7 @@ package fitandfun.view;
 
 import fitandfun.MainApp;
 import fitandfun.Period;
+import fitandfun.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 
 import java.util.Arrays;
 
@@ -17,6 +19,8 @@ public class StatisticsController {
 
 	// Reference to the main application.
 	private MainApp mainApp;
+	
+	private User activeUser;
 
 	@FXML
 	private BarChart<String, Integer> distChart;
@@ -30,6 +34,8 @@ public class StatisticsController {
 	private PieChart activityOverviewChart;
 	@FXML
 	private ComboBox<Period> cboPeriod;
+	@FXML
+	private Label actUserLabel;
 
 	private ObservableList<String> monthNames = FXCollections.observableArrayList();
 	private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
@@ -105,7 +111,8 @@ public class StatisticsController {
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
-
+		activeUser = mainApp.getActiveUser();
+		actUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	@FXML

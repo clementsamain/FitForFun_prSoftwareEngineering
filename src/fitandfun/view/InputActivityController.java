@@ -54,7 +54,8 @@ public class InputActivityController {
 								// ÄNDERN!
 
 	@FXML
-	private Spinner<LocalTime> end;
+	//private Spinner<LocalTime> end;
+	private TimeSpinner end;
 	@FXML
 	private TextField distance;
 	@FXML
