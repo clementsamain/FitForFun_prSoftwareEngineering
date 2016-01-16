@@ -31,9 +31,23 @@ public class MainApp extends Application {
 	 * XML File to load and save Activities (Types)
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
+<<<<<<< HEAD
 	
 	private String FILE_WORKOUTS;
 	private String FILE_USERACTIVITY;
+=======
+	/**
+	 * XML File to load and save User-specific Activities in a SubDirectory
+	 * named with the Username
+	 */
+	private final String FILE_WORKOUTS = "XML\\Workouts.xml";
+	/**
+	 * XML File to load and save User-specific Workouts in a SubDirectory
+	 * named with the Username
+	 */
+	private String FILE_USERACTIVITY;
+
+>>>>>>> branch 'master' of https://github.com/jexmaster/ProjectSE2015.git
 	private String FILE_WEIGHT;
 	private String FILE_USERGOALS;
 
@@ -59,7 +73,7 @@ public class MainApp extends Application {
 	 * The data as an observable list of User-Workouts.
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
-	
+
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 	
 	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
@@ -308,7 +322,7 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Loading the InputWeightController and give the Controller access to
 	 * the MainApp
@@ -352,7 +366,29 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Loading the InputWeightController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see RecentActivitiesController.java
+	 */
+	public void showRecentActivitiesController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/RecentActivities.fxml"));
+			AnchorPane recentAct = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(recentAct);
+			// Give the controller access to the main app
+			RecentActivitiesController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in
@@ -502,7 +538,7 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
@@ -706,8 +742,17 @@ public class MainApp extends Application {
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+	/**
+	 * Returns the data as an ObservableList of Activity for userActivitys
+	 *
+	 * @return userActivityData
+	 */
+>>>>>>> branch 'master' of https://github.com/jexmaster/ProjectSE2015.git
 	public ObservableList<Weight> getUserWeight() {
 		return userWeightData;
 	}
