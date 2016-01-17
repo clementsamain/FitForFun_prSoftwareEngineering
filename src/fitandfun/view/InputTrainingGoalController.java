@@ -27,7 +27,9 @@ public class InputTrainingGoalController {
     private MainApp mainApp;
     
     private User activeUser;
-
+    
+    @FXML
+    private TextField goalName;
     @FXML
     private ComboBox<GoalType> goalType;
 	@FXML
@@ -93,6 +95,7 @@ public class InputTrainingGoalController {
     	goalDate.valueProperty().bindBidirectional(tg.dateProperty());
     	goalStartDate.valueProperty().bindBidirectional(tg.startProperty());
 		goalValue.textProperty().bindBidirectional(tg.goalValueProperty(), new NumberStringConverter());
+		goalName.textProperty().bindBidirectional(tg.nameProperty());
 		
 		goalType.valueProperty().addListener(new ChangeListener<GoalType>() {
 
@@ -111,7 +114,7 @@ public class InputTrainingGoalController {
     
     @FXML
 	private void saveTrainingGoal() {
-    	if(tg.getType() != null && tg.getDate() != null && tg.getStartDate() != null && tg.getGoalValue() != 0 && tg.getStartDate().isBefore(tg.getDate()))
+    	if(tg.getName()!= null && tg.getType() != null && tg.getDate() != null && tg.getStartDate() != null && tg.getGoalValue() != 0 && tg.getStartDate().isBefore(tg.getDate()))
     	{
     		mainApp.getTrainingGoals().add(tg);
     		mainApp.saveTrainingGoalsXML();

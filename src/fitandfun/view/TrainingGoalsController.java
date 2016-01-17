@@ -19,6 +19,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -48,6 +49,24 @@ public class TrainingGoalsController {
 	
 	@FXML
 	private Label caption;
+	
+	@FXML
+	private GridPane details;
+	
+	@FXML
+	private Label trainingGoalName;
+	
+	@FXML
+	private Label goalTypeName;
+	
+	@FXML
+	private Label startDate;
+	
+	@FXML
+	private Label goalDate;
+	
+	@FXML
+	private Label valueUnit;
 
 	private List<Activity> userActivities = new ArrayList<>();
 	private TrainingGoals trainingGoal = new TrainingGoals();
@@ -55,9 +74,8 @@ public class TrainingGoalsController {
 	float sumFloatDuration = 0;
 	float sumFloat = 0;
 	
+	boolean detailFlag = false;
 	
-	
-
 	/**
 	 * The constructor. The constructor is called before the initialize()
 	 * method.
@@ -165,13 +183,16 @@ public class TrainingGoalsController {
 						);
 				
 				pie.setData(pieChartData);
+				goalTypeName.setText(trainingGoal.getType().getName());
+				trainingGoalName.setText(trainingGoal.getName());
+				startDate.setText(trainingGoal.getStartDateString());
+				goalDate.setText(trainingGoal.getDateString());
+				valueUnit.setText(trainingGoal.getGoalValue() + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
+				
 			}
 			
-			
-
-			
 			pie.setTitle(trainingGoal.getType().getName());
-			pie.setLegendSide(Side.RIGHT);
+			//pie.setLegendSide(Side.RIGHT);
 			
 			
 			for (final PieChart.Data data : pie.getData()) {

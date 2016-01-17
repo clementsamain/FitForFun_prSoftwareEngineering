@@ -11,6 +11,8 @@ import javafx.beans.property.ObjectProperty;
 //import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * 
@@ -19,6 +21,7 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class TrainingGoals {
 
+	private final StringProperty name;
 	private final ObjectProperty<GoalType> type;
 	private final FloatProperty goalValue;
 	private final ObjectProperty<LocalDate> goalDate;
@@ -28,20 +31,35 @@ public class TrainingGoals {
 
 	public TrainingGoals()
 	{
-		this(null, 0, null, null);
+		this(null, null, 0, null, null);
 	}
 	
 	/**
 	 * Constructor
 	 * 
 	 */
-	public TrainingGoals(GoalType type, float goalValue, LocalDate goalDate, LocalDate startDate) {
+	public TrainingGoals(String name, GoalType type, float goalValue, LocalDate goalDate, LocalDate startDate) {
+		this.name = new SimpleStringProperty(name);
 		this.type = new SimpleObjectProperty<>(type);
 		this.goalValue = new SimpleFloatProperty(goalValue);
 		//this.completed = new SimpleBooleanProperty();
 		this.goalDate = new SimpleObjectProperty<>(goalDate);
 		this.startDate = new SimpleObjectProperty<>(startDate);
 	}
+	
+	//actName
+		public StringProperty nameProperty() {
+			return this.name;
+		}
+
+		@XmlElement(name = "TrainingGoalName")
+		public String getName() {
+			return this.name.get();
+		}
+
+		public void setName(String name) {
+			this.name.set(name);
+		}
 	
 	/**
 	 * Property-getter, Getter- and Setter Methods for activityName
