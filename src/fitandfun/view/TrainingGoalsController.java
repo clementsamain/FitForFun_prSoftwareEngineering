@@ -11,23 +11,29 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.io.File;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import fitandfun.MainApp;
 import fitandfun.model.Activity;
 import fitandfun.model.GoalType;
 import fitandfun.model.TrainingGoals;
+import fitandfun.model.User;
 
 public class TrainingGoalsController {
 
@@ -135,7 +141,7 @@ public class TrainingGoalsController {
 					sumFloatDistance = sumFloatDistance + act.getDistance();
 					sumFloatDuration = sumFloatDuration + (float)(act.getDuration().getHour() + act.getDuration().getMinute()/60.0);
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Dauer")) {
-					sumFloatDuration = sumFloatDuration + (float)(act.getDuration().getHour() + act.getDuration().getMinute()/60.0);
+					sumFloat = sumFloatDuration + (float)(act.getDuration().getHour() + act.getDuration().getMinute()/60.0);
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Verbrauchte kcal")) {
 					sumFloat = sumFloat + act.getCalories();
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Höhenmeter")) {
@@ -147,12 +153,23 @@ public class TrainingGoalsController {
 				sumFloat = sumFloatDistance/sumFloatDuration;
 			}
 			
-			ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-					new PieChart.Data("geschafft", sumFloat),
-					new PieChart.Data("offen", trainingGoal.getGoalValue()-sumFloat)
-					);
+			if(sumFloat >= trainingGoal.getGoalValue())
+			{
+				deleteTrainingGoal(trainingGoal);
+				showTrainingGoalCompleted();
+			}else
+			{
+				ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+						new PieChart.Data("geschafft", sumFloat),
+						new PieChart.Data("offen", trainingGoal.getGoalValue()-sumFloat)
+						);
+				
+				pie.setData(pieChartData);
+			}
+			
+			
 
-			pie.setData(pieChartData);
+			
 			pie.setTitle(trainingGoal.getType().getName());
 			pie.setLegendSide(Side.RIGHT);
 			
@@ -179,7 +196,15 @@ public class TrainingGoalsController {
 			pie.setVisible(false);
 		}
 	}
-
+	
+	private void deleteTrainingGoal(TrainingGoals tg)
+	{
+		if (tg != null) {
+				mainApp.getTrainingGoals().remove(tg);
+				mainApp.saveTrainingGoalsXML();
+		}
+	}
+	
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 * 
@@ -198,5 +223,10 @@ public class TrainingGoalsController {
 	@FXML
 	private void showInputTrainingGoal() {
 		mainApp.showInputTrainingGoalController();
+	}
+	
+	private void showTrainingGoalCompleted()
+	{
+		mainApp.showTrainingGoalCompletedController();
 	}
 }

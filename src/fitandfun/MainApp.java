@@ -357,6 +357,28 @@ public class MainApp extends Application {
 	}
 	
 	/**
+	 * Loading the showInputTrainingGoalController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see showInputTrainingGoalController.java
+	 */
+	public void showTrainingGoalCompletedController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/TrainingGoalCompleted.fxml"));
+			AnchorPane trainingGoalCompleted = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(trainingGoalCompleted);
+			// Give the controller access to the main app
+			TrainingGoalCompletedController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Loading the showInputGoalTypeController and give the Controller access to
 	 * the MainApp
 	 *

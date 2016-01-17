@@ -37,14 +37,14 @@
                 <Distance>true</Distance>
                 <End>true</End>
                 <HMeter>true</HMeter>
-                <Type>Bergwandern</Type>
+                <Type>Laufen</Type>
                 <Start>true</Start>
             </AktivityType>
             <AktivityTypeParam>
-                <Name>Höhenmeter</Name>
-                <Unit>m</Unit>
+                <Name>Dauer</Name>
+                <Unit>hh:mm</Unit>
             </AktivityTypeParam>
-            <GoalType>Wandern - Höhenmeter</GoalType>
+            <GoalType>Laufen-Dauer</GoalType>
         </GoalType>
     </GoalTypes>
 </GoalTypeWrapper>
