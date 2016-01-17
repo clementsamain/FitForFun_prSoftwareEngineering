@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TrainingGoalsWrapper>
     <TrainingGoals>
+        <TrainingGoal>
+            <Date>2016-01-17</Date>
+            <GoalValue>10.0</GoalValue>
+            <StartDate>2016-01-11</StartDate>
+            <Type>
+                <AktivityType>
+                    <Date>true</Date>
+                    <Distance>true</Distance>
+                    <End>true</End>
+                    <HMeter>true</HMeter>
+                    <Type>Laufen</Type>
+                    <Start>true</Start>
+                </AktivityType>
+                <AktivityTypeParam>
+                    <Name>Distanz</Name>
+                    <Unit>km</Unit>
+                </AktivityTypeParam>
+                <GoalType>Laufen-Distanz</GoalType>
+            </Type>
+        </TrainingGoal>
     </TrainingGoals>
 </TrainingGoalsWrapper>

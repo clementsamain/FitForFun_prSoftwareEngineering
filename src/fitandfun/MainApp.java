@@ -31,25 +31,14 @@ public class MainApp extends Application {
 	 * XML File to load and save Activities (Types)
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
-<<<<<<< HEAD
+	
+	private String FILE_GOALTYPES = "XML\\GoalTypes.xml";
 	
 	private String FILE_WORKOUTS;
 	private String FILE_USERACTIVITY;
-=======
-	/**
-	 * XML File to load and save User-specific Activities in a SubDirectory
-	 * named with the Username
-	 */
-	private final String FILE_WORKOUTS = "XML\\Workouts.xml";
-	/**
-	 * XML File to load and save User-specific Workouts in a SubDirectory
-	 * named with the Username
-	 */
-	private String FILE_USERACTIVITY;
-
->>>>>>> branch 'master' of https://github.com/jexmaster/ProjectSE2015.git
 	private String FILE_WEIGHT;
 	private String FILE_USERGOALS;
+	
 
 	private User activeUser;
 	private Stage primaryStage;
@@ -73,10 +62,11 @@ public class MainApp extends Application {
 	 * The data as an observable list of User-Workouts.
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
-
+	
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 	
 	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
+	private ObservableList<GoalType> goalTypeData = FXCollections.observableArrayList();
 	
 
 	public MainApp() {
@@ -161,8 +151,7 @@ public class MainApp extends Application {
 		}
 		loadUserXML();
 		loadActivityXML();
-		//loadUserActivityXML();
-		//loadWorkoutsXML();
+		loadGoalTypeXML();
 	}
 
 	/**
@@ -322,7 +311,7 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Loading the InputWeightController and give the Controller access to
 	 * the MainApp
@@ -366,29 +355,29 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Loading the InputWeightController and give the Controller access to
+	 * Loading the showInputGoalTypeController and give the Controller access to
 	 * the MainApp
 	 *
-	 * @see RecentActivitiesController.java
+	 * @see showInputGoalTypeController.java
 	 */
-	public void showRecentActivitiesController() {
+	public void showInputGoalType() {
 		try {
 			// Load
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/RecentActivities.fxml"));
-			AnchorPane recentAct = (AnchorPane) loader.load();
+			loader.setLocation(MainApp.class.getResource("view/InputGoalType.fxml"));
+			AnchorPane inputGoalType = (AnchorPane) loader.load();
 			// Set into the center of root layout
-			rootLayout.setCenter(recentAct);
+			rootLayout.setCenter(inputGoalType);
 			// Give the controller access to the main app
-			RecentActivitiesController controller = loader.getController();
+			InputGoalTypeController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in
@@ -538,7 +527,7 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-
+	
 	/**
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
@@ -675,6 +664,55 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+	 * Loading all UserActivities from the XML-File used to save a new
+	 * UserActivity.
+	 *
+	 * @see InputActivity.java
+	 * @see StatisticsController.java
+	 */
+	private void loadGoalTypeXML() {
+		File temp = new File(FILE_GOALTYPES);
+		if (temp.exists()) {
+			try {
+				GoalTypeWrapper wrapper = XMLHelper.load(GoalTypeWrapper.class, FILE_GOALTYPES);
+				goalTypeData.clear();
+				goalTypeData.addAll(wrapper.getGoalTypes());
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Fehler");
+				alert.setHeaderText(null);
+				alert.setContentText("Beim Laden der GoalTypes ist ein Fehler aufgetreten!");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
+			alert.showAndWait();
+		}
+	}
+
+	/**
+	 * Method to save the UserActivities in the XML-File
+	 */
+	public void saveGoalTypeXml() {
+		GoalTypeWrapper wrapper = new GoalTypeWrapper();
+		wrapper.setGoalTypes(goalTypeData);
+		try {
+			XMLHelper.save(wrapper, FILE_GOALTYPES);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Fehler");
+			alert.setHeaderText(null);
+			alert.setContentText("Beim Speichern der GoalTypes ist ein Fehler aufgetreten!");
+			alert.showAndWait();
+		}
+	}
 
 	/**
 	 * Method to set the activeUser selected at LoginController This Methods
@@ -742,17 +780,11 @@ public class MainApp extends Application {
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
 	}
-<<<<<<< HEAD
 	
+	public ObservableList<GoalType> getGoalType() {
+		return goalTypeData;
+	}
 	
-=======
-
-	/**
-	 * Returns the data as an ObservableList of Activity for userActivitys
-	 *
-	 * @return userActivityData
-	 */
->>>>>>> branch 'master' of https://github.com/jexmaster/ProjectSE2015.git
 	public ObservableList<Weight> getUserWeight() {
 		return userWeightData;
 	}

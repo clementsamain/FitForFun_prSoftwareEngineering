@@ -22,29 +22,31 @@ public class TrainingGoals {
 	private final ObjectProperty<GoalType> type;
 	private final FloatProperty goalValue;
 	private final ObjectProperty<LocalDate> goalDate;
+	private final ObjectProperty<LocalDate> startDate;
 	//private final SimpleBooleanProperty completed;
 	
 
 	public TrainingGoals()
 	{
-		this(null, 0, null);
+		this(null, 0, null, null);
 	}
 	
 	/**
 	 * Constructor
 	 * 
 	 */
-	public TrainingGoals(GoalType type, float goalValue, LocalDate goalDate) {
+	public TrainingGoals(GoalType type, float goalValue, LocalDate goalDate, LocalDate startDate) {
 		this.type = new SimpleObjectProperty<>(type);
 		this.goalValue = new SimpleFloatProperty(goalValue);
 		//this.completed = new SimpleBooleanProperty();
 		this.goalDate = new SimpleObjectProperty<>(goalDate);
+		this.startDate = new SimpleObjectProperty<>(startDate);
 	}
 	
 	/**
 	 * Property-getter, Getter- and Setter Methods for activityName
 	 */
-	public ObjectProperty<GoalType> trainingGoalsProperty() {
+	public ObjectProperty<GoalType> goalTypeProperty() {
 		return this.type;
 	}
 
@@ -66,6 +68,34 @@ public class TrainingGoals {
 	}
 	
 	/**
+	 * Property-getter, Getter- and Setter Methods for startDate
+	 */
+	public ObjectProperty<LocalDate> startProperty() {
+		return this.startDate;
+	}
+
+	@XmlElement(name = "StartDate")
+	public String getStartDateString() {
+		if (startDate.get() == null) {
+			return "";
+		}
+		return startDate.get().format(DateTimeFormatter.ISO_DATE);
+	}
+
+	public void setStartDateString(String startDateStr) {
+		if (startDateStr != null) {
+			this.startDate.set(LocalDate.parse(startDateStr));
+		} else {
+			this.startDate.set(null);
+		}
+	}
+	
+	public LocalDate getStartDate()
+	{
+		return this.startDate.get();
+	}
+	
+	/**
 	 * Property-getter, Getter- and Setter Methods for date
 	 */
 	public ObjectProperty<LocalDate> dateProperty() {
@@ -78,6 +108,11 @@ public class TrainingGoals {
 			return "";
 		}
 		return goalDate.get().format(DateTimeFormatter.ISO_DATE);
+	}
+	
+	public LocalDate getDate()
+	{
+		return this.goalDate.get();
 	}
 
 	public void setDateString(String dateString) {

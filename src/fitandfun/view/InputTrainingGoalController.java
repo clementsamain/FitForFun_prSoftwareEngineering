@@ -1,5 +1,7 @@
 package fitandfun.view;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -10,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import fitandfun.MainApp;
 import fitandfun.model.ActivityType;
@@ -29,6 +32,8 @@ public class InputTrainingGoalController {
     private ComboBox<GoalType> goalType;
 	@FXML
 	private DatePicker goalDate;
+	@FXML
+	private DatePicker goalStartDate;
 	@FXML
 	private TextField goalValue;
 	@FXML
@@ -51,7 +56,7 @@ public class InputTrainingGoalController {
      */
     @FXML
     private void initialize() {
-    	/*goalType.setCellFactory(new Callback<ListView<GoalType>, ListCell<GoalType>>() {
+    	goalType.setCellFactory(new Callback<ListView<GoalType>, ListCell<GoalType>>() {
 			@Override
 			public ListCell<GoalType> call(ListView<GoalType> param) {
 				return new ListCell<GoalType>() {
@@ -61,49 +66,52 @@ public class InputTrainingGoalController {
 						this.textProperty().unbind();
 						this.setText("");
 						if (item != null) {
-							this.textProperty().bind(item.getDeclaringClass().getEnumConstants().toString());
+							this.textProperty().bind(item.nameProperty());
 						}
 					}
 				};
 			}
-		});*/
+		});
+    	goalType.setConverter(new StringConverter<GoalType>() {
+			@Override
+			public String toString(GoalType at) {
+				if (at == null) {
+					return null;
+				} else {
+					return at.getName();
+				}
+			}
+
+			@Override
+			public GoalType fromString(String name) {
+				return null;
+			}
+		});
+    	
+    	goalType.valueProperty().bindBidirectional(tg.goalTypeProperty());
     	
     	goalDate.valueProperty().bindBidirectional(tg.dateProperty());
+    	goalStartDate.valueProperty().bindBidirectional(tg.startProperty());
 		goalValue.textProperty().bindBidirectional(tg.goalValueProperty(), new NumberStringConverter());
 		
-		/*switch(tg.getType())
-		{
-		case KCAL:
-			goalUnit.setText(" kcal");
-			break;
-		case WEIGHT:
-			goalUnit.setText(" kg");
-			break;
-		case STEPS:
-			goalUnit.setText(" Schritte");
-			break;
-		case RUNDIST:
-			goalUnit.setText(" km");
-			break;
-		case WALKDIST:
-			goalUnit.setText(" km");
-			break;
-		case BIKEDIST:
-			goalUnit.setText(" km");
-			break;
-		case SWIMDIST:
-			goalUnit.setText(" m");
-			break;
-		case HIKEDIST:
-			goalUnit.setText(" km");
-			break;
-		}*/
+		goalType.valueProperty().addListener(new ChangeListener<GoalType>() {
 
+			@Override
+			public void changed(ObservableValue<? extends GoalType> observable, GoalType oldValue, GoalType newValue) {
+				if(newValue != null)
+				{
+					goalUnit.setText(newValue.getActTypeParam().getParamUnit());
+				}else
+					{
+						goalUnit.setText("");
+					}
+			}
+		});
     }
     
     @FXML
 	private void saveTrainingGoal() {
-    	if(goalType != null && goalDate != null && !goalValue.equals("") && goalValue != null)
+    	if(tg.getType() != null && tg.getDate() != null && tg.getStartDate() != null && tg.getGoalValue() != 0 && tg.getStartDate().isBefore(tg.getDate()))
     	{
     		mainApp.getTrainingGoals().add(tg);
     		mainApp.saveTrainingGoalsXML();
@@ -129,10 +137,6 @@ public class InputTrainingGoalController {
     
     @FXML
 	private void reset() {
-		/*goalType.setValue(null);
-		goalDate.setValue(null);
-		goalValue.setText("");
-		goalUnit.setText("");*/
     	showTrainingGoalsController();
 	}
 
@@ -143,6 +147,7 @@ public class InputTrainingGoalController {
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
+        goalType.getItems().addAll(mainApp.getGoalType());
     }
     
     @FXML
@@ -153,5 +158,10 @@ public class InputTrainingGoalController {
     @FXML
     private void showTrainingGoalsController() {
     	mainApp.returnToTrainingGoals();
+    }
+    
+    @FXML
+    private void showInputGoalTypeController() {
+    	mainApp.showInputGoalType();
     }
 }

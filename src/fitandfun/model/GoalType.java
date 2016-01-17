@@ -1,36 +1,75 @@
 package fitandfun.model;
 
+import javax.xml.bind.annotation.XmlElement;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
- * GoalType for TrainingGoals
- * 
+ * GoalType to load and save GoalTypes used by all Users
  * @author Viki
  * @version 0.1
  */
-public enum GoalType {
-	WEIGHT("Gewicht"), 
-	STEPS("Schritte"), 
-	RUNDIST("Laufen-Distanz"), 
-	WALKDIST("Spazierengehen-Distanz"), 
-	BIKEDIST("Radfahren-Distanz"), 
-	SWIMDIST("Schwimmen-Distanz"), 
-	HIKEDIST("Bergwandern-Distanz"), 
-	KCAL("Kcal verbrauchte kcal");
+public class GoalType {
 	
-	private final String text;
-	
-	private GoalType()
-	{
-		this("");
+	private final StringProperty actName;
+	private final ObjectProperty<ActivityType> actType;
+	private final ObjectProperty<ActivityTypeParameter> actTypeParam;
+
+	public GoalType() {
+		this(null);
+	}
+
+	public GoalType(String name) {
+		this.actName = new SimpleStringProperty(name);
+		this.actType = new SimpleObjectProperty<>();
+		this.actTypeParam = new SimpleObjectProperty<>();
+	}
+
+	//actName
+	public StringProperty nameProperty() {
+		return this.actName;
+	}
+
+	@XmlElement(name = "GoalType")
+	public String getName() {
+		return this.actName.get();
+	}
+
+	public void setName(String name) {
+		this.actName.set(name);
 	}
 	
-	private GoalType(final String text)
-	{
-		this.text = text;
+	// actType
+	public ObjectProperty<ActivityType> actTypeProperty() {
+		return this.actType;
+	}
+
+	@XmlElement(name = "AktivityType")
+	public ActivityType getActType() {
+		return this.actType.get();
+	}
+
+	public void setActType(ActivityType at) {
+		this.actType.set(at);
 	}
 	
-	@Override
-	public String toString()
-	{
-		return text;
+	//actTypeParam
+	public ObjectProperty<ActivityTypeParameter> actTypeParamProperty() {
+		return this.actTypeParam;
 	}
+
+	@XmlElement(name = "AktivityTypeParam")
+	public ActivityTypeParameter getActTypeParam() {
+		return this.actTypeParam.get();
+	}
+
+	public void setActTypeParam(ActivityTypeParameter param) {
+		this.actTypeParam.set(param);
+	}
+
+	
 }

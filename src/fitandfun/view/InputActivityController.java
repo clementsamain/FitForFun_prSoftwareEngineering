@@ -48,13 +48,8 @@ public class InputActivityController {
 	@FXML
 	private DatePicker date;
 	@FXML
-	// private Spinner<LocalTime> start;
-	private TimeSpinner start; // CODE OKAY KANN ABER VOM SCENEBUILDER NICHT
-								// ERKANNT WERDEN -> WENN DESIGN FERTIG AUF DAS
-								// ÄNDERN!
-
+	private TimeSpinner start; 
 	@FXML
-	//private Spinner<LocalTime> end;
 	private TimeSpinner end;
 	@FXML
 	private TextField distance;

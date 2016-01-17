@@ -3,7 +3,9 @@ package fitandfun.view;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ComboBox;
 import fitandfun.MainApp;
+import fitandfun.model.TrainingGoals;
 
 public class TrainingGoalsController {
 
@@ -15,6 +17,9 @@ public class TrainingGoalsController {
 	
 	@FXML
 	private LineChart line;
+	
+	@FXML
+	private ComboBox<TrainingGoals> trainingGoals;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -30,7 +35,7 @@ public class TrainingGoalsController {
 	@FXML
 	private void initialize() {
 		pie.setVisible(false);
-		pie.setVisible(false);
+		line.setVisible(false);
 	}
 
 	/**

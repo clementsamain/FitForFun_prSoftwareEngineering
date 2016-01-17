@@ -11,7 +11,7 @@ public class HomepageController {
 
     @FXML
     public Label activeUser;
-
+    
     /**
      * The constructor.
      * The constructor is called before the initialize() method.
@@ -25,57 +25,52 @@ public class HomepageController {
      */
     @FXML
     private void initialize() {
-
+    	
     }
 
     /**
      * Is called by the main application to give a reference back to itself.
-     *
+     * 
      * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         activeUser.setText(mainApp.getActiveUser().getUsername());
     }
-
+    
     @FXML
     private void showOverviewActivity() {
     	mainApp.showOverviewActivity();
     }
-
+    
     @FXML
     private void showStatistics() {
     	mainApp.showStatistics();
     }
-
+    
     @FXML
     private void showTrainingGoals() {
     	mainApp.showTrainingGoals();
     }
-
+    
     @FXML
     private void showWorkouts() {
     	mainApp.showWorkouts();
     }
-
+    
     @FXML
     private void showUserAdministration() {
     	mainApp.showUserAdministration();
     }
-
+    
     @FXML
     private void showInputActivityController() {
     	mainApp.showInputActivityController();
     }
-
+    
     @FXML
     private void showInputWeightController()
     {
     	mainApp.showWeightController();
-    }
-    @FXML
-    private void showRecentActivitiesController()
-    {
-    	mainApp.showRecentActivitiesController();
     }
 }
