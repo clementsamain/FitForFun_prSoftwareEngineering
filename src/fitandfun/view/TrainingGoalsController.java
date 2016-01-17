@@ -48,28 +48,28 @@ public class TrainingGoalsController {
 
 	@FXML
 	private ComboBox<TrainingGoals> trainingGoals;
-	
+
 	@FXML
 	private Label caption;
-	
+
 	@FXML
 	private GridPane details;
-	
+
 	@FXML
 	private Label trainingGoalName;
-	
+
 	@FXML
 	private Label goalTypeName;
-	
+
 	@FXML
 	private Label startDate;
-	
+
 	@FXML
 	private Label goalDate;
-	
+
 	@FXML
 	private Label valueUnit;
-	
+
 	@FXML
 	private Button detailButton;
 
@@ -78,9 +78,9 @@ public class TrainingGoalsController {
 	float sumFloatDistance = 0;
 	float sumFloatDuration = 0;
 	float sumFloat = 0;
-	
+
 	boolean detailFlag = false;
-	
+
 	/**
 	 * The constructor. The constructor is called before the initialize()
 	 * method.
@@ -145,7 +145,7 @@ public class TrainingGoalsController {
 		sumFloatDuration = 0;
 		sumFloat = 0;
 		detailButton.setVisible(true);
-		
+
 		userActivities.clear();
 		if (trainingGoal != null) {
 			pie.setVisible(true);
@@ -162,97 +162,107 @@ public class TrainingGoalsController {
 			for (Activity act : userActivities) {
 				if (trainingGoal.getType().getActTypeParam().getParamName().equals("Distanz")) {
 					sumFloat = sumFloat + act.getDistance();
-				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Durchschnittsgeschwindigkeit")) {
+				} else if (trainingGoal.getType().getActTypeParam().getParamName()
+						.equals("Durchschnittsgeschwindigkeit")) {
 					sumFloatDistance = sumFloatDistance + act.getDistance();
-					sumFloatDuration = sumFloatDuration + (float)(act.getDuration().getHour() + act.getDuration().getMinute()/60.0);
+					sumFloatDuration = sumFloatDuration
+							+ (float) (act.getDuration().getHour() + act.getDuration().getMinute() / 60.0);
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Dauer")) {
-					sumFloat = sumFloatDuration + (float)(act.getDuration().getHour() + act.getDuration().getMinute()/60.0);
+					sumFloat = sumFloat + (float) (act.getDuration().getHour() + act.getDuration().getMinute() / 60.0);
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Verbrauchte kcal")) {
 					sumFloat = sumFloat + act.getCalories();
 				} else if (trainingGoal.getType().getActTypeParam().getParamName().equals("Höhenmeter")) {
 					sumFloat = sumFloat + act.getHMeter();
 				}
 			}
-			if(sumFloatDuration>0)
-			{
-				sumFloat = sumFloatDistance/sumFloatDuration;
+			if (sumFloatDuration > 0) {
+				sumFloat = sumFloatDistance / sumFloatDuration;
 			}
-			
-			if(sumFloat >= trainingGoal.getGoalValue())
-			{
+
+			if (sumFloat >= trainingGoal.getGoalValue()) {
 				deleteTrainingGoal(trainingGoal);
 				showTrainingGoalCompleted();
-			}else
-			{
+			} else {
 				ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
 						new PieChart.Data("geschafft", sumFloat),
-						new PieChart.Data("offen", trainingGoal.getGoalValue()-sumFloat)
-						);
-				
+						new PieChart.Data("offen", trainingGoal.getGoalValue() - sumFloat));
+
 				pie.setData(pieChartData);
 				goalTypeName.setText(trainingGoal.getType().getName());
 				trainingGoalName.setText(trainingGoal.getName());
 				startDate.setText(trainingGoal.getStartDateString());
 				goalDate.setText(trainingGoal.getDateString());
-				valueUnit.setText(trainingGoal.getGoalValue() + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
-				
+				valueUnit.setText(
+						trainingGoal.getGoalValue() + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
+
 			}
-			
+
 			pie.setTitle(trainingGoal.getType().getName());
-			//pie.setLegendSide(Side.RIGHT);
-			
-			
+			// pie.setLegendSide(Side.RIGHT);
+
 			for (final PieChart.Data data : pie.getData()) {
-			    data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED,
-			        new EventHandler<MouseEvent>() {
-			            @Override public void handle(MouseEvent e) {
-			                caption.setTranslateX(e.getSceneX());
-			                caption.setTranslateY(e.getSceneY()-220);
-			                caption.setText(String.valueOf(data.getPieValue()) + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
-			             }
-			        });
-			    data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED,  new EventHandler<MouseEvent>(){
-			    	@Override public void handle(MouseEvent e)
-			    	{
-			    		caption.setText("");
-			    	}
-			    	
-			    });
+				data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						caption.setTranslateX(e.getSceneX());
+						caption.setTranslateY(e.getSceneY() - 220);
+						if (trainingGoal.getType().getActTypeParam().getParamName().equals("Dauer")) {
+							Double t = data.getPieValue();
+							int h = t.intValue();
+							t = t - h;
+							int m = (int) (t * 60 + 0.5);
+							if (m < 10) {
+								caption.setText(h + ":0" + m);
+							} else {
+								caption.setText(h + ":" + m);
+							}
+
+						} else {
+							caption.setText(String.valueOf(data.getPieValue()) + " "
+									+ trainingGoal.getType().getActTypeParam().getParamUnit());
+						}
+					}
+				});
+				data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						caption.setText("");
+					}
+
+				});
 			}
-		
+
 		} else {
 			pie.setVisible(false);
 		}
 	}
-	
+
 	@FXML
-	private void showActivities()
-	{
+	private void showActivities() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("UserActivities");
 		alert.setHeaderText("Erfasste Aktivitäten");
-		
+
 		String cont = "";
 		for (Activity act : userActivities) {
 			cont = cont + act.getDateString() + " (" + act.getDistance() + "km - " + act.getDurationString() + ")<br> ";
 		}
-		
+
 		WebView view = new WebView();
 		view.getEngine().loadContent(cont);
 		view.setPrefSize(280, 400);
-		
+
 		alert.getDialogPane().setContent(view);
 		alert.showAndWait();
 	}
-	
-	private void deleteTrainingGoal(TrainingGoals tg)
-	{
+
+	private void deleteTrainingGoal(TrainingGoals tg) {
 		if (tg != null) {
-				mainApp.getTrainingGoals().remove(tg);
-				mainApp.saveTrainingGoalsXML();
+			mainApp.getTrainingGoals().remove(tg);
+			mainApp.saveTrainingGoalsXML();
 		}
 	}
-	
+
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 * 
@@ -272,9 +282,8 @@ public class TrainingGoalsController {
 	private void showInputTrainingGoal() {
 		mainApp.showInputTrainingGoalController();
 	}
-	
-	private void showTrainingGoalCompleted()
-	{
+
+	private void showTrainingGoalCompleted() {
 		mainApp.showTrainingGoalCompletedController();
 	}
 }

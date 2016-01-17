@@ -33,5 +33,21 @@
                 <Start>true</Start>
             </Type>
         </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-19</Date>
+            <Distance>5.0</Distance>
+            <End>19:09:07</End>
+            <HMeter>10</HMeter>
+            <Start>18:06:07.965</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Laufen</Type>
+                <Start>true</Start>
+            </Type>
+        </UserActivity>
     </UserActivities>
 </ActivityWrapper>
