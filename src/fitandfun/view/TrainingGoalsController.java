@@ -18,9 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebView;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -67,6 +69,9 @@ public class TrainingGoalsController {
 	
 	@FXML
 	private Label valueUnit;
+	
+	@FXML
+	private Button detailButton;
 
 	private List<Activity> userActivities = new ArrayList<>();
 	private TrainingGoals trainingGoal = new TrainingGoals();
@@ -132,12 +137,14 @@ public class TrainingGoalsController {
 				updateCharts();
 			}
 		});
+		detailButton.setVisible(false);
 	}
 
 	private void updateCharts() {
 		sumFloatDistance = 0;
 		sumFloatDuration = 0;
 		sumFloat = 0;
+		detailButton.setVisible(true);
 		
 		userActivities.clear();
 		if (trainingGoal != null) {
@@ -216,6 +223,26 @@ public class TrainingGoalsController {
 		} else {
 			pie.setVisible(false);
 		}
+	}
+	
+	@FXML
+	private void showActivities()
+	{
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("UserActivities");
+		alert.setHeaderText("Erfasste Aktivitäten");
+		
+		String cont = "";
+		for (Activity act : userActivities) {
+			cont = cont + act.getDateString() + " (" + act.getDistance() + "km - " + act.getDurationString() + ")<br> ";
+		}
+		
+		WebView view = new WebView();
+		view.getEngine().loadContent(cont);
+		view.setPrefSize(280, 400);
+		
+		alert.getDialogPane().setContent(view);
+		alert.showAndWait();
 	}
 	
 	private void deleteTrainingGoal(TrainingGoals tg)

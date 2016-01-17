@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -53,6 +54,7 @@
                         <Label fx:id="valueUnit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
+                  <Button fx:id="detailButton" layoutX="25.0" layoutY="288.0" mnemonicParsing="false" onMouseClicked="#showActivities" text="zeige Aktivitäteneinträge" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>
