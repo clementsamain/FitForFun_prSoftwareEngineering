@@ -3,65 +3,65 @@
     <UserActivities>
         <UserActivity>
             <Calories>0</Calories>
-            <Date>2015-12-07</Date>
-            <Distance>11.0</Distance>
-            <End>18:53:22</End>
-            <HMeter>11</HMeter>
-            <Start>17:53:22.802</Start>
-            <Type>
-                <Date>true</Date>
-                <Distance>false</Distance>
-                <End>true</End>
-                <HMeter>false</HMeter>
-                <Type>Gehen</Type>
-                <Start>true</Start>
-            </Type>
-        </UserActivity>
-        <UserActivity>
-            <Calories>0</Calories>
-            <Date>2015-12-06</Date>
-            <Distance>22.0</Distance>
-            <End>19:59:31</End>
-            <HMeter>12</HMeter>
-            <Start>17:59:31.598</Start>
-            <Type>
-                <Date>true</Date>
-                <Distance>true</Distance>
-                <End>true</End>
-                <HMeter>true</HMeter>
-                <Type>Laufen</Type>
-                <Start>true</Start>
-            </Type>
-        </UserActivity>
-        <UserActivity>
-            <Calories>0</Calories>
-            <Date>2015-12-02</Date>
-            <Distance>0.0</Distance>
-            <End>18:59:53</End>
-            <HMeter>0</HMeter>
-            <Start>17:59:53.559</Start>
-            <Type>
-                <Date>true</Date>
-                <Distance>false</Distance>
-                <End>true</End>
-                <HMeter>false</HMeter>
-                <Type>Schwimmen</Type>
-                <Start>true</Start>
-            </Type>
-        </UserActivity>
-        <UserActivity>
-            <Calories>0</Calories>
             <Date>2016-01-13</Date>
             <Distance>6.0</Distance>
-            <End>13:33:20</End>
+            <End>14:40:23</End>
             <HMeter>0</HMeter>
-            <Start>12:33:20.906</Start>
+            <Start>13:40:23.087</Start>
             <Type>
                 <Date>true</Date>
                 <Distance>true</Distance>
                 <End>true</End>
                 <HMeter>true</HMeter>
                 <Type>Laufen</Type>
+                <Start>true</Start>
+            </Type>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-14</Date>
+            <Distance>22.0</Distance>
+            <End>14:40:35</End>
+            <HMeter>0</HMeter>
+            <Start>13:40:35.91</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Radfahren</Type>
+                <Start>true</Start>
+            </Type>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-12</Date>
+            <Distance>15.0</Distance>
+            <End>18:07:04</End>
+            <HMeter>200</HMeter>
+            <Start>16:07:04.413</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Bergwandern</Type>
+                <Start>true</Start>
+            </Type>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-15</Date>
+            <Distance>2.0</Distance>
+            <End>17:08:18</End>
+            <HMeter>50</HMeter>
+            <Start>16:08:18.922</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Bergwandern</Type>
                 <Start>true</Start>
             </Type>
         </UserActivity>

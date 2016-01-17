@@ -151,6 +151,11 @@ public class Activity {
 			this.date.set(null);
 		}
 	}
+	
+	public LocalDate getDate()
+	{
+		return date.get();
+	}
 
 	/**
 	 * Property-getter, Getter- and Setter Methods for startTime

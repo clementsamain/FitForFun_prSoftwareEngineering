@@ -21,5 +21,25 @@
                 <GoalType>Laufen-Distanz</GoalType>
             </Type>
         </TrainingGoal>
+        <TrainingGoal>
+            <Date>2016-01-17</Date>
+            <GoalValue>500.0</GoalValue>
+            <StartDate>2016-01-11</StartDate>
+            <Type>
+                <AktivityType>
+                    <Date>true</Date>
+                    <Distance>true</Distance>
+                    <End>true</End>
+                    <HMeter>true</HMeter>
+                    <Type>Bergwandern</Type>
+                    <Start>true</Start>
+                </AktivityType>
+                <AktivityTypeParam>
+                    <Name>Höhenmeter</Name>
+                    <Unit>m</Unit>
+                </AktivityTypeParam>
+                <GoalType>Wandern - Höhenmeter</GoalType>
+            </Type>
+        </TrainingGoal>
     </TrainingGoals>
 </TrainingGoalsWrapper>
