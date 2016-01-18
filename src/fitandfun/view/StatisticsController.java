@@ -4,7 +4,6 @@ import fitandfun.MainApp;
 import fitandfun.Period;
 import fitandfun.model.Activity;
 import fitandfun.model.ActivityType;
-import fitandfun.model.User;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,21 +14,25 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 
+/**
+ * StatisticsController shows an staistical overview of the activities
+ * (kinds of activities, achieved distances and altitude changes) of
+ * active user.
+ *
+ * @author Stefan
+ *
+ */
 public class StatisticsController {
-
 	// Reference to the main application.
 	private MainApp mainApp;
 	private String username;
 	private ObservableList<ActivityType> activityTypeList;
 	private ObservableList<Activity> activityList;
-	private int gCals;
+	private ObservableList<String> monthNames = FXCollections.observableArrayList();
+	private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 	private int gKms;
 	private int gHms;
 
@@ -56,15 +59,11 @@ public class StatisticsController {
 	@FXML
 	private Label cals;
 
-	private ObservableList<String> monthNames = FXCollections.observableArrayList();
-	private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-
 	/**
 	 * The constructor. The constructor is called before the initialize()
 	 * method.
 	 */
 	public StatisticsController() {
-
 	}
 
 	/**
@@ -73,7 +72,6 @@ public class StatisticsController {
 	 */
 	@FXML
 	private void initialize() {
-		gCals = 0;
 		gKms = 0;
 		gHms = 0;
 		//Category Names
@@ -86,6 +84,11 @@ public class StatisticsController {
 		cals.setText("-");
 	}
 
+	/**
+	 * Sets up the bar chart view for achieved distances using the list
+	 * of activities gathered from the main app.
+	 *
+	 */
 	public void setDistChart() {
 		ObjectProperty<LocalDate> temp;
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
@@ -106,6 +109,11 @@ public class StatisticsController {
         kms.setText(String.valueOf(gKms));
     }
 
+	/**
+	 * Sets up the bar chart view for achieved altitude changes using the list
+	 * of activities gathered from the main app.
+	 *
+	 */
 	public void setHmChart() {
 		ObjectProperty<LocalDate> temp;
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
@@ -125,15 +133,25 @@ public class StatisticsController {
         hms.setText(String.valueOf(gHms));
     }
 
+	/**
+	 * Sets up the pie chart view for the percentages of the different types
+	 * of activities of the active user. Uses the list of activities and the
+	 * list of activity types gathered from the main app.
+	 *
+	 */
 	public void setActivityOverviewChart() {
 		activityOverviewChart.setLegendVisible(false);
 		pieChartData = FXCollections.observableArrayList();
 		for (ActivityType typ : activityTypeList) {
 			int anz = 0;
+			boolean found = false;
 			for (Activity act : activityList) {
-				if(act.getTypeString().equals(typ.getName())) anz++;
+				if(act.getTypeString().equals(typ.getName())) {
+					anz++;
+					found = true;
+				}
 			}
-            pieChartData.add(new PieChart.Data(typ.getName(), anz));
+			if (found == true) pieChartData.add(new PieChart.Data(typ.getName(), anz));
         }
 		activityOverviewChart.setData(pieChartData);
 		absT.setText(String.valueOf(activityList.size()));
@@ -155,6 +173,9 @@ public class StatisticsController {
 		setActivityOverviewChart();
 	}
 
+	/**
+	 * Handles the navigation back to the main screen of the app.
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
