@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
  * Helper class to wrap a list of activities. This is used for saving the
  * activities list to XML
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
  */
 @XmlRootElement(name = "ActivityWrapper")
 public class ActivityWrapper {

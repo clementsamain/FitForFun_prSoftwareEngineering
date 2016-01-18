@@ -66,14 +66,13 @@ public class RecentActivitiesController {
 		        date = format.parse(act.getDateString());
 			    lbl.setFont(Font.font("Amble CN", 16));
 				lbl.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-				//lbl.setText(print.format(date) + ": " + act.getTypeString());
-				lbl.setText(act.getDateString() + ": " + act.getTypeString());
+				lbl.setText(print.format(date) + ": " + act.getTypeString());
 		    } catch (ParseException e) {
 		      e.printStackTrace();
 		    }
 		    
-			detaillbl.setText("(" + act.getDistance() + " km, " + act.getHMeter() + " hm, " + act.getDurationString() + ")");
-			lbl.setPrefWidth(800);
+			detaillbl.setText("Distanz: " + act.getDistance() + " km / Höhenmeter: " + act.getHMeter() + " hm / Dauer: " + act.getDurationString());
+		    lbl.setPrefWidth(800);
 			detaillbl.setPrefWidth(800);
 			vbox.getChildren().add(lbl);
 			vbox.getChildren().add(detaillbl);

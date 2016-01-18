@@ -160,7 +160,7 @@ public class InputTrainingGoalController {
     
     @FXML
     private void showTrainingGoalsController() {
-    	mainApp.returnToTrainingGoals();
+    	mainApp.showTrainingGoals();
     }
     
     @FXML

@@ -6,11 +6,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 /**
- * Helper class to wrap a list of activities. This is used for saving the
- * activities list to XML
+ * Helper class to wrap a list of trainingGoals. This is used for saving the
+ * trainingGoals list to XML
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 @XmlRootElement(name = "TrainingGoalsWrapper")
 public class TrainingGoalsWrapper {

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ActivityWrapper>
-    <UserActivities>
-        <UserActivity>
-            <Calories>0</Calories>
-            <Date>2015-12-01</Date>
-            <Distance>15.0</Distance>
-            <End>15:39:21</End>
-            <HMeter>2</HMeter>
-            <Start>14:21:21.117</Start>
-            <Type>
-                <Date>true</Date>
-                <Distance>true</Distance>
-                <End>true</End>
-                <HMeter>true</HMeter>
-                <Type>Laufen</Type>
-                <Start>true</Start>
-            </Type>
-        </UserActivity>
-    </UserActivities>
+	<UserActivities>
+		<UserActivity>
+			<Calories>0</Calories>
+			<Date>2015-12-01</Date>
+			<Distance>15.0</Distance>
+			<End>15:39:21</End>
+			<HMeter>2</HMeter>
+			<Start>14:21:21.117</Start>
+			<Type>
+				<Date>true</Date>
+				<Distance>true</Distance>
+				<End>true</End>
+				<HMeter>true</HMeter>
+				<Type>Laufen</Type>
+				<Start>true</Start>
+			</Type>
+		</UserActivity>
+	</UserActivities>
 </ActivityWrapper>

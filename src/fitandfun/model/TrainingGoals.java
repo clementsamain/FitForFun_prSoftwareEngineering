@@ -15,9 +15,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
+ * TrainingGoals-Class for creating TrainingGoals
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
  */
 public class TrainingGoals {
 

@@ -2,10 +2,9 @@ package fitandfun;
 
 /**
  * Enum for Period used by Statistics
- * @author Stefan
- * @version 0.1
- * @see User.java
- * @see UserAdministrationController.java
+ * @author Stefan Kaindlbinder
+ * @version 1.0
+ * 
  */
 public enum Period {
 	Month, Year, All;

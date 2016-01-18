@@ -7,8 +7,10 @@ import javafx.beans.property.StringProperty;
 
 /**
  * WorkoutType to load and save WorkoutTypes used by all Users
+ * 
  * @author Sabrina, Marion, Kerstin
  * @version 0.1
+ * 
  */
 
 public class WorkoutType {

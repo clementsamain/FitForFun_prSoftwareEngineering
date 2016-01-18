@@ -18,8 +18,8 @@ import javafx.beans.property.SimpleObjectProperty;
 /**
  * Activity-Class for creating UserActivities
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
  */
 public class Activity {
 
@@ -36,27 +36,53 @@ public class Activity {
 	private final IntegerProperty height;
 	private final FloatProperty avgspeed;
 
+	/**
+	 * Activity-Constructor
+	 * 
+	 * @see {@link Activity#Activity(ActivityType)}
+	 */
 	public Activity() {
 		this(null);
 	}
 
+	/**
+	 * Activity-Constructor
+	 * 
+	 * @see {@link Activity#Activity(ActivityType, LocalDate)}
+	 */
 	public Activity(ActivityType type) {
 		this(type, null);
 	}
 
+	/**
+	 * Activity-Constructor
+	 * 
+	 * @see {@link Activity#Activity(ActivityType, LocalDate, LocalTime, LocalTime)}
+	 */
 	public Activity(ActivityType type, LocalDate date) {
 		this(type, date, null, null);
 	}
 
+	/**
+	 * Activity-Constructor
+	 * 
+	 * @see {@link Activity#Activity(ActivityType, LocalDate, LocalTime, LocalTime, float)}
+	 */
 	public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end) {
 		this(type, date, start, end, 0);
 	}
 
+	/**
+	 * Activity-Constructor
+	 * 
+	 * @see {@link Activity#Activity(ActivityType, LocalDate, LocalTime, LocalTime, float, int)}
+	 */
 	public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance) {
 		this(type, date, start, end, distance, 0);
 	}
 
 	/**
+	 * Constructor for Activity
 	 * 
 	 * @param type
 	 *            ActivityTpye to choose what Exercise the user did
@@ -67,8 +93,8 @@ public class Activity {
 	 * @param end
 	 *            Time the Actitity was finished
 	 * @param distance
-	 *            The Distance in km (can have up to 3 decimals) for example
-	 *            10.731
+	 *            The Distance in km (can have up to 2 decimals) for example
+	 *            10.73
 	 * @param height
 	 *            Höhenmeter in meter for example 64
 	 */
@@ -95,14 +121,15 @@ public class Activity {
 	}
 
 	/**
-	 * Formular how to calculate Calories - update the Calories Variable
+	 * Method how to calculate Calories - update the Calories Variable
+	 * <br> Not implemented -> ToDo in Version 2.0
 	 */
 	private void updateCalories() {
 		// TODO
 	}
 
 	/**
-	 * Property-getter, Getter- and Setter Methods for activityName
+	 * Property-getter, Getter- and Setter Methods for activityType
 	 */
 	public ObjectProperty<ActivityType> activityTypeProperty() {
 		return this.type;
@@ -114,10 +141,6 @@ public class Activity {
 			return type.get().getName();
 		}
 		return "";
-	}
-
-	public void setTypeString(String nType) {
-		// TODO nice to have --> sehr komplex!
 	}
 
 	@XmlElement(name = "Type")

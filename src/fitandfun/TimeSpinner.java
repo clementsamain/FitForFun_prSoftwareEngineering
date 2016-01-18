@@ -13,19 +13,21 @@ import javafx.util.StringConverter;
 
 /**
  * TimeSpinner is used by InputActivityController and InputActivity.fxml because
- * the default Spinner from JavaFX did not support Time-spinning (just Number spinning)
- * @author Viki
- * @version 0.1
- * @see InputActivity.fxml
- * @see InputActivityController.java
+ * the default Spinner from JavaFX did not support Time-spinning (just Number
+ * spinning)
+ * 
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 public class TimeSpinner extends Spinner<LocalTime> {
-
-	// Mode represents the unit that is currently being edited.
-	// For convenience expose methods for incrementing and decrementing that
-	// unit, and for selecting the appropriate portion in a spinner's editor
+	/**
+	 * Mode represents the unit that is currently being edited. <br>
+	 * For convenience expose methods for incrementing and decrementing that
+	 * unit, and for selecting the appropriate portion in a spinner's editor
+	 *
+	 */
 	enum Mode {
-
 		HOURS {
 			@Override
 			LocalTime increment(LocalTime time, int steps) {
@@ -72,8 +74,9 @@ public class TimeSpinner extends Spinner<LocalTime> {
 		}
 	}
 
-	// Property containing the current editing mode:
-
+	/**
+	 * Property containing the current editing mode
+	 */
 	private final ObjectProperty<Mode> mode = new SimpleObjectProperty<>(Mode.HOURS);
 
 	public ObjectProperty<Mode> modeProperty() {
@@ -91,9 +94,10 @@ public class TimeSpinner extends Spinner<LocalTime> {
 	public TimeSpinner(LocalTime time) {
 		setEditable(true);
 
-		// Create a StringConverter for converting between the text in the
-		// editor and the actual value:
-
+		/**
+		 * Create a StringConverter for converting between the text in the
+		 * editor and the actual value
+		 */
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
 		StringConverter<LocalTime> localTimeConverter = new StringConverter<LocalTime>() {
@@ -122,10 +126,11 @@ public class TimeSpinner extends Spinner<LocalTime> {
 
 		};
 
-		// The textFormatter both manages the text <-> LocalTime conversion,
-		// and vetoes any edits that are not valid. We just make sure we have
-		// two colons and only digits in between:
-
+		/**
+		 * The textFormatter both manages the text <-> LocalTime conversion, and
+		 * vetoes any edits that are not valid. We just make sure we have two
+		 * colons and only digits in between
+		 */
 		TextFormatter<LocalTime> textFormatter = new TextFormatter<LocalTime>(localTimeConverter, LocalTime.now(),
 				c -> {
 					String newText = c.getControlNewText();
@@ -135,13 +140,12 @@ public class TimeSpinner extends Spinner<LocalTime> {
 					return null;
 				});
 
-		// The spinner value factory defines increment and decrement by
-		// delegating to the current editing mode:
-
+		/**
+		 * The spinner value factory defines increment and decrement by
+		 * delegating to the current editing mode
+		 */
 		SpinnerValueFactory<LocalTime> valueFactory = new SpinnerValueFactory<LocalTime>() {
-
 			{
-
 				setConverter(localTimeConverter);
 				setValue(time);
 			}
@@ -163,12 +167,13 @@ public class TimeSpinner extends Spinner<LocalTime> {
 		this.setValueFactory(valueFactory);
 		this.getEditor().setTextFormatter(textFormatter);
 
-		// Update the mode when the user interacts with the editor.
-		// This is a bit of a hack, e.g. calling
-		// spinner.getEditor().positionCaret()
-		// could result in incorrect state. Directly observing the caretPostion
-		// didn't work well though; getting that to work properly might be
-		// a better approach in the long run.
+		/**
+		 * Update the mode when the user interacts with the editor. This is a
+		 * bit of a hack, e.g. calling spinner.getEditor().positionCaret() could
+		 * result in incorrect state. Directly observing the caretPostion didn't
+		 * work well though; getting that to work properly might be a better
+		 * approach in the long run.
+		 */
 		this.getEditor().addEventHandler(InputEvent.ANY, e -> {
 			int caretPos = this.getEditor().getCaretPosition();
 			int hrIndex = this.getEditor().getText().indexOf(':');
@@ -182,9 +187,10 @@ public class TimeSpinner extends Spinner<LocalTime> {
 			}
 		});
 
-		// When the mode changes, select the new portion:
+		/**
+		 * When the mode changes, select the new portion
+		 */
 		mode.addListener((obs, oldMode, newMode) -> newMode.select(this));
-
 	}
 
 	public TimeSpinner() {

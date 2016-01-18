@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <WeightWrapper>
-    <WeightEntry>
-        <Weight>
-            <Date>2016-01-16</Date>
-            <Weight>77.0</Weight>
-        </Weight>
-    </WeightEntry>
+	<WeightEntry>
+		<Weight>
+			<Date>2016-01-16</Date>
+			<Weight>77.0</Weight>
+		</Weight>
+	</WeightEntry>
 </WeightWrapper>

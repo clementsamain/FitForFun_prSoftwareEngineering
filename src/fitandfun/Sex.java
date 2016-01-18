@@ -2,10 +2,9 @@ package fitandfun;
 
 /**
  * Enum for Sex used by User and UserAdministration
- * @author Viki
- * @version 0.1
- * @see User.java
- * @see UserAdministrationController.java
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 public enum Sex {
 	None, Male, Female;

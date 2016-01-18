@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 /**
- * Helper class to wrap a list of goalTypes. This is used for saving the
- * goalTypes list to XML
+ * Helper class to wrap a list of GoalTypes. This is used for saving the
+ * GoalTypes list to XML
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
  */
 @XmlRootElement(name = "GoalTypeWrapper")
 public class GoalTypeWrapper {

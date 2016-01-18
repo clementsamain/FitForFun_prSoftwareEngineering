@@ -4,16 +4,24 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import fitandfun.MainApp;
 
+/**
+ * HomepageController used by Homepage.fxml
+ * 
+ * @author Viktoria Jechsmayr, Stefan Kaindlbinder
+ * @version 1.0
+ *
+ */
 public class HomepageController {
 
-    // Reference to the main application.
+	/**
+	 * Reference to the main Apllication
+	 */
     private MainApp mainApp;
 
     @FXML
     public Label activeUser;
     
     /**
-     * The constructor.
      * The constructor is called before the initialize() method.
      */
     public HomepageController() {
@@ -38,6 +46,9 @@ public class HomepageController {
         activeUser.setText(mainApp.getActiveUser().getUsername());
     }
     
+    /*
+     * FXML Methodes used in the fxml to link the Buttons/Images to the Controller
+     */
     @FXML
     private void showOverviewActivity() {
     	mainApp.showOverviewActivity();

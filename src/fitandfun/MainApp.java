@@ -21,56 +21,101 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Main-App for coordinating all Controller-classes and XML-Files
+ * 
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
+ */
 public class MainApp extends Application {
 
 	/**
 	 * XML File to load and save Users
 	 */
 	private final String FILE_USERS = "XML\\Users.xml";
+
 	/**
-	 * XML File to load and save Activities (Types)
+	 * XML File to load and save Activities
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
-	
-	private String FILE_GOALTYPES = "XML\\GoalTypes.xml";
-	
-	private String FILE_WORKOUTS;
-	private String FILE_USERACTIVITY;
-	private String FILE_WEIGHT;
-	private String FILE_USERGOALS;
-	
 
+	/**
+	 * XML File to load and save GoalTypes
+	 */
+	private String FILE_GOALTYPES = "XML\\GoalTypes.xml";
+
+	/**
+	 * XML File to load and save Workouts from a specific User
+	 */
+	private String FILE_WORKOUTS;
+
+	/**
+	 * XML File to load and save Activities from a specific User
+	 */
+	private String FILE_USERACTIVITY;
+
+	/**
+	 * XML File to load and save Weight from a specific User
+	 */
+	private String FILE_WEIGHT;
+
+	/**
+	 * XML File to load and save TrainingGoals from a specific User
+	 */
+	private String FILE_USERGOALS;
+
+	/**
+	 * Saves the activeUser selected at Login
+	 */
 	private User activeUser;
+
+	/**
+	 * Stage to draw the GUI
+	 */
 	private Stage primaryStage;
+
+	/**
+	 * Root Layout wrapping the Stage
+	 */
 	private BorderPane rootLayout;
 
 	/**
-	 * The data as an observable list of Users.
+	 * The data as an observable list of Users
 	 */
 	private ObservableList<User> userData = FXCollections.observableArrayList();
 
 	/**
-	 * The data as an observable list of ActivityTypes.
+	 * The data as an observable list of ActivityTypes
 	 */
 	private ObservableList<ActivityType> activityData = FXCollections.observableArrayList();
 
 	/**
-	 * The data as an observable list of User-Activities.
+	 * The data as an observable list of User-Activities
 	 */
 	private ObservableList<Activity> userActivityData = FXCollections.observableArrayList();
+
 	/**
-	 * The data as an observable list of User-Workouts.
+	 * The data as an observable list of User-Workouts
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
-	
+
+	/**
+	 * The data as an observable list of Weight
+	 */
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
-	
+
+	/**
+	 * The data as an observable list of TrainingGoals
+	 */
 	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
+
+	/**
+	 * The data as an observable list of GoalTypes
+	 */
 	private ObservableList<GoalType> goalTypeData = FXCollections.observableArrayList();
-	
 
 	public MainApp() {
-
 	}
 
 	/**
@@ -108,8 +153,10 @@ public class MainApp extends Application {
 
 	/**
 	 * Loading the LoginController and give the Controller access to the MainApp
+	 * <br>
+	 * Load XML for Users and Activities
 	 *
-	 * @see LoginController.java
+	 * @see {@link LoginController}
 	 */
 	public void showLogin() {
 		try {
@@ -130,10 +177,11 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Loading the HomepageController and give the Controller access to the
-	 * MainApp Shows the selected User from the LoginController
+	 * Loading the HomepageController and give the Controller access to the <br>
+	 * MainApp Shows the selected User from the LoginController; * <br>
+	 * Load XML for Users, Activities and GoalTypes
 	 *
-	 * @see HomepageController.java
+	 * @see {@link HomepageController}
 	 */
 	public void showHomepage() {
 		try {
@@ -158,7 +206,7 @@ public class MainApp extends Application {
 	 * Loading the OverviewActivityController and give the Controller access to
 	 * the MainApp
 	 *
-	 * @see OverviewActivityController.java
+	 * @see {@link OverviewActivityController}
 	 */
 	public void showOverviewActivity() {
 		try {
@@ -180,7 +228,7 @@ public class MainApp extends Application {
 	 * Loading the StatisticsController and give the Controller access to the
 	 * MainApp
 	 *
-	 * @see StatisticsController.java
+	 * @see {@link StatisticsController}
 	 */
 	public void showStatistics() {
 		try {
@@ -202,7 +250,7 @@ public class MainApp extends Application {
 	 * Loading the TrainingGoalsController and give the Controller access to the
 	 * MainApp
 	 *
-	 * @see TrainingGoalsController.java
+	 * @see {@link TrainingGoalsController}
 	 */
 	public void showTrainingGoals() {
 		try {
@@ -219,16 +267,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	public void returnToTrainingGoals() {
-		showTrainingGoals();
-	}
 
 	/**
 	 * Loading the InputActivityController and give the Controller access to the
 	 * MainApp
 	 *
-	 * @see InputActivityController.java
+	 * @see {@link InputActivityController}
 	 */
 	public void showInputActivityController() {
 		try {
@@ -250,7 +294,7 @@ public class MainApp extends Application {
 	 * Loading the WorkoutsController and give the Controller access to the
 	 * MainApp
 	 *
-	 * @see WorkoutsController.java
+	 * @see {@link WorkoutsController}
 	 */
 	public void showWorkouts() {
 		try {
@@ -272,7 +316,7 @@ public class MainApp extends Application {
 	 * Loading the UserAdministrationController and give the Controller access
 	 * to the MainApp
 	 *
-	 * @see UserAdministrationController.java
+	 * @see {@link UserAdministrationController}
 	 */
 	public void showUserAdministration() {
 		try {
@@ -294,7 +338,8 @@ public class MainApp extends Application {
 	 * Loading the CreateNewWorkoutController and give the Controller access to
 	 * the MainApp
 	 *
-	 * @see CreateNewWorkoutController.java
+	 * @see {@link CreateNewWorkoutController}
+	 * @deprecated use new Version: {@link Workouts}
 	 */
 	public void showCreateNewWorkout() {
 		try {
@@ -311,12 +356,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Loading the InputWeightController and give the Controller access to
-	 * the MainApp
+	 * Loading the InputWeightController and give the Controller access to the
+	 * MainApp
 	 *
-	 * @see InputWeightController.java
+	 * @see {@link InputWeightController}
 	 */
 	public void showWeightController() {
 		try {
@@ -333,12 +378,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Loading the showInputTrainingGoalController and give the Controller access to
-	 * the MainApp
+	 * Loading the showInputTrainingGoalController and give the Controller
+	 * access to the MainApp
 	 *
-	 * @see showInputTrainingGoalController.java
+	 * @see {@link showInputTrainingGoalController}
 	 */
 	public void showInputTrainingGoalController() {
 		try {
@@ -355,12 +400,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Loading the showInputTrainingGoalController and give the Controller access to
-	 * the MainApp
+	 * Loading the showTrainingGoalCompletedController and give the Controller
+	 * access to the MainApp
 	 *
-	 * @see showInputTrainingGoalController.java
+	 * @see {@link showTrainingGoalCompletedController}
 	 */
 	public void showTrainingGoalCompletedController() {
 		try {
@@ -377,12 +422,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Loading the showInputGoalTypeController and give the Controller access to
 	 * the MainApp
 	 *
-	 * @see showInputGoalTypeController.java
+	 * @see {@link showInputGoalTypeController}
 	 */
 	public void showInputGoalType() {
 		try {
@@ -399,12 +444,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Loading the showInputTrainingGoalController and give the Controller access to
-	 * the MainApp
+	 * Loading the showRecentActivitiesController and give the Controller access
+	 * to the MainApp
 	 *
-	 * @see showInputTrainingGoalController.java
+	 * @see {@link showRecentActivitiesController}
 	 */
 	public void showRecentActivitiesController() {
 		try {
@@ -421,14 +466,10 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in
 	 * UserAdministration to add, delete and edit Users.
-	 *
-	 * @see UserAdministrationController.java
-	 * @see LoginController.java
 	 */
 	private void loadUserXML() {
 		File temp = new File(FILE_USERS);
@@ -452,7 +493,6 @@ public class MainApp extends Application {
 			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
 			alert.showAndWait();
 		}
-
 	}
 
 	/**
@@ -475,10 +515,7 @@ public class MainApp extends Application {
 
 	/**
 	 * Loading all ActivityTypes from the XML-File used to create a new
-	 * UserActivity and create TrainingGoals
-	 *
-	 * @see CreateNewTrainingGoalController.java
-	 * @see InputActivity.java
+	 * UserActivity and create TrainingGoals/GoalTypes
 	 */
 	private void loadActivityXML() {
 
@@ -527,8 +564,6 @@ public class MainApp extends Application {
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
 	 *
-	 * @see InputActivity.java
-	 * @see StatisticsController.java
 	 */
 	private void loadUserActivityXML() {
 		File temp = new File(FILE_USERACTIVITY);
@@ -571,13 +606,9 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
-	 * Loading all UserActivities from the XML-File used to save a new
-	 * UserActivity.
-	 *
-	 * @see InputActivity.java
-	 * @see StatisticsController.java
+	 * Loading all UserWeight from the XML-File used to save a new UserWeight.
 	 */
 	private void loadWeightXML() {
 		File temp = new File(FILE_WEIGHT);
@@ -604,7 +635,7 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Method to save the UserActivities in the XML-File
+	 * Method to save the UserWeight in the XML-File
 	 */
 	public void saveWeightXML() {
 		WeightWrapper wrapper = new WeightWrapper();
@@ -620,13 +651,11 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
-	 * Loading all UserActivities from the XML-File used to save a new
-	 * UserActivity.
+	 * Loading all TrainingGoals from the XML-File used to save a new
+	 * TrainingGoals.
 	 *
-	 * @see InputActivity.java
-	 * @see StatisticsController.java
 	 */
 	private void loadTrainingGoalsXML() {
 		File temp = new File(FILE_USERGOALS);
@@ -653,7 +682,7 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Method to save the UserActivities in the XML-File
+	 * Method to save the TrainingGoals in the XML-File
 	 */
 	public void saveTrainingGoalsXML() {
 		TrainingGoalsWrapper wrapper = new TrainingGoalsWrapper();
@@ -669,7 +698,11 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
+	/**
+	 * Loading all Workouts from the XML-File used to save a new Workouts.
+	 *
+	 */
 	private void loadWorkoutsXML() {
 		File temp = new File(FILE_WORKOUTS);
 		if (temp.exists()) {
@@ -694,6 +727,9 @@ public class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * Method to save the Workouts in the XML-File
+	 */
 	public void saveWorkoutXml() {
 		WorkoutWrapper wrapper = new WorkoutWrapper();
 		wrapper.setWorkouts(workoutData);
@@ -708,13 +744,10 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
-	 * Loading all UserActivities from the XML-File used to save a new
-	 * UserActivity.
+	 * Loading all GoalTypes from the XML-File used to save a new GoalType.
 	 *
-	 * @see InputActivity.java
-	 * @see StatisticsController.java
 	 */
 	private void loadGoalTypeXML() {
 		File temp = new File(FILE_GOALTYPES);
@@ -741,7 +774,7 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Method to save the UserActivities in the XML-File
+	 * Method to save the GoalType in the XML-File
 	 */
 	public void saveGoalTypeXml() {
 		GoalTypeWrapper wrapper = new GoalTypeWrapper();
@@ -759,13 +792,13 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Method to set the activeUser selected at LoginController This Methods
-	 * also sets the User-specific Filepath for the userActivities.xml and
-	 * userTrainingsGoals.xml
+	 * Method to set the activeUser selected at LoginController <br>
+	 * This Method also sets the User-specific Filepath for the XML Files from
+	 * <br>
+	 * UserActivities, TrainingGoals, UserWeight and UserWorkouts
 	 *
 	 * @param user
 	 *            - User to set as active User
-	 * @see LoginController.java
 	 */
 	public void setActiveUser(User user) {
 		this.activeUser = user;
@@ -798,10 +831,10 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * The main-App for launching the App
+	 * The main-Method for launching the App
 	 *
 	 * @param args
-	 *            Consoleparameter
+	 *            parameter from Console
 	 */
 	public static void main(String[] args) {
 		launch(args);
@@ -817,28 +850,43 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Returns the data as an ObservableList of Activity for userActivitys
+	 * Returns the data as an ObservableList of Activity
 	 *
 	 * @return userActivityData
 	 */
 	public ObservableList<Activity> getUserActivity() {
 		return userActivityData;
 	}
-	
+
+	/**
+	 * Returns the data as an ObservableList of GoalType
+	 *
+	 * @return goalTypeData
+	 */
 	public ObservableList<GoalType> getGoalType() {
 		return goalTypeData;
 	}
-	
+
+	/**
+	 * Returns the data as an ObservableList of Weight
+	 *
+	 * @return userWeightData
+	 */
 	public ObservableList<Weight> getUserWeight() {
 		return userWeightData;
 	}
-	
+
+	/**
+	 * Returns the data as an ObservableList of TrainingGoals
+	 *
+	 * @return userGoalData
+	 */
 	public ObservableList<TrainingGoals> getTrainingGoals() {
 		return userGoalData;
 	}
 
 	/**
-	 * Returns the data as an ObservableList of ActivityTypes
+	 * Returns the data as an ObservableList of ActivityType
 	 *
 	 * @return activityData
 	 */
@@ -846,11 +894,12 @@ public class MainApp extends Application {
 		return activityData;
 	}
 
-	
-
+	/**
+	 * Returns the data as an ObservableList of WorkoutType
+	 *
+	 * @return workoutData
+	 */
 	public ObservableList<WorkoutType> getWorkoutData() {
 		return workoutData;
 	}
-	
-	
 }

@@ -11,12 +11,10 @@ import javax.xml.bind.Unmarshaller;
 
 /**
  * Generig XML save and load Helper to use in every Class where it's needed
- * @author Viki
- * @version 0.1
- * @see MainApp.java
- * @see MainApp.java {@link loadUserXML()}
- * @see MainApp.java {@link loadActivityXML()}
- * @see MainApp.java {@link loadUserActivityXML()}
+ * 
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 public class XMLHelper<T> {
 

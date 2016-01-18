@@ -15,13 +15,14 @@ import javafx.beans.property.SimpleObjectProperty;
 /**
  * Weight-Class for creating new Weight-Entrys
  * 
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 public class Weight {
 	private final ObjectProperty<LocalDate> date;
 	private final DoubleProperty weight;
-	
+
 	public Weight() {
 		this(null);
 	}
@@ -34,9 +35,8 @@ public class Weight {
 		this.date = new SimpleObjectProperty<>(date);
 		this.weight = new SimpleDoubleProperty(weight);
 	}
-	
-	
-	/**
+
+	/*
 	 * Property-getter, Getter- and Setter Methods for date
 	 */
 	public ObjectProperty<LocalDate> dateProperty() {
@@ -58,8 +58,8 @@ public class Weight {
 			this.date.set(null);
 		}
 	}
-	
-	/**
+
+	/*
 	 * Property-getter, Getter- and Setter Methods for weight
 	 */
 	public DoubleProperty weightProperty() {
