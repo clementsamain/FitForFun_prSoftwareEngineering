@@ -29,7 +29,8 @@ import javafx.scene.text.Font;
  * active user sorted by date (newest first), and the related data like
  * activity-type, kilometers, altitude and time.
  *
- * @author Stefan
+ * @author Stefan Kaindlbinder
+ * @version 1.0
  *
  */
 public class RecentActivitiesController {
