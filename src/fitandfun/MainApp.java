@@ -400,6 +400,28 @@ public class MainApp extends Application {
 		}
 	}
 	
+	/**
+	 * Loading the showInputTrainingGoalController and give the Controller access to
+	 * the MainApp
+	 *
+	 * @see showInputTrainingGoalController.java
+	 */
+	public void showRecentActivitiesController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/RecentActivities.fxml"));
+			AnchorPane recAct = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(recAct);
+			// Give the controller access to the main app
+			RecentActivitiesController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * Loading all Users from the XML-File used to Login and in

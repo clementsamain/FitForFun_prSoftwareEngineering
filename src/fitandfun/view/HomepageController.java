@@ -73,4 +73,10 @@ public class HomepageController {
     {
     	mainApp.showWeightController();
     }
+    
+    @FXML
+    private void showRecentActivities()
+    {
+    	mainApp.showRecentActivitiesController();
+    }
 }
