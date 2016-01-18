@@ -2,22 +2,21 @@ package fitandfun;
 
 /**
  * Enum for Period used by Statistics
- * @author Stefan Kaindlbinder
- * @version 1.0
- * 
+ * @author Stefan
+ * @version 0.1
+ * @see User.java
+ * @see UserAdministrationController.java
  */
 public enum Period {
-	Month, Year, All;
+	act, last;
 
 	@Override
 	public String toString() {
 		switch (this) {
-		case Month:
-			return "letztes Monat";
-		case Year:
+		case act:
+			return "dieses Jahr";
+		case last:
 			return "letztes Jahr";
-		case All:
-			return "Alles";
 		default:
 			return this.name();
 		}
