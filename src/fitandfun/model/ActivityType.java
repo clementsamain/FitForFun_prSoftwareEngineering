@@ -10,8 +10,8 @@ import javafx.beans.property.StringProperty;
 
 /**
  * ActivityType to load and save ActivityTypes used by all Users
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
  */
 public class ActivityType {
 

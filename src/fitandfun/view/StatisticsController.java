@@ -22,6 +22,12 @@ import javafx.util.Callback;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+/**
+ * 
+ * @author StefanKaindlbinder
+ * @version 1.0
+ *
+ */
 public class StatisticsController {
 
 	// Reference to the main application.

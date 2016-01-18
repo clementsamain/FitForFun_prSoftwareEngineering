@@ -19,10 +19,11 @@ import fitandfun.model.WorkoutType;
 
 /**
  * WorkoutsController
+ * 
  * @author Sabrina, Marion, Kerstin
  * @version 0.1
+ * 
  */
-
 public class WorkoutsController {
 
 	private MainApp mainApp;

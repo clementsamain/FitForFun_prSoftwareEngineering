@@ -21,6 +21,12 @@ import fitandfun.model.TrainingGoals;
 import fitandfun.model.User;
 import fitandfun.model.Weight;
 
+/**
+ * 
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ *
+ */
 public class InputTrainingGoalController {
 
     // Reference to the main application.

@@ -18,8 +18,9 @@ import fitandfun.model.ActivityTypeParameter;
 
 /**
  *
- * @author Viki
- * @version 0.1
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ * 
  */
 public class OverviewActivityController {
 

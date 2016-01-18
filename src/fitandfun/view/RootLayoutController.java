@@ -8,7 +8,9 @@ import fitandfun.MainApp;
 
 /**
  * the controller for root layout (menu bar)
- * @author Stefan
+ * 
+ * @author Stefan Kaindlbinder
+ * @version 1.0
  *
  */
 

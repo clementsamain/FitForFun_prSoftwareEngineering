@@ -38,6 +38,12 @@ import fitandfun.model.GoalType;
 import fitandfun.model.TrainingGoals;
 import fitandfun.model.User;
 
+/**
+ * 
+ * @author Viktoria Jechsmayr
+ * @version 1.0
+ *
+ */
 public class TrainingGoalsController {
 
 	// Reference to the main application.
