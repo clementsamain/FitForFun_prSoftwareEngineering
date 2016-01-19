@@ -27,8 +27,11 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -147,6 +150,10 @@ public class TrainingGoalsController {
 	}
 
 	private void updateCharts() {
+		Date date;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat print = new SimpleDateFormat("dd.MM.yyyy");
+		
 		sumFloatDistance = 0;
 		sumFloatDuration = 0;
 		sumFloat = 0;
@@ -196,15 +203,28 @@ public class TrainingGoalsController {
 				pie.setData(pieChartData);
 				goalTypeName.setText(trainingGoal.getType().getName());
 				trainingGoalName.setText(trainingGoal.getName());
-				startDate.setText(trainingGoal.getStartDateString());
-				goalDate.setText(trainingGoal.getDateString());
+				
+				try {
+					date = format.parse(trainingGoal.getStartDateString());
+					startDate.setText(print.format(date));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
+					date = format.parse(trainingGoal.getDateString());
+					goalDate.setText(print.format(date));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				valueUnit.setText(
 						trainingGoal.getGoalValue() + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
-
 			}
 
 			pie.setTitle(trainingGoal.getType().getName());
-			// pie.setLegendSide(Side.RIGHT);
 
 			for (final PieChart.Data data : pie.getData()) {
 				data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
@@ -234,10 +254,8 @@ public class TrainingGoalsController {
 					public void handle(MouseEvent e) {
 						caption.setText("");
 					}
-
 				});
 			}
-
 		} else {
 			pie.setVisible(false);
 		}
@@ -245,13 +263,23 @@ public class TrainingGoalsController {
 
 	@FXML
 	private void showActivities() {
+		Date date;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat print = new SimpleDateFormat("dd.MM.yyyy");
+		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("UserActivities");
 		alert.setHeaderText("Erfasste Aktivitäten");
 
 		String cont = "";
 		for (Activity act : userActivities) {
-			cont = cont + act.getDateString() + " (" + act.getDistance() + "km - " + act.getDurationString() + ")<br> ";
+			try {
+				date = format.parse(act.getDateString());
+				cont = cont + print.format(date) + " (" + act.getDistance() + "km - " + act.getDurationString() + ")<br> ";
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		WebView view = new WebView();

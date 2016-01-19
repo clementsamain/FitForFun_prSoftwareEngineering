@@ -74,7 +74,7 @@ public class RecentActivitiesController {
 		for (Activity act : activityList_sorted) {
 			Label lbl = new Label();
 			Label detaillbl = new Label();
-			 Date date;
+			Date date;
 
 			String pattern = "yyyy-MM-dd";
 		    SimpleDateFormat format = new SimpleDateFormat(pattern);
