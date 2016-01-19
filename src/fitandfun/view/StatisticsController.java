@@ -92,6 +92,8 @@ public class StatisticsController {
 
 	@FXML
 	private void refresh() {
+		gKms = 0;
+		gHms = 0;
 		if(cboPeriod.getValue() == Period.last) {
 			setHmChart("last");
 			setDistChart("last");
