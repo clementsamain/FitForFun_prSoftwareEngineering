@@ -4,6 +4,36 @@
         <GoalType>
             <AktivityType>
                 <Date>true</Date>
+                <Distance>false</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Gehen</Type>
+                <Start>true</Start>
+            </AktivityType>
+            <AktivityTypeParam>
+                <Name>Distanz</Name>
+                <Unit>km</Unit>
+            </AktivityTypeParam>
+            <GoalType>Spazieren - Distanz</GoalType>
+        </GoalType>
+        <GoalType>
+            <AktivityType>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Laufen</Type>
+                <Start>true</Start>
+            </AktivityType>
+            <AktivityTypeParam>
+                <Name>Dauer</Name>
+                <Unit>hh:mm</Unit>
+            </AktivityTypeParam>
+            <GoalType>Laufen - Dauer</GoalType>
+        </GoalType>
+        <GoalType>
+            <AktivityType>
+                <Date>true</Date>
                 <Distance>true</Distance>
                 <End>true</End>
                 <HMeter>true</HMeter>
@@ -14,22 +44,7 @@
                 <Name>Distanz</Name>
                 <Unit>km</Unit>
             </AktivityTypeParam>
-            <GoalType>Laufen-Distanz</GoalType>
-        </GoalType>
-        <GoalType>
-            <AktivityType>
-                <Date>true</Date>
-                <Distance>true</Distance>
-                <End>true</End>
-                <HMeter>false</HMeter>
-                <Type>Radfahren</Type>
-                <Start>true</Start>
-            </AktivityType>
-            <AktivityTypeParam>
-                <Name>Dauer</Name>
-                <Unit>hh:mm</Unit>
-            </AktivityTypeParam>
-            <GoalType>Radfahren-Dauer</GoalType>
+            <GoalType>Laufen - Distanz</GoalType>
         </GoalType>
         <GoalType>
             <AktivityType>
@@ -41,10 +56,10 @@
                 <Start>true</Start>
             </AktivityType>
             <AktivityTypeParam>
-                <Name>Dauer</Name>
-                <Unit>hh:mm</Unit>
+                <Name>Durchschnittsgeschwindigkeit</Name>
+                <Unit>km/h</Unit>
             </AktivityTypeParam>
-            <GoalType>Laufen-Dauer</GoalType>
+            <GoalType>Laufen - Geschwindigkeit</GoalType>
         </GoalType>
         <GoalType>
             <AktivityType>
@@ -59,7 +74,22 @@
                 <Name>Höhenmeter</Name>
                 <Unit>m</Unit>
             </AktivityTypeParam>
-            <GoalType>Wandern - HM</GoalType>
+            <GoalType>Bergwandern - HMeter</GoalType>
+        </GoalType>
+        <GoalType>
+            <AktivityType>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Radfahren</Type>
+                <Start>true</Start>
+            </AktivityType>
+            <AktivityTypeParam>
+                <Name>Distanz</Name>
+                <Unit>km</Unit>
+            </AktivityTypeParam>
+            <GoalType>Radfahren - Distanz</GoalType>
         </GoalType>
     </GoalTypes>
 </GoalTypeWrapper>

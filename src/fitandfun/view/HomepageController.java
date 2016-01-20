@@ -90,4 +90,9 @@ public class HomepageController {
     {
     	mainApp.showRecentActivitiesController();
     }
+    
+    @FXML
+    private void showWorkoutsDoneController() {
+    	mainApp.showWorkoutsDoneController();
+    }
 }

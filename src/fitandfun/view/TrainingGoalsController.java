@@ -244,7 +244,7 @@ public class TrainingGoalsController {
 							}
 
 						} else {
-							caption.setText(String.valueOf(data.getPieValue()) + " "
+							caption.setText(String.valueOf(Math.round((data.getPieValue()*100))/100.0) + " "
 									+ trainingGoal.getType().getActTypeParam().getParamUnit());
 						}
 					}

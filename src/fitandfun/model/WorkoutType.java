@@ -7,10 +7,8 @@ import javafx.beans.property.StringProperty;
 
 /**
  * WorkoutType to load and save WorkoutTypes used by all Users
- * 
  * @author Sabrina, Marion, Kerstin
  * @version 0.1
- * 
  */
 
 public class WorkoutType {
@@ -31,8 +29,8 @@ public class WorkoutType {
 	private StringProperty repeat6;
 
 	private StringProperty countsToGo;
-	private StringProperty completedCounts;
-
+	
+	
 	public WorkoutType() {
 		this(null);
 	}
@@ -52,7 +50,6 @@ public class WorkoutType {
 		this.repeat5 = new SimpleStringProperty();
 		this.repeat6 = new SimpleStringProperty();
 		this.countsToGo = new SimpleStringProperty();
-		this.completedCounts = new SimpleStringProperty();
 	}
 
 	public StringProperty nameProperty() {
@@ -235,18 +232,5 @@ public class WorkoutType {
 
 	public void setCountsToGo(String countsToGo) {
 		this.countsToGo.set(countsToGo);
-	}
-
-	public StringProperty getCompletedCountsProperty() {
-		return this.completedCounts;
-	}
-
-	@XmlElement(name = "CompletedCounts")
-	public String getCompletedCounts() {
-		return this.completedCounts.get();
-	}
-
-	public void setCompletedCounts(String completedCounts) {
-		this.completedCounts.set(completedCounts);
 	}
 }

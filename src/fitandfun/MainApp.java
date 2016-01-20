@@ -40,15 +40,28 @@ public class MainApp extends Application {
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
 
+
+
+
+
+
+
+
+
 	/**
+
+
 	 * XML File to load and save GoalTypes
 	 */
 	private String FILE_GOALTYPES = "XML\\GoalTypes.xml";
 
 	/**
 	 * XML File to load and save Workouts from a specific User
+
 	 */
+
 	private String FILE_WORKOUTS;
+
 
 	/**
 	 * XML File to load and save Activities from a specific User
@@ -100,15 +113,19 @@ public class MainApp extends Application {
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
 
+
 	/**
 	 * The data as an observable list of Weight
 	 */
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 
+
 	/**
 	 * The data as an observable list of TrainingGoals
 	 */
 	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
+
+
 
 	/**
 	 * The data as an observable list of GoalTypes
@@ -199,6 +216,8 @@ public class MainApp extends Application {
 		}
 		loadUserXML();
 		loadActivityXML();
+
+
 		loadGoalTypeXML();
 	}
 
@@ -267,6 +286,10 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+
+
+
+
 
 	/**
 	 * Loading the InputActivityController and give the Controller access to the
@@ -358,6 +381,7 @@ public class MainApp extends Application {
 	}
 
 	/**
+
 	 * Loading the InputWeightController and give the Controller access to the
 	 * MainApp
 	 *
@@ -379,7 +403,9 @@ public class MainApp extends Application {
 		}
 	}
 
+
 	/**
+
 	 * Loading the showInputTrainingGoalController and give the Controller
 	 * access to the MainApp
 	 *
@@ -427,6 +453,7 @@ public class MainApp extends Application {
 	 * Loading the showInputGoalTypeController and give the Controller access to
 	 * the MainApp
 	 *
+
 	 * @see {@link showInputGoalTypeController}
 	 */
 	public void showInputGoalType() {
@@ -467,9 +494,13 @@ public class MainApp extends Application {
 		}
 	}
 
+
 	/**
 	 * Loading all Users from the XML-File used to Login and in
 	 * UserAdministration to add, delete and edit Users.
+
+
+
 	 */
 	private void loadUserXML() {
 		File temp = new File(FILE_USERS);
@@ -493,6 +524,7 @@ public class MainApp extends Application {
 			alert.setContentText("XML File " + temp.getAbsolutePath() + " existiert nicht!");
 			alert.showAndWait();
 		}
+
 	}
 
 	/**
@@ -516,6 +548,9 @@ public class MainApp extends Application {
 	/**
 	 * Loading all ActivityTypes from the XML-File used to create a new
 	 * UserActivity and create TrainingGoals/GoalTypes
+
+
+
 	 */
 	private void loadActivityXML() {
 
@@ -564,6 +599,8 @@ public class MainApp extends Application {
 	 * Loading all UserActivities from the XML-File used to save a new
 	 * UserActivity.
 	 *
+
+
 	 */
 	private void loadUserActivityXML() {
 		File temp = new File(FILE_USERACTIVITY);
@@ -609,6 +646,10 @@ public class MainApp extends Application {
 
 	/**
 	 * Loading all UserWeight from the XML-File used to save a new UserWeight.
+
+
+
+
 	 */
 	private void loadWeightXML() {
 		File temp = new File(FILE_WEIGHT);
@@ -652,10 +693,14 @@ public class MainApp extends Application {
 		}
 	}
 
+
 	/**
 	 * Loading all TrainingGoals from the XML-File used to save a new
+
 	 * TrainingGoals.
 	 *
+
+
 	 */
 	private void loadTrainingGoalsXML() {
 		File temp = new File(FILE_USERGOALS);
@@ -726,11 +771,27 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
-
+	
+	public void showWorkoutsDoneController() {
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/WorkoutDone.fxml"));
+			AnchorPane workoutDone = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(workoutDone);
+			// Give the controller access to the main app
+			WorkoutsDoneController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
-	 * Method to save the Workouts in the XML-File
+	 * Method to save the UserActivities in the XML-File
 	 */
-	public void saveWorkoutXml() {
+	public void saveWorkoutsXml() {
 		WorkoutWrapper wrapper = new WorkoutWrapper();
 		wrapper.setWorkouts(workoutData);
 		try {
@@ -743,7 +804,7 @@ public class MainApp extends Application {
 			alert.setContentText("Beim Speichern des Workouts ist ein Fehler aufgetreten!");
 			alert.showAndWait();
 		}
-	}
+	}	
 
 	/**
 	 * Loading all GoalTypes from the XML-File used to save a new GoalType.
@@ -790,15 +851,19 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
+	
+	
 
 	/**
 	 * Method to set the activeUser selected at LoginController <br>
 	 * This Method also sets the User-specific Filepath for the XML Files from
+
 	 * <br>
 	 * UserActivities, TrainingGoals, UserWeight and UserWorkouts
 	 *
 	 * @param user
 	 *            - User to set as active User
+
 	 */
 	public void setActiveUser(User user) {
 		this.activeUser = user;
@@ -807,9 +872,9 @@ public class MainApp extends Application {
 		FILE_WEIGHT = "XML\\" + activeUser.getUsername() + "\\UserWeight.xml";
 		FILE_WORKOUTS = "XML\\" + activeUser.getUsername() + "\\UserWorkouts.xml";
 		loadUserActivityXML();
-		loadWeightXML();
+		//loadWeightXML();
 		loadTrainingGoalsXML();
-		loadWorkoutsXML();
+		//loadWorkoutsXML();
 	}
 
 	/**
@@ -834,6 +899,7 @@ public class MainApp extends Application {
 	 * The main-Method for launching the App
 	 *
 	 * @param args
+
 	 *            parameter from Console
 	 */
 	public static void main(String[] args) {
@@ -858,11 +924,16 @@ public class MainApp extends Application {
 		return userActivityData;
 	}
 
+
+
 	/**
 	 * Returns the data as an ObservableList of GoalType
 	 *
+
 	 * @return goalTypeData
 	 */
+
+
 	public ObservableList<GoalType> getGoalType() {
 		return goalTypeData;
 	}
@@ -875,6 +946,7 @@ public class MainApp extends Application {
 	public ObservableList<Weight> getUserWeight() {
 		return userWeightData;
 	}
+
 
 	/**
 	 * Returns the data as an ObservableList of TrainingGoals
@@ -902,4 +974,69 @@ public class MainApp extends Application {
 	public ObservableList<WorkoutType> getWorkoutData() {
 		return workoutData;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

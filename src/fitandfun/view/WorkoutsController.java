@@ -19,19 +19,23 @@ import fitandfun.model.WorkoutType;
 
 /**
  * WorkoutsController
- * 
  * @author Sabrina, Marion, Kerstin
  * @version 0.1
- * 
  */
+
 public class WorkoutsController {
 
 	private MainApp mainApp;
 
+    @FXML
+    public Label activeUser;
+	
 	@FXML
 	private ListView<WorkoutType> workoutList;
 	@FXML
 	private GridPane gridPaneEdit;
+	@FXML
+	private GridPane gridPaneWorkoutName;
 
 	@FXML
 	private TextField actName;
@@ -61,22 +65,23 @@ public class WorkoutsController {
 	private TextField txtRepeat5;
 	@FXML
 	private TextField txtRepeat6;
-
-	@FXML
-	private Label lblCompletedCounts;
-
+	
 	@FXML
 	private TextField txtCountsToGo;
 
 	@FXML
-	private Button buttonDone;
-
-	@FXML
 	private Button buttonSave;
 	@FXML
-	private Button buttonDelete;
+	private Button minusButton;
 	@FXML
 	private Button plusButton;
+	
+	@FXML
+	private Label lblWorkoutName;
+	@FXML
+	private Label lblTypeExercise;
+	@FXML
+	private Label lblCounts;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -112,11 +117,14 @@ public class WorkoutsController {
 		});
 		workoutList.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> showWorkout(oldValue, newValue));
+		buttonSave.setVisible(false);
+
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		workoutList.setItems(mainApp.getWorkoutData());
+        activeUser.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	@FXML
@@ -129,12 +137,13 @@ public class WorkoutsController {
 		WorkoutType w = new WorkoutType("Neues Workout");
 		mainApp.getWorkoutData().add(w);
 		workoutList.getSelectionModel().select(w);
-		//buttonSave.setVisible(true);
+		buttonSave.setVisible(true);
 	}
 
 	@FXML
 	private void saveWorkout() {
-		mainApp.saveWorkoutXml();
+		mainApp.saveWorkoutsXml();	
+		buttonSave.setVisible(false);
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Workout erstellt");
@@ -155,7 +164,7 @@ public class WorkoutsController {
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				mainApp.getWorkoutData().remove(w);
-				mainApp.saveWorkoutXml();
+				mainApp.saveWorkoutsXml();					
 			}
 		}
 	}
@@ -179,7 +188,6 @@ public class WorkoutsController {
 			txtRepeat6.textProperty().unbindBidirectional(oldWorkout.getRepeat6Property());
 
 			txtCountsToGo.textProperty().unbindBidirectional(oldWorkout.getCountsToGoProperty());
-			lblCompletedCounts.textProperty().unbindBidirectional(oldWorkout.getCompletedCountsProperty());
 		}
 
 		actName.setText("");
@@ -200,11 +208,10 @@ public class WorkoutsController {
 
 		txtCountsToGo.setText("");
 
-		lblCompletedCounts.setText("0");
-
 		if (newWorkout != null) {
 			gridPaneEdit.setDisable(false);
-
+			gridPaneWorkoutName.setDisable(false);
+			
 			actName.textProperty().bindBidirectional(newWorkout.nameProperty());
 
 			txtExercise1.textProperty().bindBidirectional(newWorkout.getExercise1Property());
@@ -222,25 +229,9 @@ public class WorkoutsController {
 			txtRepeat6.textProperty().bindBidirectional(newWorkout.getRepeat6Property());
 
 			txtCountsToGo.textProperty().bindBidirectional(newWorkout.getCountsToGoProperty());
-
-			lblCompletedCounts.textProperty().bindBidirectional(newWorkout.getCompletedCountsProperty());
 		} else {
 			gridPaneEdit.setDisable(true);
-		}
-	}
-
-	public void clickButtonDone() {
-		int count = Integer.parseInt(lblCompletedCounts.getText());
-		count = count + 1;
-		lblCompletedCounts.setText(String.valueOf(count));
-
-		if (Integer.parseInt(lblCompletedCounts.getText()) == (Integer.parseInt(txtCountsToGo.getText()))) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Workout erledigt");
-			alert.setHeaderText(null);
-			alert.setContentText("Herzlichen Glückwunsch! Sie haben Ihr Workout erledigt.");
-			alert.showAndWait();
-			showHomepage();
+			gridPaneWorkoutName.setDisable(true);
 		}
 	}
 }
