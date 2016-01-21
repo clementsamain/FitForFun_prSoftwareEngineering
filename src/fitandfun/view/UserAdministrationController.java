@@ -20,23 +20,35 @@ import fitandfun.model.User;
  */
 public class UserAdministrationController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the main application
+	 */
 	private MainApp mainApp;
 
+	/*
+	 * FXML Variables to link
+	 */
 	@FXML
 	private ListView<User> userList;
+	
 	@FXML
 	private GridPane gridPaneEdit;
+	
 	@FXML
 	private TextField txtUserName;
+	
 	@FXML
 	private ComboBox<Sex> cboSex;
+	
 	@FXML
 	private DatePicker txtBirthday;
+	
 	@FXML
 	private TextField txtWeight;
+	
 	@FXML
 	private TextField txtHeight;
+	
 	@FXML
 	private Label lblBMI;
 
@@ -87,6 +99,9 @@ public class UserAdministrationController {
 		userList.setItems(mainApp.getUserData());
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();

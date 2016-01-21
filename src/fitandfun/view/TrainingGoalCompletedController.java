@@ -43,7 +43,9 @@ import fitandfun.model.User;
  */
 public class TrainingGoalCompletedController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
 	private MainApp mainApp;
 
 
@@ -63,7 +65,6 @@ public class TrainingGoalCompletedController {
 		
 	}
 
-	
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 * 
@@ -73,11 +74,17 @@ public class TrainingGoalCompletedController {
 		this.mainApp = mainApp;
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Method to navigate to the InputTrainingGoal in FXML
+	 */
 	@FXML
 	private void showInputTrainingGoal() {
 		mainApp.showInputTrainingGoalController();

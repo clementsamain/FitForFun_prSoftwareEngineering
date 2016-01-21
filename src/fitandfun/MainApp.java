@@ -358,29 +358,6 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Loading the CreateNewWorkoutController and give the Controller access to
-	 * the MainApp
-	 *
-	 * @see {@link CreateNewWorkoutController}
-	 * @deprecated use new Version: {@link Workouts}
-	 */
-	public void showCreateNewWorkout() {
-		try {
-			// Load
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/CreateNewWorkout.fxml"));
-			AnchorPane createNewWorkout = (AnchorPane) loader.load();
-			// Set into the center of root layout
-			rootLayout.setCenter(createNewWorkout);
-			// Give the controller access to the main app
-			CreateNewWorkoutController controller = loader.getController();
-			controller.setMainApp(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 
 	 * Loading the InputWeightController and give the Controller access to the
 	 * MainApp

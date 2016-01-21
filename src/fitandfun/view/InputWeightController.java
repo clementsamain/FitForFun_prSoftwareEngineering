@@ -40,18 +40,29 @@ import fitandfun.model.Weight;
  */
 public class InputWeightController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
 	private MainApp mainApp;
 
+	/**
+	 * Reference to the activeUser from mainApp
+	 */
 	private User activeUser;
+	
+	/**
+	 * Reference to the weight
+	 */
+	private Weight weight = new Weight();
 
+	/*
+	 * FXML Variables to link
+	 */
 	@FXML
 	private DatePicker date;
 
 	@FXML
 	private TextField weightField;
-	
-	private Weight weight = new Weight();
 	
 
 	/**
@@ -67,13 +78,13 @@ public class InputWeightController {
 	 */
 	@FXML
 	private void initialize() {
-	
 		date.valueProperty().bindBidirectional(weight.dateProperty());
-
 		weightField.textProperty().bindBidirectional(weight.weightProperty(), new NumberStringConverter());
-
 	}
 
+	/**
+	 * Method used in FXML to save the Weight and return to the Homepage
+	 */
 	@FXML
 	private void saveWeight() {
 		mainApp.getUserWeight().add(weight);
@@ -82,12 +93,14 @@ public class InputWeightController {
 		alert.setTitle("Gewichtseintrag eingetragen");
 		alert.setHeaderText(null);
 		alert.setContentText("Das Gewicht wurde eingetragen!");
-
 		alert.showAndWait();
 
 		showHomepage();
 	}
 
+	/**
+	 * Method to reset date and weight
+	 */
 	@FXML
 	private void reset() {
 		date.setValue(null);
@@ -100,17 +113,22 @@ public class InputWeightController {
 	 *
 	 * @param mainApp
 	 */
-
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		activeUser = mainApp.getActiveUser();
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Method to navigate to the InputActivityController in FXML
+	 */
 	@FXML
 	private void showInputActivityController() {
 		mainApp.showInputActivityController();

@@ -18,13 +18,23 @@ import fitandfun.model.User;
  */
 public class LoginController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the mainApplication
+	 */
 	private MainApp mainApp;
+	
+	/**
+	 * selected User to save and save in HomepageController
+	 */
+	private User selectedUser;
 
+	/*
+	 * FXML Variable to link
+	 */
 	@FXML
 	private ListView<User> userList;
 
-	private User selectedUser;
+	
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -86,6 +96,9 @@ public class LoginController {
 		
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();

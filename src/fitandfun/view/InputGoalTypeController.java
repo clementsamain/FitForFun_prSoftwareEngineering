@@ -28,26 +28,46 @@ import fitandfun.model.Weight;
  */
 public class InputGoalTypeController {
 
-    // Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
     private MainApp mainApp;
     
+    /**
+     * Reference to the activeUser from main Application
+     */
     private User activeUser;
-
+    
+    /**
+     * Reference to the goalType
+     */
+  	private GoalType goalType = new GoalType();
+  	
+  	/*
+	 * FXML Variables to link
+	 */
     @FXML
     private TextField goalName;
+    
 	@FXML
 	private ComboBox<ActivityType> actName;
+	
 	@FXML
 	private ComboBox<ActivityTypeParameter> activityParam;
 	
-
-	//private Activity activity = new Activity();
-	private GoalType goalType = new GoalType();
-
+	/**
+	 * Constructor
+	 */
     public InputGoalTypeController() {
     	
     }
 
+    /**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 * 
+	 * Binding all Variables to save/load in the XML-File
+	 */
     @FXML
     private void initialize() {
     	actName.setCellFactory(new Callback<ListView<ActivityType>, ListCell<ActivityType>>() {
@@ -118,6 +138,9 @@ public class InputGoalTypeController {
 
     }
     
+    /**
+	 * Method used in FXML to save the GoalType and return to the InputTrainingGoalController()
+	 */
     @FXML
 	private void saveGoalType() {
     	
@@ -161,6 +184,9 @@ public class InputGoalTypeController {
     	}
 	}
     
+    /**
+	 * Method to return to the InputTrainingGoalController when "Abbrechen"-Button clicked in FXML
+	 */
     @FXML
 	private void reset() {
     	mainApp.showInputTrainingGoalController();
@@ -183,9 +209,11 @@ public class InputGoalTypeController {
 		activeUser = mainApp.getActiveUser();
     }
     
+    /**
+	 * Method to navigate to the Homepage in FXML
+	 */
     @FXML
     private void showHomepage() {
     	mainApp.showHomepage();
     }
-    
 }

@@ -24,25 +24,38 @@ import fitandfun.model.ActivityTypeParameter;
  */
 public class OverviewActivityController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
 	private MainApp mainApp;
 
+	/*
+	 * FXML Variables to link
+	 */
 	@FXML
 	private ListView<ActivityType> activityList;
+	
 	@FXML
 	private GridPane gridPaneEdit;
+	
 	@FXML
 	private TextField actName;
+	
 	@FXML
 	private CheckBox date;
+	
 	@FXML
 	private CheckBox startTime;
+	
 	@FXML
 	private CheckBox endTime;
+	
 	@FXML
 	private CheckBox distance;
+	
 	@FXML
 	private CheckBox hmeter;
+	
 	@FXML
 	private Button saveAct;
 	
@@ -83,6 +96,9 @@ public class OverviewActivityController {
 		saveAct.setVisible(false);
 	}
 
+	/**
+	 * Create a new Activity Entry
+	 */
 	@FXML
 	private void createNewActivity() {
 		ActivityType a = new ActivityType("Neue Aktivität");
@@ -96,6 +112,9 @@ public class OverviewActivityController {
 		hmeter.setDisable(false);
 	}
 
+	/**
+	 * Save the Activity and set input-fields to false
+	 */
 	@FXML
 	private void SaveActivity() {
 		mainApp.saveActivityXml();
@@ -107,6 +126,11 @@ public class OverviewActivityController {
 		hmeter.setDisable(true);
 	}
 
+	/**
+	 * show Activity Details when clicked on it in the ListView
+	 * @param oldAT
+	 * @param newAT
+	 */
 	private void showActivity(ActivityType oldAT, ActivityType newAT) {
 		if (oldAT != null) {
 			actName.textProperty().unbindBidirectional(oldAT.nameProperty());
@@ -153,6 +177,9 @@ public class OverviewActivityController {
 		activityList.setItems(mainApp.getActivityData());
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();

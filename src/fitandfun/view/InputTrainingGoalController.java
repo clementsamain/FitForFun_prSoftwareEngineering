@@ -29,29 +29,45 @@ import fitandfun.model.Weight;
  */
 public class InputTrainingGoalController {
 
-    // Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
     private MainApp mainApp;
     
+    /**
+     * Reference to the activeUser
+     */
     private User activeUser;
     
+    /**
+     * Reference to TrainingGoals
+     */
+    private TrainingGoals tg = new TrainingGoals();
+	
+    /*
+	 * FXML Variables to link
+	 */
     @FXML
     private TextField goalName;
+    
     @FXML
     private ComboBox<GoalType> goalType;
+    
 	@FXML
 	private DatePicker goalDate;
+	
 	@FXML
 	private DatePicker goalStartDate;
+	
 	@FXML
 	private TextField goalValue;
+	
 	@FXML
 	private Label goalUnit;
 
-	private TrainingGoals tg = new TrainingGoals();
 	
 
     /**
-     * The constructor.
      * The constructor is called before the initialize() method.
      */
     public InputTrainingGoalController() {
@@ -118,6 +134,9 @@ public class InputTrainingGoalController {
 		});
     }
     
+    /**
+	 * Method used in FXML to save TrainingGoals and return to the Homepage
+	 */
     @FXML
 	private void saveTrainingGoal() {
     	if(tg.getName()!= null && tg.getType() != null && tg.getDate() != null && tg.getStartDate() != null && tg.getGoalValue() != 0 && tg.getStartDate().isBefore(tg.getDate()))
@@ -128,7 +147,6 @@ public class InputTrainingGoalController {
     		alert.setTitle("Trainningsziel eingetragen");
     		alert.setHeaderText(null);
     		alert.setContentText("Das Trainingsziel wurde eingetragen!");
-
     		alert.showAndWait();
 
     		showHomepage();
@@ -141,9 +159,11 @@ public class InputTrainingGoalController {
 
     		alert.showAndWait();
     	}
-		
 	}
     
+    /**
+	 * Method to return to the Homepage when "Abbrechen"-Button clicked in FXML
+	 */
     @FXML
 	private void reset() {
     	showTrainingGoalsController();
@@ -159,16 +179,25 @@ public class InputTrainingGoalController {
         goalType.getItems().addAll(mainApp.getGoalType());
     }
     
+    /**
+	 * Method to navigate to the Homepage in FXML
+	 */
     @FXML
     private void showHomepage() {
     	mainApp.showHomepage();
     }
     
+    /**
+	 * Method to navigate to the TrainingGoalsController in FXML
+	 */
     @FXML
     private void showTrainingGoalsController() {
     	mainApp.showTrainingGoals();
     }
     
+    /**
+	 * Method to navigate to the InputGoalTypeController in FXML
+	 */
     @FXML
     private void showInputGoalTypeController() {
     	mainApp.showInputGoalType();

@@ -38,32 +38,52 @@ import fitandfun.model.User;
  */
 public class InputActivityController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the MainApplication
+	 */
 	private MainApp mainApp;
 
+	/**
+	 * Reference to the activeUser from mainApp
+	 */
 	private User activeUser;
+	
+	/**
+	 * Reference to the activities loaded from XML in mainApp
+	 */
+	private Activity activity = new Activity();
 
+	/*
+	 * FXML Variables to link
+	 */
 	@FXML
 	private ComboBox<ActivityType> actName;
+	
 	@FXML
 	private DatePicker date;
+	
 	@FXML
 	private TimeSpinner start; 
+	
 	@FXML
 	private TimeSpinner end;
+	
 	@FXML
 	private TextField distance;
+	
 	@FXML
 	private TextField hmeter;
+	
 	@FXML
 	private Label duration;
+	
 	@FXML
 	private Label avgspeed;
+	
 	@FXML
 	private Label calories;
 
-	private Activity activity = new Activity();
-
+	
 	/**
 	 * The constructor. The constructor is called before the initialize()
 	 * method.
@@ -74,6 +94,8 @@ public class InputActivityController {
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
+	 * 
+	 * Binding all Variables to save/load in the XML-File
 	 */
 	@FXML
 	private void initialize() {
@@ -126,6 +148,9 @@ public class InputActivityController {
 		activity.setEnd(end.getValue());
 	}
 
+	/**
+	 * Method used in FXML to save the Activity and return to the Homepage
+	 */
 	@FXML
 	private void saveActivity() {
 		mainApp.getUserActivity().add(activity);
@@ -135,19 +160,22 @@ public class InputActivityController {
 		alert.setTitle("Aktivität eingetragen");
 		alert.setHeaderText(null);
 		alert.setContentText("Die Aktivität wurde eingetragen!");
-
 		alert.showAndWait();
 
 		showHomepage();
 	}
 
+	/**
+	 * Method to return to the Homepage when "Abbrechen"-Button clicked in FXML
+	 */
 	@FXML
 	private void reset() {
-		// TODO
+		showHomepage();
 	}
 
 	/**
-	 * GPX-Import (work in progress...)
+	 * GPX-Import
+	 * 
 	 */
 	@FXML
 	private void importActivity() {
@@ -183,29 +211,25 @@ public class InputActivityController {
 			start.setUserData(tempStart);
 			end.setUserData(tempEnd);
 		}
-
-
 	}
 
 	/**
-	 * Is called by the main application to give a reference back to itself.
+	 * setMainApp() is called by the main application to give a reference back to itself.
+	 * <br> activeUser is loaded from the mainApp
 	 *
 	 * @param mainApp
 	 */
-
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		actName.getItems().addAll(mainApp.getActivityData());
 		activeUser = mainApp.getActiveUser();
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
-	}
-
-	@FXML
-	private void showInputActivityController() {
-		mainApp.showInputActivityController();
 	}
 }

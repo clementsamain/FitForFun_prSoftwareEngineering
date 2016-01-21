@@ -49,9 +49,14 @@ import fitandfun.model.User;
  */
 public class TrainingGoalsController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the main Application
+	 */
 	private MainApp mainApp;
 
+	/*
+	 * FXML Variables to link
+	 */
 	@FXML
 	private PieChart pie;
 
@@ -84,11 +89,13 @@ public class TrainingGoalsController {
 
 	private List<Activity> userActivities = new ArrayList<>();
 	private TrainingGoals trainingGoal = new TrainingGoals();
+	
+	/*
+	 * Variables to calculate values to show in pieChart
+	 */
 	float sumFloatDistance = 0;
 	float sumFloatDuration = 0;
 	float sumFloat = 0;
-
-	boolean detailFlag = false;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -115,7 +122,7 @@ public class TrainingGoalsController {
 					protected void updateItem(TrainingGoals item, boolean empty) {
 						super.updateItem(item, empty);
 						if (item != null) {
-							this.setText(item.getType().getName());
+							this.setText(item.getName());
 						}
 					}
 				};
@@ -127,7 +134,7 @@ public class TrainingGoalsController {
 				if (at == null) {
 					return null;
 				} else {
-					return at.getType().getName();
+					return at.getName();
 				}
 			}
 
@@ -149,6 +156,9 @@ public class TrainingGoalsController {
 		detailButton.setVisible(false);
 	}
 
+	/**
+	 * Update Pie Chart when Value Changed in ComboBox
+	 */
 	private void updateCharts() {
 		Date date;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -224,7 +234,7 @@ public class TrainingGoalsController {
 						trainingGoal.getGoalValue() + " " + trainingGoal.getType().getActTypeParam().getParamUnit());
 			}
 
-			pie.setTitle(trainingGoal.getType().getName());
+			pie.setTitle(trainingGoal.getName());
 
 			for (final PieChart.Data data : pie.getData()) {
 				data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
@@ -261,6 +271,9 @@ public class TrainingGoalsController {
 		}
 	}
 
+	/**
+	 * show Activity Details when clicked on Detail Button
+	 */
 	@FXML
 	private void showActivities() {
 		Date date;
@@ -290,6 +303,10 @@ public class TrainingGoalsController {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Delete TrainingGoal when completed
+	 * @param tg
+	 */
 	private void deleteTrainingGoal(TrainingGoals tg) {
 		if (tg != null) {
 			mainApp.getTrainingGoals().remove(tg);
@@ -307,16 +324,25 @@ public class TrainingGoalsController {
 		trainingGoals.getItems().addAll(mainApp.getTrainingGoals());
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Method to navigate to the InputTrainingGoal in FXML
+	 */
 	@FXML
 	private void showInputTrainingGoal() {
 		mainApp.showInputTrainingGoalController();
 	}
 
+	/**
+	 * Method to navigate to the TrainingGoalCompleted in FXML
+	 */
 	private void showTrainingGoalCompleted() {
 		mainApp.showTrainingGoalCompletedController();
 	}
