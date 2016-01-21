@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <WorkoutWrapper>
-	<Workouts>
-		
-	</Workouts>
+    <Workouts>
+        <Workout>
+            <Counts>12</Counts>
+            <Exercise1>asdf</Exercise1>
+            <Exercise2>asdf</Exercise2>
+            <Type>Neues Workout</Type>
+            <Repeat1>2</Repeat1>
+            <Repeat2>2</Repeat2>
+        </Workout>
+    </Workouts>
 </WorkoutWrapper>
