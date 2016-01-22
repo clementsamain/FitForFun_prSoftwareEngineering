@@ -70,9 +70,15 @@ public class LoginController {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
-					selectedUser = userList.getSelectionModel().getSelectedItem();
-					mainApp.setActiveUser(selectedUser);
-					showHomepage();
+					try
+					{
+						selectedUser = userList.getSelectionModel().getSelectedItem();
+						mainApp.setActiveUser(selectedUser);
+						showHomepage();
+					}catch(Exception e)
+					{
+						System.out.println(e.getMessage());
+					}
 				}
 			}
 		});

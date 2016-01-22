@@ -832,7 +832,14 @@ public class MainApp extends Application {
 		FILE_USERGOALS = "XML\\" + activeUser.getUsername() + "\\TrainingGoals.xml";
 		FILE_WEIGHT = "XML\\" + activeUser.getUsername() + "\\UserWeight.xml";
 		FILE_WORKOUTS = "XML\\" + activeUser.getUsername() + "\\UserWorkouts.xml";
-		loadUserActivityXML();
+		try
+		{
+			loadUserActivityXML();
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
 		//loadWeightXML();
 		loadTrainingGoalsXML();
 		//loadWorkoutsXML();

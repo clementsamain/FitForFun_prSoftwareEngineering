@@ -356,6 +356,7 @@ public class Activity {
 	 * Update Duration when there are values from start and end available
 	 */
 	private void updateDuration() {
+		try{
 		if (start.get() != null && end.get() != null) {
 			if ((end.get().isAfter(start.get()))) {
 				this.duration.set(LocalTime.of(this.end.get().getHour() - this.start.get().getHour(),
@@ -363,6 +364,10 @@ public class Activity {
 			} else {
 				this.duration.set(LocalTime.MIN);
 			}
+		}
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
 		}
 	}
 
