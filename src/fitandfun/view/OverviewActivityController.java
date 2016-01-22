@@ -5,6 +5,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
@@ -58,6 +59,9 @@ public class OverviewActivityController {
 	
 	@FXML
 	private Button saveAct;
+	
+	@FXML
+	private Label activeUserLabel;
 	
 
 	/**
@@ -175,6 +179,7 @@ public class OverviewActivityController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		activityList.setItems(mainApp.getActivityData());
+		activeUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	/**

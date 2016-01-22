@@ -51,6 +51,9 @@ public class UserAdministrationController {
 	
 	@FXML
 	private Label lblBMI;
+	
+	@FXML
+	private Label activeUserLabel;
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -97,6 +100,7 @@ public class UserAdministrationController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		userList.setItems(mainApp.getUserData());
+		activeUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	/**

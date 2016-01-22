@@ -40,26 +40,14 @@ public class MainApp extends Application {
 	 */
 	private final String FILE_ACTIVITY = "XML\\Activities.xml";
 
-
-
-
-
-
-
-
-
 	/**
-
-
 	 * XML File to load and save GoalTypes
 	 */
 	private String FILE_GOALTYPES = "XML\\GoalTypes.xml";
 
 	/**
 	 * XML File to load and save Workouts from a specific User
-
 	 */
-
 	private String FILE_WORKOUTS;
 
 
@@ -113,19 +101,15 @@ public class MainApp extends Application {
 	 */
 	private ObservableList<WorkoutType> workoutData = FXCollections.observableArrayList();
 
-
 	/**
 	 * The data as an observable list of Weight
 	 */
 	private ObservableList<Weight> userWeightData = FXCollections.observableArrayList();
 
-
 	/**
 	 * The data as an observable list of TrainingGoals
 	 */
 	private ObservableList<TrainingGoals> userGoalData = FXCollections.observableArrayList();
-
-
 
 	/**
 	 * The data as an observable list of GoalTypes

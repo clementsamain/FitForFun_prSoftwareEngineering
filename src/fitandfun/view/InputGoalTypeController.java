@@ -55,6 +55,9 @@ public class InputGoalTypeController {
 	@FXML
 	private ComboBox<ActivityTypeParameter> activityParam;
 	
+	@FXML
+	private Label activeUserLabel;
+	
 	/**
 	 * Constructor
 	 */
@@ -207,6 +210,7 @@ public class InputGoalTypeController {
         activityParam.getItems().add(new ActivityTypeParameter("Durchschnittsgeschwindigkeit", "km/h"));
         
 		activeUser = mainApp.getActiveUser();
+		activeUserLabel.setText(activeUser.getUsername());
     }
     
     /**

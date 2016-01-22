@@ -86,6 +86,9 @@ public class TrainingGoalsController {
 
 	@FXML
 	private Button detailButton;
+	
+	@FXML
+	private Label activeUserLabel;
 
 	private List<Activity> userActivities = new ArrayList<>();
 	private TrainingGoals trainingGoal = new TrainingGoals();
@@ -322,6 +325,7 @@ public class TrainingGoalsController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		trainingGoals.getItems().addAll(mainApp.getTrainingGoals());
+		activeUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	/**

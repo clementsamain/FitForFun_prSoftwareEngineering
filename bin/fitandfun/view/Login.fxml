@@ -7,37 +7,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="690.0"
-	xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="fitandfun.view.LoginController">
+<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.LoginController">
 	<children>
-		<Label layoutX="82.0" layoutY="156.0" text="Fit" textFill="RED">
-			<font>
-				<Font name="System Bold" size="56.0" />
-			</font>
-		</Label>
-		<Label layoutX="156.0" layoutY="158.0" text="&amp;" textFill="#545252">
-			<font>
-				<Font name="System Bold" size="56.0" />
-			</font>
-		</Label>
-		<Label layoutX="110.0" layoutY="203.0" text="Fun">
-			<font>
-				<Font name="System Bold" size="56.0" />
-			</font>
-		</Label>
-		<Label layoutX="311.0" layoutY="24.0" prefHeight="27.0"
-			prefWidth="164.0" text="Login" AnchorPane.rightAnchor="215.0"
-			AnchorPane.topAnchor="24.0">
+		<Label layoutX="311.0" layoutY="24.0" prefHeight="27.0" prefWidth="164.0" text="Login" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="24.0">
 			<font>
 				<Font name="System Bold" size="18.0" />
 			</font>
 		</Label>
-		<ListView fx:id="userList" layoutX="308.0" layoutY="78.0"
-			prefHeight="366.0" prefWidth="359.0" AnchorPane.bottomAnchor="20.0"
-			AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0" />
-		<Label layoutX="311.0" layoutY="57.0"
-			text="Bitte wähle deinen Benutzer aus:" AnchorPane.rightAnchor="207.0"
-			AnchorPane.topAnchor="57.0" />
+		<ListView fx:id="userList" layoutX="308.0" layoutY="78.0" prefHeight="366.0" prefWidth="359.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0" />
+		<Label layoutX="311.0" layoutY="57.0" text="Bitte wähle deinen Benutzer aus:" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="57.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="150.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="200.0">
+         <image>
+            <Image url="@../../../Images/fitandfunLogo.png" />
+         </image>
+      </ImageView>
 	</children>
 </AnchorPane>

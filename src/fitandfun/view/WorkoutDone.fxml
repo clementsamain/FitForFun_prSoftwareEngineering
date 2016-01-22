@@ -82,10 +82,11 @@
                   </SplitPane>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Images/Logo_klein.png" />
+                        <Image url="@../../../Images/fitandfunLogo_klein.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="activeUserLabel" layoutX="640.0" layoutY="27.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="22.0" />
+                  <Label fx:id="activeUserLabel" layoutX="630.0" layoutY="15.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

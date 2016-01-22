@@ -41,9 +41,10 @@
 						<Button layoutX="141.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#reset" text="Abbrechen" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" />
 						<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../../../Images/Logo_klein.png" />
+								<Image url="@../../../Images/fitandfunLogo_klein.png" />
 							</image>
 						</ImageView>
+                  <Label fx:id="activeUserLabel" layoutX="630.0" layoutY="15.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
 					</children>
 				</AnchorPane>
 			</items>

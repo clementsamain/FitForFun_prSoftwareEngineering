@@ -64,6 +64,9 @@ public class InputTrainingGoalController {
 	
 	@FXML
 	private Label goalUnit;
+	
+	@FXML
+	private Label activeUserLabel;
 
 	
 
@@ -177,6 +180,7 @@ public class InputTrainingGoalController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         goalType.getItems().addAll(mainApp.getGoalType());
+        activeUserLabel.setText(mainApp.getActiveUser().getUsername());
     }
     
     /**

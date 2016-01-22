@@ -64,6 +64,9 @@ public class InputWeightController {
 	@FXML
 	private TextField weightField;
 	
+	@FXML
+	private Label activeUserLabel;
+	
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
@@ -116,6 +119,7 @@ public class InputWeightController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		activeUser = mainApp.getActiveUser();
+		activeUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	/**

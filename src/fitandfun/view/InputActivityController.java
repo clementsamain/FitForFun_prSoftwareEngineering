@@ -82,6 +82,9 @@ public class InputActivityController {
 	
 	@FXML
 	private Label calories;
+	
+	@FXML
+	private Label activeUserLabel;
 
 	
 	/**
@@ -223,6 +226,7 @@ public class InputActivityController {
 		this.mainApp = mainApp;
 		actName.getItems().addAll(mainApp.getActivityData());
 		activeUser = mainApp.getActiveUser();
+		activeUserLabel.setText(mainApp.getActiveUser().getUsername());
 	}
 
 	/**

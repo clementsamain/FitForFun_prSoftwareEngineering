@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.HomepageController">
+<AnchorPane prefHeight="460.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.HomepageController">
 	<children>
 		<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="440.0">
 			<children>
@@ -85,11 +85,17 @@
 				</GridPane>
 				<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@../../../Images/Logo_klein.png" />
+						<Image url="@../../../Images/fitandfunLogo_klein.png" />
 					</image>
 				</ImageView>
 			</children>
 		</AnchorPane>
 		<Label fx:id="activeUser" layoutX="630.0" layoutY="15.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="656.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
+         <image>
+            <Image url="@../../../Images/fitandfunLogo.png" />
+         </image>
+      </ImageView>
 	</children>
 </AnchorPane>
