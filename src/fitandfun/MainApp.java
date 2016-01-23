@@ -479,22 +479,6 @@ public class MainApp extends Application {
 		}
 	}
 	
-	/**
-	 * starts the Map, with the path of the file
-	 * @param gpxName
-	 */
-	
-	public void showMap(String gpxName){         
-		Map map = new Map (gpxName);
-		try {
-			map.setMainApp(this);
-			map.startMap(primaryStage);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
 	String gpxNameTemp = "";
 	
 	public void showMapController() {	

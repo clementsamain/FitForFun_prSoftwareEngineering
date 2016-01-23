@@ -230,7 +230,8 @@ public class MapController {
 
 		FileChooser fc = new FileChooser();
 		File selFile = fc.showOpenDialog(null);
-		mainApp.showMap(selFile.getAbsolutePath());
+		mainApp.setGPXName(selFile.getAbsolutePath());
+		mainApp.showMapController();
 	}
 
 	/**
