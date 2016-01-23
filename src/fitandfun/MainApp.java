@@ -454,6 +454,74 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * Loading Map Controller 
+	 * Map Menu shows the activities, where a card is available
+	 * @see {link MapController}
+	 * 
+	 */
+	
+	public void showMapMenu() {				 
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/MapMenu.fxml"));
+			AnchorPane mapMenu = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(mapMenu);
+			// Give the controller access to the main app
+			MapMenuController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * starts the Map, with the path of the file
+	 * @param gpxName
+	 */
+	
+	public void showMap(String gpxName){         
+		Map map = new Map (gpxName);
+		try {
+			map.setMainApp(this);
+			map.startMap(primaryStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	String gpxNameTemp = "";
+	
+	public void showMapController() {	
+		try {
+			// Load
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/Map.fxml"));
+			AnchorPane map = (AnchorPane) loader.load();
+			// Set into the center of root layout
+			rootLayout.setCenter(map);
+			// Give the controller access to the main app
+			MapController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setGPXName(String name)
+	{
+		gpxNameTemp = name;
+	}
+	
+	public String getGPXName()
+	{
+		return gpxNameTemp;
+	}
 
 
 	/**

@@ -14,6 +14,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Activity-Class for creating UserActivities
@@ -35,6 +37,7 @@ public class Activity {
 	private final IntegerProperty calories;
 	private final IntegerProperty height;
 	private final FloatProperty avgspeed;
+	private final StringProperty gpxName;
 
 	/**
 	 * Activity-Constructor
@@ -78,7 +81,7 @@ public class Activity {
 	 * @see {@link Activity#Activity(ActivityType, LocalDate, LocalTime, LocalTime, float, int)}
 	 */
 	public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance) {
-		this(type, date, start, end, distance, 0);
+		this(type, date, start, end, distance, 0, null);
 	}
 
 	/**
@@ -98,7 +101,7 @@ public class Activity {
 	 * @param height
 	 *            Höhenmeter in meter for example 64
 	 */
-	public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance, int height) {
+	public Activity(ActivityType type, LocalDate date, LocalTime start, LocalTime end, float distance, int height, String gpxName) {
 		this.type = new SimpleObjectProperty<>(type);
 		this.date = new SimpleObjectProperty<>(date);
 		this.start = new SimpleObjectProperty<>(start);
@@ -108,6 +111,7 @@ public class Activity {
 		this.calories = new SimpleIntegerProperty(0);
 		this.height = new SimpleIntegerProperty(height);
 		this.avgspeed = new SimpleFloatProperty(0);
+		this.gpxName = new SimpleStringProperty (gpxName);
 
 		this.start.addListener((value) -> updateDuration());
 		this.end.addListener((value) -> updateDuration());
@@ -350,6 +354,23 @@ public class Activity {
 
 	public void setHMeter(int meter) {
 		this.height.set(meter);
+	}
+	
+	/**
+	 *  Property- getter, Getter- and Setter Methods for gpxName		      
+	 */
+	
+	public StringProperty gpxProperty() {
+		return this.gpxName;
+	}
+	
+	@XmlElement (name = "gpxName")   
+	public String getgpxName(){
+		return gpxName.get();
+	}
+	
+	public void setGpxName (String gpxName){
+		this.gpxName.set(gpxName);
 	}
 
 	/**

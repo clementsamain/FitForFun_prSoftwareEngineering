@@ -95,4 +95,9 @@ public class HomepageController {
     private void showWorkoutsDoneController() {
     	mainApp.showWorkoutsDoneController();
     }
+    
+    @FXML
+    private void showMapMenu(){
+    	mainApp.showMapMenu();  
+    }
 }

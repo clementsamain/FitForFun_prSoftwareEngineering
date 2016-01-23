@@ -97,5 +97,22 @@
                 <Start>true</Start>
             </Type>
         </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-23</Date>
+            <Distance>221.28</Distance>
+            <End>23:44:06</End>
+            <HMeter>1864</HMeter>
+            <Start>12:44:06</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Laufen</Type>
+                <Start>true</Start>
+            </Type>
+            <gpxName>C:\Users\jexmaster\git\ProjectSE2015\data\Heidschnuckenweg.gpx</gpxName>
+        </UserActivity>
     </UserActivities>
 </ActivityWrapper>

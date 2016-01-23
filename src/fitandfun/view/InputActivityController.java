@@ -187,6 +187,9 @@ public class InputActivityController {
 		JDOM p = new JDOM();
 		FileChooser fc = new FileChooser();
 		File selFile = fc.showOpenDialog(null);
+		
+		activity.setGpxName(selFile.getAbsolutePath());
+		
 		double tempDist = 0;
 		int tempAsc = 0;
 		Date tempStart = null;
