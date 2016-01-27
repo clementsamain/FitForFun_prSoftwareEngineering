@@ -77,7 +77,7 @@ public class MapMenuController {
 					date = format.parse(act.getDateString());
 					lbl.setFont(Font.font("Amble CN", 16));
 					lbl.setBackground(
-							new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+							new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
 					lbl.setText(print.format(date) + ": " + act.getTypeString());
 				} catch (ParseException e) {
 					e.printStackTrace();

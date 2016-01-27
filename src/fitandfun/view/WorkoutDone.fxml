@@ -9,38 +9,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.WorkoutsDoneController">
+<AnchorPane prefHeight="460.0" prefWidth="900.0" styleClass="background" stylesheets="@FitandFunTheme.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.WorkoutsDoneController">
    <children>
-      <SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="641.0" SplitPane.resizableWithParent="false">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="641.0" styleClass="background" SplitPane.resizableWithParent="false">
                <children>
-                  <Label layoutX="100.0" layoutY="22.0" text="Workout erledigt">
+                  <Label layoutX="343.0" layoutY="22.0" styleClass="label-header" text="Workout erledigt" AnchorPane.topAnchor="22.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <SplitPane dividerPositions="0.46904024767801855" layoutX="14.0" layoutY="57.0" prefHeight="394.0" prefWidth="534.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+                  <SplitPane dividerPositions="0.4992679355783309" layoutX="107.0" layoutY="60.0" prefHeight="378.0" prefWidth="685.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="60.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="220.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="394.0" styleClass="background">
                            <children>
-                              <Label layoutX="14.0" layoutY="43.0" prefHeight="17.0" prefWidth="124.0" text="Name des Workouts:" />
-                              <ComboBox fx:id="actName" layoutX="138.0" layoutY="39.0" prefHeight="25.0" prefWidth="147.0" />
-                              <Label layoutX="14.0" layoutY="74.0" prefHeight="17.0" prefWidth="147.0" text="Absolvierte Durchgänge:" />
-                              <Label layoutX="14.0" layoutY="103.0" prefHeight="17.0" prefWidth="147.0" text="Erforderliche Durchgänge:" />
+                              <Label layoutX="5.0" layoutY="43.0" prefHeight="17.0" prefWidth="124.0" text="Name des Workouts:" />
+                              <ComboBox fx:id="actName" layoutX="150.0" layoutY="39.0" prefHeight="25.0" prefWidth="147.0" />
+                              <Label layoutX="3.0" layoutY="74.0" prefHeight="17.0" prefWidth="147.0" text="Absolvierte Durchgänge:" />
+                              <Label layoutX="4.0" layoutY="103.0" prefHeight="17.0" prefWidth="157.0" text="Erforderliche Durchgänge:" />
                               <Label fx:id="lblCompletedCounts" layoutX="161.0" layoutY="74.0" />
                               <Label fx:id="lblCountsToGo" layoutX="161.0" layoutY="103.0" />
-                              <Button fx:id="buttonWorkoutDone" layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#raiseCompletedCounts" text="Durchgang erledigt" />
+                              <Button fx:id="buttonWorkoutDone" layoutX="77.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#raiseCompletedCounts" text="Durchgang erledigt" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="403.0" styleClass="background">
                            <children>
-                              <GridPane fx:id="gridPaneEdit" layoutX="8.0" layoutY="34.0" prefHeight="270.0" prefWidth="325.0">
+                              <GridPane fx:id="gridPaneEdit" layoutX="8.0" layoutY="35.0" prefHeight="270.0" prefWidth="325.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="70.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="161.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="0.0" prefWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="94.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="61.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="163.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="0.0" prefWidth="0.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="101.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -54,14 +54,12 @@
                                     <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wiederholungen" wrappingWidth="170.13671875" GridPane.columnIndex="3" />
                                     <Label fx:id="lblExercise1" text="1. Übung:" GridPane.rowIndex="1" />
                                     <Label fx:id="lblExercise2" text="2. Übung:" GridPane.rowIndex="2" />
                                     <Label fx:id="lblExercise3" text="3. Übung:" GridPane.rowIndex="3" />
                                     <Label fx:id="lblExercise4" text="4. Übung:" GridPane.rowIndex="4" />
                                     <Label fx:id="lblExercise5" text="5. Übung:" GridPane.rowIndex="5" />
                                     <Label fx:id="lblExercise6" text="6. Übung:" GridPane.rowIndex="6" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Art der Übung" wrappingWidth="170.13671875" GridPane.columnIndex="1" />
                                     <Label fx:id="lblExercise1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label fx:id="lblExercise2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="lblRepeat1" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -74,6 +72,8 @@
                                     <Label fx:id="lblRepeat3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                     <Label fx:id="lblRepeat2" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                     <Label fx:id="lblRepeat6" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                    <Label fx:id="lblExercise11" text="Art der Übung:" GridPane.columnIndex="1" />
+                                    <Label fx:id="lblExercise12" prefHeight="17.0" prefWidth="132.0" text="Wiederholungen:" GridPane.columnIndex="3" />
                                  </children>
                               </GridPane>
                            </children>
@@ -86,7 +86,7 @@
                      </image>
                   </ImageView>
                   <Label fx:id="activeUserLabel" layoutX="640.0" layoutY="27.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="22.0" />
-                  <Label fx:id="activeUserLabel" layoutX="630.0" layoutY="15.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+                  <Label fx:id="activeUserLabel" layoutX="630.0" layoutY="15.0" styleClass="label-header2" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

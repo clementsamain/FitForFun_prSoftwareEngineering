@@ -3,22 +3,6 @@
     <UserActivities>
         <UserActivity>
             <Calories>0</Calories>
-            <Date>2015-04-26</Date>
-            <Distance>11.0</Distance>
-            <End>17:12:03</End>
-            <HMeter>143</HMeter>
-            <Start>16:30:03</Start>
-            <Type>
-                <Date>true</Date>
-                <Distance>true</Distance>
-                <End>true</End>
-                <HMeter>false</HMeter>
-                <Type>Radfahren</Type>
-                <Start>true</Start>
-            </Type>
-        </UserActivity>
-        <UserActivity>
-            <Calories>0</Calories>
             <Date>2015-07-27</Date>
             <Distance>11.08</Distance>
             <End>17:53:29</End>
@@ -112,7 +96,23 @@
                 <Type>Laufen</Type>
                 <Start>true</Start>
             </Type>
-            <gpxName>C:\Users\jexmaster\git\ProjectSE2015\data\Heidschnuckenweg.gpx</gpxName>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2015-12-29</Date>
+            <Distance>221.28</Distance>
+            <End>18:13:22.018</End>
+            <HMeter>1864</HMeter>
+            <Start>18:13:22.015</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Laufen</Type>
+                <Start>true</Start>
+            </Type>
+            <gpxName>C:\Users\Sandra\workspace\ProjectSE2015\data\Heidschnuckenweg.gpx</gpxName>
         </UserActivity>
     </UserActivities>
 </ActivityWrapper>

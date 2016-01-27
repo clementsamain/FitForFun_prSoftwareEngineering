@@ -7,20 +7,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <?import fitandfun.TimeSpinner?>
 
-<AnchorPane prefHeight="460.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.InputActivityController">
+<AnchorPane prefHeight="460.0" prefWidth="900.0" styleClass="background" stylesheets="@FitandFunTheme.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fitandfun.view.InputActivityController">
 	<children>
-		<SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<SplitPane layoutX="59.0" layoutY="14.0" prefHeight="460.0" prefWidth="690.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<items>
-				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="440.0" SplitPane.resizableWithParent="false">
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="440.0" styleClass="background" SplitPane.resizableWithParent="false">
 					<children>
-						<Label layoutX="100.0" layoutY="22.0" text="Aktivitäteneintrag erfassen">
+						<Label layoutX="281.0" layoutY="26.0" styleClass="label-header" text="Aktivitäteneintrag erfassen" AnchorPane.topAnchor="25.0">
 							<font>
 								<Font name="System Bold" size="18.0" />
 							</font>
 						</Label>
-						<GridPane layoutX="52.0" layoutY="83.0" prefHeight="304.0" prefWidth="313.0" AnchorPane.leftAnchor="60.0">
+						<GridPane layoutX="296.0" layoutY="78.0" prefHeight="319.0" prefWidth="376.0" AnchorPane.leftAnchor="296.0">
 							<columnConstraints>
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="158.0" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="118.0" />
@@ -46,9 +47,9 @@
 								<Label text="Höhenmeter:" GridPane.rowIndex="5" />
 								<Label text="Kalorienverbrauch:" GridPane.rowIndex="8" />
 								<Label text="durchschn. Geschwindigkeit:" GridPane.rowIndex="7" />
-								<TextField fx:id="distance" promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-								<TextField fx:id="hmeter" promptText="in Meter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-								<ComboBox fx:id="actName" prefWidth="150.0" GridPane.columnIndex="1" />
+								<TextField fx:id="distance" promptText="in Meter" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+								<TextField fx:id="hmeter" promptText="in Meter" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+								<ComboBox fx:id="actName" prefWidth="150.0" styleClass="combo-box-base" GridPane.columnIndex="1" />
 								<DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 								<Label fx:id="duration" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 								<Label fx:id="avgspeed" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -57,15 +58,15 @@
 								<TimeSpinner fx:id="end" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 							</children>
 						</GridPane>
-						<Button layoutX="85.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#saveActivity" text="Speichern" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
-						<Button layoutX="141.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#reset" text="Abbrechen" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="150.0" />
-						<Button layoutX="511.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#importActivity" text="Import" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="27.0" />
-						<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true">
+						<Button layoutX="320.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#saveActivity" text="Speichern" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="320.0" />
+						<Button layoutX="461.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#reset" text="Abbrechen" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="320.0" />
+						<Button layoutX="777.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#importActivity" text="Import" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+						<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#showHomepage" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
 							<image>
 								<Image url="@../../../Images/fitandfunLogo_klein.png" />
 							</image>
 						</ImageView>
-                  <Label fx:id="activeUserLabel" layoutX="630.0" layoutY="15.0" text="Label" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+                  <Label fx:id="activeUserLabel" layoutX="853.0" layoutY="419.0" styleClass="label-header2" text="Label" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
 					</children>
 				</AnchorPane>
 			</items>

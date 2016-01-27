@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="303.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="460.0" prefWidth="900.0" styleClass="background" stylesheets="@FitandFunTheme.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<Label layoutX="73.0" layoutY="21.0" text="Workout erledigt">
+		<Label layoutX="344.0" layoutY="25.0" styleClass="label-header" stylesheets="@FitandFunTheme.css" text="Workout erledigt" AnchorPane.topAnchor="25.0">
 			<font>
 				<Font name="System Bold" size="18.0" />
 			</font>
 		</Label>
-		<Label layoutX="20.0" layoutY="106.0" text="Herzlichen Glückwunsch!&#10;Sie haben ihr Workout erledigt!" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
-		<Button layoutX="27.0" layoutY="253.0" mnemonicParsing="false" text="OK" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+		<Label contentDisplay="CENTER" layoutX="345.0" layoutY="127.0" styleClass="label-header2" text="Herzlichen Glückwunsch!&#10;Sie haben ihr Workout erledigt!" textAlignment="CENTER" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="127.0" />
+		<Button layoutX="417.0" layoutY="401.0" mnemonicParsing="false" text="OK" AnchorPane.bottomAnchor="25.0" />
 		<ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@../../../Images/fitandfunLogo_klein.png" />

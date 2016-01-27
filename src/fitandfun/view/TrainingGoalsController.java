@@ -214,6 +214,7 @@ public class TrainingGoalsController {
 						new PieChart.Data("offen", trainingGoal.getGoalValue() - sumFloat));
 
 				pie.setData(pieChartData);
+				pie.getStylesheets().add("FitandFunTheme.css");			
 				goalTypeName.setText(trainingGoal.getType().getName());
 				trainingGoalName.setText(trainingGoal.getName());
 				

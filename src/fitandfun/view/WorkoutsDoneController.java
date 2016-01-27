@@ -210,7 +210,7 @@ public class WorkoutsDoneController {
 	}
 	
 	@FXML
-	public void raiseCompletedCounts() {
+	private void raiseCompletedCounts() {
 		int count = Integer.parseInt(lblCompletedCounts.getText());
 		count = count + 1;
 		lblCompletedCounts.setText(String.valueOf(count));
