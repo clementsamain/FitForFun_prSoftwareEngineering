@@ -179,12 +179,20 @@ public class MapController {
 					LatLong markerLatLong = new LatLong(waypoints.get(0).getCoordinate().getLatitude(),
 							waypoints.get(0).getCoordinate().getLongitude());
 
+					markerOptions.position(markerLatLong);
 					Marker myMarker = new Marker(markerOptions);
 					map.addMarker(myMarker); // add the first position as start
 												// marker
+					
+					LatLong markerLatLong2 = new LatLong(waypoints.get(ary.length-1).getCoordinate().getLatitude(),waypoints.get(ary.length-1).getCoordinate().getLongitude());
 
-					myMarker = new Marker(markerOptions);
-					map.addMarker(myMarker); // add the latest position as end
+					
+					MarkerOptions markerOptions2 = new MarkerOptions();
+					markerOptions2.position(markerLatLong2);
+					Marker myMarker2 = new Marker(markerOptions2);
+					
+					//myMarker = new Marker(markerOptions);
+					map.addMarker(myMarker2); // add the latest position as end
 												// marker
 
 					MVCArray mvc = new MVCArray(ary); // converts the waypoints

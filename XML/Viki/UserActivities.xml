@@ -112,7 +112,23 @@
                 <Type>Laufen</Type>
                 <Start>true</Start>
             </Type>
-            <gpxName>C:\Users\Sandra\workspace\ProjectSE2015\data\Heidschnuckenweg.gpx</gpxName>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-01-26</Date>
+            <Distance>26.67</Distance>
+            <End>11:34:36</End>
+            <HMeter>106</HMeter>
+            <Start>07:34:36.15</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>false</HMeter>
+                <Type>Radfahren</Type>
+                <Start>true</Start>
+            </Type>
+            <gpxName>F:\GPX FILES\GPX FILES\Essen Kalmthout - 27 km TR.gpx</gpxName>
         </UserActivity>
     </UserActivities>
 </ActivityWrapper>
