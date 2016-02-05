@@ -3,7 +3,6 @@ package fitandfun.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -11,15 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 import fitandfun.MainApp;
-import fitandfun.model.Activity;
 import fitandfun.model.ActivityType;
 import fitandfun.model.ActivityTypeParameter;
 import fitandfun.model.GoalType;
-import fitandfun.model.TrainingGoals;
 import fitandfun.model.User;
-import fitandfun.model.Weight;
 
 /**
  * 

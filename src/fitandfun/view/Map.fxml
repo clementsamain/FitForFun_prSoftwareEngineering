@@ -31,7 +31,7 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="488.0" prefWidth="800.0">
 									<children>
-                              <BorderPane fx:id="mapPane" layoutX="216.0" layoutY="143.0" prefHeight="345.0" prefWidth="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="143.0" />
+                              <BorderPane fx:id="mapPane" layoutX="216.0" layoutY="143.0" prefHeight="345.0" prefWidth="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 									</children>
 								</AnchorPane>
 							</content>

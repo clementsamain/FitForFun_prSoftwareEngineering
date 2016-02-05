@@ -74,6 +74,7 @@
                         <Image url="@../../../Images/fitandfunLogo_klein.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="activeUserLabel" layoutX="743.0" layoutY="419.0" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

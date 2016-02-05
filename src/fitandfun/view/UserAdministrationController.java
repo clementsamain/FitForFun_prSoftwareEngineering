@@ -120,7 +120,6 @@ public class UserAdministrationController {
 		User u = new User("Neuer Benutzer");
 		mainApp.getUserData().add(u);
 		userList.getSelectionModel().select(u);
-
 	}
 
 	/**
@@ -131,7 +130,7 @@ public class UserAdministrationController {
 	private void deleteSelectedUser() {
 		User u = userList.getSelectionModel().getSelectedItem();
 
-		if (u != null) {
+		if (u != null && userList.getItems().size() > 1) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Ausgewählten Benutzer löschen");
 			alert.setHeaderText("Wollen Sie den ausgewählten Benutzer " + u.getUsername() + " wirklich löschen?");
@@ -146,6 +145,13 @@ public class UserAdministrationController {
 					deleteDir(f);
 				}
 			}
+		}else
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Benutzer kann nicht gelöscht werden");
+			alert.setHeaderText("Der letze Benutzer kann nicht gelöscht werden!");
+
+			alert.showAndWait();
 		}
 	}
 
@@ -220,6 +226,7 @@ public class UserAdministrationController {
 		boolean err = false;
 		for (User u : mainApp.getUserData()) {
 			if (u.getIsNew()) {
+				if(u.getHeight() >=50 && u.getHeight() <=300 && u.getWeight() >= 5 && u.getWeight() <=500){
 				File newDir = new File("XML\\" + u.getUsername());
 
 				// if the directory does not exist, create it
@@ -243,6 +250,15 @@ public class UserAdministrationController {
 					alert.setTitle("Fehler!");
 					alert.setHeaderText("Der angegebene Benutzername " + u.getUsername()
 							+ " existiert bereits! Bitte wähle einen anderen!");
+					alert.showAndWait();
+				}
+				
+				}else
+				{
+					err = true;
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Fehler!");
+					alert.setHeaderText("Bitte kontrolliere deine eingegebenen Daten!");
 					alert.showAndWait();
 				}
 			}
