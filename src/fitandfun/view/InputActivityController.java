@@ -52,7 +52,7 @@ public class InputActivityController {
 	 * Reference to the activeUser from mainApp
 	 */
 	private User activeUser;
-	
+
 	/**
 	 * Reference to the activities loaded from XML in mainApp
 	 */
@@ -63,35 +63,35 @@ public class InputActivityController {
 	 */
 	@FXML
 	private ComboBox<ActivityType> actName;
-	
+
 	@FXML
 	private DatePicker date;
-	
+
 	@FXML
-	private TimeSpinner start; 
-	
+	private TimeSpinner start;
+
 	@FXML
 	private TimeSpinner end;
-	
+
 	@FXML
 	private TextField distance;
-	
+
 	@FXML
 	private TextField hmeter;
-	
+
 	@FXML
 	private Label duration;
-	
+
 	@FXML
 	private Label avgspeed;
-	
+
 	@FXML
 	private Label calories;
-	
+
 	@FXML
 	private Label activeUserLabel;
 
-	
+
 	/**
 	 * The constructor. The constructor is called before the initialize()
 	 * method.
@@ -102,7 +102,7 @@ public class InputActivityController {
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
-	 * 
+	 *
 	 * Binding all Variables to save/load in the XML-File
 	 */
 	@FXML
@@ -164,13 +164,13 @@ public class InputActivityController {
 		if(actName.getSelectionModel().getSelectedItem() != null && date.getValue() != null && end.getValue().isAfter(start.getValue())){
 			mainApp.getUserActivity().add(activity);
 			mainApp.saveUserActivityXml();
-	
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Aktivität eingetragen");
 			alert.setHeaderText(null);
 			alert.setContentText("Die Aktivität wurde eingetragen!");
 			alert.showAndWait();
-		
+
 			showHomepage();
 		}else
 		{
@@ -192,8 +192,9 @@ public class InputActivityController {
 
 	/**
 	 * GPX-Import
-	 * 
+	 *
 	 */
+	@SuppressWarnings("deprecation")
 	@FXML
 	private void importActivity() {
 		ArrayList<Track> tracks = new ArrayList<Track>();
@@ -201,36 +202,54 @@ public class InputActivityController {
 		JDOM p = new JDOM();
 		FileChooser fc = new FileChooser();
 		File selFile = fc.showOpenDialog(null);
-		
+
 		activity.setGpxName(selFile.getAbsolutePath());
-		
+
 		double tempDist = 0;
 		int tempAsc = 0;
 		Date tempStart = null;
 		Date tempEnd = null;
+		LocalTime e = null;
+		LocalTime s = null;
+
 
 		if (selFile != null) {
 			try {
 				gpx = p.parse(selFile);
-			} catch (ParsingException e) {
-				e.printStackTrace();
+			} catch (ParsingException en) {
+				en.printStackTrace();
 			}
 
 			tracks = gpx.getTracks();
 
-			for(Track t : tracks){
-				tempDist = tempDist + (t.length()/1000);
-				tempAsc = tempAsc + (int)t.cumulativeAscent();
-				tempStart = t.startingTime();
-				tempEnd = t.endTime();
+			if (tracks.get(0) != null) {
+				if (tracks.get(0).startingTime() != null) {
+					Track tmp = tracks.get(0);
+					tempStart = tmp.startingTime();
+					System.out.println(tempStart.toString());
+					s.of(tempStart.getHours(), tempStart.getMinutes(), tempStart.getSeconds());
+					//start.valueProperty().addListener((obs, oVal, nVal) -> activity.setStart(s));
+					activity.setStart(s);
+				}
+				for(Track t : tracks){
+					tempDist = tempDist + (t.length()/1000);
+					tempAsc = tempAsc + (int)t.cumulativeAscent();
+					if (t.startingTime() != null) {
+						tempStart = t.startingTime();
+						tempEnd = t.endTime();
+					}
+				}
+				if(tempEnd != null){
+					System.out.println(tempEnd.toString());
+					e.of(tempEnd.getHours(), tempEnd.getMinutes(), tempEnd.getSeconds());
+					//end.valueProperty().addListener((obs, oVal, nVal) -> activity.setStart(e));
+					activity.setEnd(e);
+				}
+				NumberFormat tDR = NumberFormat.getInstance();
+				tDR.setMaximumFractionDigits(2);
+				distance.setText(tDR.format(tempDist));
+				hmeter.setText(String.valueOf(tempAsc));
 			}
-			NumberFormat tDR = NumberFormat.getInstance();
-			tDR.setMaximumFractionDigits(2);
-			distance.setText(tDR.format(tempDist));
-			hmeter.setText(String.valueOf(tempAsc));
-			start.setUserData(tempStart);
-			end.setUserData(tempEnd);
-
 		}
 	}
 
