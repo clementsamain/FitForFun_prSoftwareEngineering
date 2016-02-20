@@ -144,6 +144,22 @@
                 <Type>Gehen</Type>
                 <Start>true</Start>
             </Type>
+        </UserActivity>
+        <UserActivity>
+            <Calories>0</Calories>
+            <Date>2016-02-02</Date>
+            <Distance>59.76</Distance>
+            <End>13:07:43</End>
+            <HMeter>817</HMeter>
+            <Start>09:52:09</Start>
+            <Type>
+                <Date>true</Date>
+                <Distance>true</Distance>
+                <End>true</End>
+                <HMeter>true</HMeter>
+                <Type>Laufen</Type>
+                <Start>true</Start>
+            </Type>
             <gpxName>C:\Users\elgrindo\Desktop\GPX Testfiles\track.gpx</gpxName>
         </UserActivity>
     </UserActivities>

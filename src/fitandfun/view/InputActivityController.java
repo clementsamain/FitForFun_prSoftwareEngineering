@@ -22,8 +22,10 @@ import net.divbyzero.gpx.parser.ParsingException;
 
 import java.io.File;
 import java.text.NumberFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -154,6 +156,7 @@ public class InputActivityController {
 
 		activity.setStart(start.getValue());
 		activity.setEnd(end.getValue());
+
 	}
 
 	/**
@@ -226,10 +229,9 @@ public class InputActivityController {
 				if (tracks.get(0).startingTime() != null) {
 					Track tmp = tracks.get(0);
 					tempStart = tmp.startingTime();
-					System.out.println(tempStart.toString());
-					s.of(tempStart.getHours(), tempStart.getMinutes(), tempStart.getSeconds());
-					//start.valueProperty().addListener((obs, oVal, nVal) -> activity.setStart(s));
-					activity.setStart(s);
+					Instant instant = Instant.ofEpochMilli(tempStart.getTime());
+					s = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalTime();
+					start.getValueFactory().setValue(s);
 				}
 				for(Track t : tracks){
 					tempDist = tempDist + (t.length()/1000);
@@ -240,10 +242,9 @@ public class InputActivityController {
 					}
 				}
 				if(tempEnd != null){
-					System.out.println(tempEnd.toString());
-					e.of(tempEnd.getHours(), tempEnd.getMinutes(), tempEnd.getSeconds());
-					//end.valueProperty().addListener((obs, oVal, nVal) -> activity.setStart(e));
-					activity.setEnd(e);
+					Instant instant = Instant.ofEpochMilli(tempEnd.getTime());
+					e = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalTime();
+					end.getValueFactory().setValue(e);
 				}
 				NumberFormat tDR = NumberFormat.getInstance();
 				tDR.setMaximumFractionDigits(2);
