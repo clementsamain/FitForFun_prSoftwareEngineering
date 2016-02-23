@@ -28,7 +28,7 @@ public class TrainingGoals {
 	private final ObjectProperty<LocalDate> goalDate;
 	private final ObjectProperty<LocalDate> startDate;
 	//private final SimpleBooleanProperty completed;
-	
+
 
 	public TrainingGoals()
 	{

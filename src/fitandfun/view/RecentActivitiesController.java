@@ -64,7 +64,7 @@ public class RecentActivitiesController {
 	 * Sorts the list of activities from the main app and creates
 	 * the labels used to show the activities in the UI.
 	 */
-	public void showRecentAct() {
+	private void showRecentAct() {
 		activityList_sorted = FXCollections.observableArrayList();
 		for (Activity act : activityList) {
 			activityList_sorted.add(act);

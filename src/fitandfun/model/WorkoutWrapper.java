@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
  * Helper class to wrap a list of workouts. This is used for saving the
  * workouts list to XML
  *
- * @author Sabrina, Marion, Kerstin
- * @version 0.1
+ * @author Sabrina Füreder, Marion Lackner, Kerstin Sachsenhofer
+ * @version 1.0
  */
 
 @XmlRootElement(name = "WorkoutWrapper")

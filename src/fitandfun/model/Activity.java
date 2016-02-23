@@ -216,6 +216,12 @@ public class Activity {
 		LocalTime t = LocalTime.of(h, m, s);
 		this.start.set(t);
 	}
+	
+	public void setStart(int h, int m)
+	{
+		LocalTime t = LocalTime.of(h, m, 0);
+		this.start.set(t);
+	}
 
 	@XmlTransient
 	public LocalTime getStart() {
@@ -364,7 +370,7 @@ public class Activity {
 		return this.gpxName;
 	}
 	
-	@XmlElement (name = "gpxName")   
+	@XmlElement(name = "gpxName")   
 	public String getgpxName(){
 		return gpxName.get();
 	}
@@ -397,13 +403,18 @@ public class Activity {
 	 * available
 	 */
 	private void updateAVGSpeed() {
-		if (duration.get() != null) {
-			if (duration.get().isAfter(LocalTime.MIN) && distance.get() > 0) {
-				float time = duration.get().getHour() + duration.get().getMinute() / 60;
-				float speed = distance.get() / time;
+		try {
+			if (duration.get() != null) {
+				if (duration.get().isAfter(LocalTime.MIN) && distance.get() > 0) {
+					float time = duration.get().getHour() + duration.get().getMinute() / 60;
+					float speed = distance.get() / time;
 
-				this.avgspeed.set(speed);
+					this.avgspeed.set(speed);
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

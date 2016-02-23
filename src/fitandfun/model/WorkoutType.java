@@ -6,31 +6,41 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * WorkoutType to load and save WorkoutTypes used by all Users
- * @author Sabrina, Marion, Kerstin
+ * WorkoutType to load and save WorkoutTypes
+ * 
+ * @author Sabrina Füreder, Marion Lackner, Kerstin Sachsenhofer
+ * 
  * @version 0.1
  */
 
 public class WorkoutType {
-	private StringProperty actName;
-
-	private StringProperty exercise1;
-	private StringProperty exercise2;
-	private StringProperty exercise3;
-	private StringProperty exercise4;
-	private StringProperty exercise5;
-	private StringProperty exercise6;
-
-	private StringProperty repeat1;
-	private StringProperty repeat2;
-	private StringProperty repeat3;
-	private StringProperty repeat4;
-	private StringProperty repeat5;
-	private StringProperty repeat6;
-
-	private StringProperty countsToGo;
 	
+	/**
+	 * Initializing variables
+	 */
 	
+	private final StringProperty actName;
+
+	private final StringProperty exercise1;
+	private final StringProperty exercise2;
+	private final StringProperty exercise3;
+	private final StringProperty exercise4;
+	private final StringProperty exercise5;
+	private final StringProperty exercise6;
+
+	private final StringProperty repeat1;
+	private final StringProperty repeat2;
+	private final StringProperty repeat3;
+	private final StringProperty repeat4;
+	private final StringProperty repeat5;
+	private final StringProperty repeat6;
+
+	private final StringProperty countsToGo;
+	
+	/**
+	 * The constructor. The constructor is called before the initialize()
+	 * method.
+	 */
 	public WorkoutType() {
 		this(null);
 	}
@@ -52,6 +62,9 @@ public class WorkoutType {
 		this.countsToGo = new SimpleStringProperty();
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for actName
+	 */
 	public StringProperty nameProperty() {
 		return this.actName;
 	}
@@ -65,6 +78,9 @@ public class WorkoutType {
 		this.actName.set(name);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise1
+	 */
 	public StringProperty getExercise1Property() {
 		return this.exercise1;
 	}
@@ -78,6 +94,9 @@ public class WorkoutType {
 		this.exercise1.set(exercise1);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise2
+	 */
 	public StringProperty getExercise2Property() {
 		return this.exercise2;
 	}
@@ -91,6 +110,9 @@ public class WorkoutType {
 		this.exercise2.set(exercise2);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise3
+	 */
 	public StringProperty getExercise3Property() {
 		return this.exercise3;
 	}
@@ -104,6 +126,9 @@ public class WorkoutType {
 		this.exercise3.set(exercise3);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise4
+	 */
 	public StringProperty getExercise4Property() {
 		return this.exercise4;
 	}
@@ -117,6 +142,9 @@ public class WorkoutType {
 		this.exercise4.set(exercise4);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise5
+	 */
 	public StringProperty getExercise5Property() {
 		return this.exercise5;
 	}
@@ -130,6 +158,9 @@ public class WorkoutType {
 		this.exercise5.set(exercise5);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for exercise6
+	 */
 	public StringProperty getExercise6Property() {
 		return this.exercise6;
 	}
@@ -143,6 +174,9 @@ public class WorkoutType {
 		this.exercise6.set(exercise6);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat1
+	 */
 	public StringProperty getRepeat1Property() {
 		return this.repeat1;
 	}
@@ -156,6 +190,9 @@ public class WorkoutType {
 		this.repeat1.set(repeat1);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat2
+	 */
 	public StringProperty getRepeat2Property() {
 		return this.repeat2;
 	}
@@ -169,6 +206,9 @@ public class WorkoutType {
 		this.repeat2.set(repeat2);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat3
+	 */
 	public StringProperty getRepeat3Property() {
 		return this.repeat3;
 	}
@@ -182,6 +222,9 @@ public class WorkoutType {
 		this.repeat3.set(repeat3);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat4
+	 */
 	public StringProperty getRepeat4Property() {
 		return this.repeat4;
 	}
@@ -195,6 +238,9 @@ public class WorkoutType {
 		this.repeat4.set(repeat4);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat5
+	 */
 	public StringProperty getRepeat5Property() {
 		return this.repeat5;
 	}
@@ -208,6 +254,9 @@ public class WorkoutType {
 		this.repeat5.set(repeat5);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for repeat6
+	 */
 	public StringProperty getRepeat6Property() {
 		return this.repeat6;
 	}
@@ -221,6 +270,9 @@ public class WorkoutType {
 		this.repeat6.set(repeat6);
 	}
 
+	/**
+	 * Property-getter, Getter- and Setter Methods for countsToGo
+	 */
 	public StringProperty getCountsToGoProperty() {
 		return this.countsToGo;
 	}

@@ -25,11 +25,20 @@ import fitandfun.model.WorkoutType;
 
 public class WorkoutsController {
 
+	/**
+	 * Reference to the MainApplication
+	 */
 	private MainApp mainApp;
 
+	/**
+	 * Reference to the activeUser from mainApp
+	 */
     @FXML
     public Label activeUser;
 	
+    /**
+	 * FXML Variables to link
+	 */
 	@FXML
 	private ListView<WorkoutType> workoutList;
 	@FXML
@@ -121,17 +130,28 @@ public class WorkoutsController {
 
 	}
 
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 *
+	 * @param mainApp
+	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		workoutList.setItems(mainApp.getWorkoutData());
         activeUser.setText(mainApp.getActiveUser().getUsername());
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Method to create a new workout
+	 */
 	@FXML
 	private void createNewWorkout() {
 		WorkoutType w = new WorkoutType("Neues Workout");
@@ -140,6 +160,9 @@ public class WorkoutsController {
 		buttonSave.setVisible(true);
 	}
 
+	/**
+	 * Method to save a new workout
+	 */
 	@FXML
 	private void saveWorkout() {
 		mainApp.saveWorkoutsXml();	
@@ -152,6 +175,9 @@ public class WorkoutsController {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Method to delete a workout
+	 */
 	@FXML
 	private void deleteWorkout() {
 		WorkoutType w = workoutList.getSelectionModel().getSelectedItem();
@@ -169,6 +195,9 @@ public class WorkoutsController {
 		}
 	}
 
+	/**
+	 * Method to show all workouts from a user
+	 */
 	private void showWorkout(WorkoutType oldWorkout, WorkoutType newWorkout) {
 		if (oldWorkout != null) {
 			actName.textProperty().unbindBidirectional(oldWorkout.nameProperty());

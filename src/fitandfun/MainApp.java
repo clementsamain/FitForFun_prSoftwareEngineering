@@ -65,6 +65,8 @@ public class MainApp extends Application {
 	 * XML File to load and save TrainingGoals from a specific User
 	 */
 	private String FILE_USERGOALS;
+	
+	private String gpxNameTemp = "";
 
 	/**
 	 * Saves the activeUser selected at Login
@@ -200,8 +202,6 @@ public class MainApp extends Application {
 		}
 		loadUserXML();
 		loadActivityXML();
-
-
 		loadGoalTypeXML();
 	}
 
@@ -479,7 +479,7 @@ public class MainApp extends Application {
 		}
 	}
 	
-	String gpxNameTemp = "";
+	
 	
 	public void showMapController() {	
 		try {
@@ -887,14 +887,11 @@ public class MainApp extends Application {
 		try
 		{
 			loadUserActivityXML();
+			loadTrainingGoalsXML();
 		}catch(Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
-		
-		//loadWeightXML();
-		loadTrainingGoalsXML();
-		//loadWorkoutsXML();
 	}
 
 	/**
@@ -944,8 +941,6 @@ public class MainApp extends Application {
 		return userActivityData;
 	}
 
-
-
 	/**
 	 * Returns the data as an ObservableList of GoalType
 	 *
@@ -994,69 +989,4 @@ public class MainApp extends Application {
 	public ObservableList<WorkoutType> getWorkoutData() {
 		return workoutData;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

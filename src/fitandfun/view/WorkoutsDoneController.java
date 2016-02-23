@@ -16,17 +16,27 @@ import fitandfun.model.User;
 import fitandfun.model.WorkoutType;
 
 /**
- *
- * @author Marion, Sabrina, Kerstin
- * @version 0.1
- */
+*
+* @author Marion Lackner, Sabrina Füreder, Kerstin Sachsenhofer
+* 
+* @version 1.0 
+*/
+
 public class WorkoutsDoneController {
 
-	// Reference to the main application.
+	/**
+	 * Reference to the MainApplication
+	 */
 	private MainApp mainApp;
 
+	/**
+	 * Reference to the activeUser from mainApp
+	 */
 	private User activeUser;
 
+	/**
+	 * FXML Variables to link
+	 */
 	@FXML
 	private ComboBox<WorkoutType> actName;
 	
@@ -77,6 +87,8 @@ public class WorkoutsDoneController {
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
+	 *
+	 * Binding all Variables to save/load in the XML-File
 	 */
 	@FXML
 	private void initialize() {
@@ -120,6 +132,11 @@ public class WorkoutsDoneController {
 		});
 	}
 
+	/**
+	 * show Workout Details when selected in the ComboBox
+	 * @param oldWorkout
+	 * @param newWorkout
+	 */
 	private void showWorkoutDone(WorkoutType oldWorkout, WorkoutType newWorkout) {
 			if (oldWorkout != null) {
 				lblExercise1.textProperty().unbindBidirectional(oldWorkout.getExercise1Property());
@@ -183,7 +200,7 @@ public class WorkoutsDoneController {
 
 	@FXML
 	private void reset() {
-		// TODO
+		// TODO in Version 2.0
 	}
 
 	/**
@@ -191,7 +208,6 @@ public class WorkoutsDoneController {
 	 *
 	 * @param mainApp
 	 */
-
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 		actName.getItems().addAll(mainApp.getWorkoutData());
@@ -199,16 +215,25 @@ public class WorkoutsDoneController {
 		activeUser = mainApp.getActiveUser();
 	}
 
+	/**
+	 * Method to navigate to the Homepage in FXML
+	 */
 	@FXML
 	private void showHomepage() {
 		mainApp.showHomepage();
 	}
 
+	/**
+	 * Method to navigate to the WorkoutsDone in FXML
+	 */
 	@FXML
 	private void showWorkoutsDoneController() {
 		mainApp.showWorkoutsDoneController();
 	}
 	
+	/**
+	 * Method to raise the counts to complete a workout
+	 */
 	@FXML
 	private void raiseCompletedCounts() {
 		int count = Integer.parseInt(lblCompletedCounts.getText());
