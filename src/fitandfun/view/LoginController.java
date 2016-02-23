@@ -5,8 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import sun.applet.Main;
+
+import java.net.URL;
+
 import fitandfun.MainApp;
 import fitandfun.model.User;
 
@@ -33,8 +39,6 @@ public class LoginController {
 	 */
 	@FXML
 	private ListView<User> userList;
-
-	
 
 	/**
 	 * The constructor. The constructor is called before the initialize()
