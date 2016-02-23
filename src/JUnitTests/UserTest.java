@@ -24,7 +24,9 @@ public class UserTest {
 	private LocalDate birthday;
 	private FloatProperty weight;
 	private IntegerProperty height;
+	@SuppressWarnings("unused")
 	private float w;
+	@SuppressWarnings("unused")
 	private int h;
 	private FloatProperty bmi;
 	private BooleanProperty isNew;

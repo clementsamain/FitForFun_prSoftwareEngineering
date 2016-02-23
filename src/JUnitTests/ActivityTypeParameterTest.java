@@ -1,11 +1,8 @@
 package JUnitTests;
 
 import static org.junit.Assert.*;
-
 import org.junit.*;
-
 import fitandfun.model.ActivityType;
-import fitandfun.model.WorkoutType;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,7 +13,9 @@ import javafx.beans.property.StringProperty;
  */
 public class ActivityTypeParameterTest {
 
+	@SuppressWarnings("unused")
 	private StringProperty paramName;
+	@SuppressWarnings("unused")
 	private StringProperty paramUnit;
 	private ActivityType activity;
 

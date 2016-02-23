@@ -7,8 +7,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.scene.control.Alert.AlertType;
@@ -19,19 +17,14 @@ import net.divbyzero.gpx.GPX;
 import net.divbyzero.gpx.Track;
 import net.divbyzero.gpx.parser.JDOM;
 import net.divbyzero.gpx.parser.ParsingException;
-
 import java.io.File;
 import java.text.NumberFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-
 import fitandfun.MainApp;
 import fitandfun.TimeSpinner;
 import fitandfun.model.Activity;
@@ -53,6 +46,7 @@ public class InputActivityController {
 	/**
 	 * Reference to the activeUser from mainApp
 	 */
+	@SuppressWarnings("unused")
 	private User activeUser;
 
 	/**

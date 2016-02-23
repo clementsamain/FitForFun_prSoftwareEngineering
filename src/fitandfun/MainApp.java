@@ -1,12 +1,7 @@
 package fitandfun;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
-
 import fitandfun.model.*;
 import fitandfun.view.*;
 import javafx.application.Application;
@@ -659,11 +654,8 @@ public class MainApp extends Application {
 
 	/**
 	 * Loading all UserWeight from the XML-File used to save a new UserWeight.
-
-
-
-
 	 */
+	@SuppressWarnings("unused")
 	private void loadWeightXML() {
 		File temp = new File(FILE_WEIGHT);
 		if (temp.exists()) {
@@ -761,6 +753,7 @@ public class MainApp extends Application {
 	 * Loading all Workouts from the XML-File used to save a new Workouts.
 	 *
 	 */
+	@SuppressWarnings("unused")
 	private void loadWorkoutsXML() {
 		File temp = new File(FILE_WORKOUTS);
 		if (temp.exists()) {

@@ -15,11 +15,9 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import fitandfun.MainApp;
-import fitandfun.model.ActivityType;
 import fitandfun.model.GoalType;
 import fitandfun.model.TrainingGoals;
 import fitandfun.model.User;
-import fitandfun.model.Weight;
 
 /**
  * 
@@ -37,6 +35,7 @@ public class InputTrainingGoalController {
     /**
      * Reference to the activeUser
      */
+    @SuppressWarnings("unused")
     private User activeUser;
     
     /**

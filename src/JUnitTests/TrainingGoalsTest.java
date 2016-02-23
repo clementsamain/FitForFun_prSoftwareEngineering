@@ -1,18 +1,12 @@
 package JUnitTests;
 
 import static org.junit.Assert.*;
-
 import java.time.LocalDate;
-
 import org.junit.*;
-
 import fitandfun.model.TrainingGoals;
 import fitandfun.model.GoalType;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.FloatProperty;
 
@@ -25,6 +19,7 @@ public class TrainingGoalsTest {
 
 	private GoalType goaltype;
 	private TrainingGoals traininggoal;
+	@SuppressWarnings("unused")
 	private StringProperty name;
 	private LocalDate date1;
 	private float goalValue;

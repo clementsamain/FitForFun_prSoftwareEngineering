@@ -32,6 +32,7 @@ public class WorkoutsDoneController {
 	/**
 	 * Reference to the activeUser from mainApp
 	 */
+	@SuppressWarnings("unused")
 	private User activeUser;
 
 	/**

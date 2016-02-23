@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import fitandfun.model.ActivityType;
-import fitandfun.model.WorkoutType;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,6 +18,7 @@ import javafx.beans.property.StringProperty;
  */
 public class ActivityTypeTest {
 
+	@SuppressWarnings("unused")
 	private StringProperty name;
 	private ActivityType activity;
 	private BooleanProperty date;

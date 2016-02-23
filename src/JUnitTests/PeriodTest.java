@@ -4,10 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import fitandfun.MainApp;
 import fitandfun.Period;
-import fitandfun.model.User;
-import fitandfun.view.WorkoutsDoneController;
 
 /**
  * @author Sabrina Füreder, Marion Lackner

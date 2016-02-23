@@ -7,20 +7,13 @@ import java.time.LocalTime;
 
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import fitandfun.model.Activity;
 import fitandfun.model.ActivityType;
-import fitandfun.model.WorkoutType;
 
 /**
  * @author Sabrina Füreder, Marion Lackner

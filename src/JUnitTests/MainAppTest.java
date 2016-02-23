@@ -5,12 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import fitandfun.MainApp;
-import fitandfun.model.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.stage.Stage;
+
 
 /**
  * @author Kerstin Sachsenhofer
@@ -21,16 +17,12 @@ public class MainAppTest {
 
 	private MainApp mainApp;
 
-	private String gpxName;
-
 	/**
 	 * Method to initialize the test class.
 	 */
 	@Before
 	public void setUp() throws Exception {
 		mainApp = new MainApp();
-
-		gpxName = "";
 	}
 
 	/**

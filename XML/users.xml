@@ -2,12 +2,12 @@
 <UserWrapper>
     <Users>
         <User>
-            <Birthday>1990-09-30</Birthday>
-            <Height>173</Height>
+            <Birthday></Birthday>
+            <Height></Height>
             <IsNew>false</IsNew>
-            <Sex>Female</Sex>
-            <Username>Viki</Username>
-            <Weight>75.0</Weight>
+            <Sex>None</Sex>
+            <Username>System-User</Username>
+            <Weight></Weight>
         </User>
     </Users>
 </UserWrapper>

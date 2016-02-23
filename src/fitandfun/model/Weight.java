@@ -2,14 +2,10 @@ package fitandfun.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javax.xml.bind.annotation.XmlElement;
-
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.FloatProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**

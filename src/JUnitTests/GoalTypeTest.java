@@ -21,7 +21,9 @@ public class GoalTypeTest {
 
 	public GoalType goaltype;
 	public StringProperty name;
+	@SuppressWarnings("unused")
 	private ObjectProperty<ActivityType> actType;
+	@SuppressWarnings("unused")
 	private ObjectProperty<ActivityTypeParameter> actTypeParam;
 
 	/**

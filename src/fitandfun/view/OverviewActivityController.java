@@ -9,13 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import fitandfun.MainApp;
 import fitandfun.model.ActivityType;
-import fitandfun.model.ActivityTypeParameter;
 
 /**
  *

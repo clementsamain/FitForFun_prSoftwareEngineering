@@ -1,9 +1,7 @@
 package fitandfun.model;
 
 import javax.xml.bind.annotation.XmlElement;
-
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
